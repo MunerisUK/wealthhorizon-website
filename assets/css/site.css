@@ -294,6 +294,16 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
 .hero .lede { font-size: 1.2rem; }
 .hero-note { font-size: .93rem; color: var(--muted); margin-top: 1.6rem; max-width: var(--measure); }
 
+/* The opening block on a page that wants weight without going dark: the warm
+   stone ground rather than the paper one, and the accent stated as a rule
+   under the header. The tonal step down to the white cards below it is what
+   does the separating — no shadow, no glow. */
+.hero-feature {
+  background: var(--bg-alt);
+  border-top: 4px solid var(--accent);
+  border-bottom: 1px solid var(--border);
+}
+
 /* Flat deep slate, with the accent stated as a rule at the top of the block
    rather than as light coming from nowhere. */
 .hero-dark {
