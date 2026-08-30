@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Advisory edition — WealthHorizon</title>
+<meta name="description" content="The WealthHorizon Advisory edition: client book management, FCA Consumer Duty management information, vulnerable customer register, suitability reporting, fair value assessment, firm hierarchy and audit trail.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<!-- Set before first paint. Everything the site hides behind a control —
+     the mobile navigation, the inactive tab panels — is only hidden when
+     this class is present, so with JavaScript off the page is whole. -->
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/img/wh-mark.svg" alt="">
+      <span class="brand-text">
+        <span class="brand-name">Wealth<em>Horizon</em></span>
+        <span class="brand-sub">by Muneris</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#editions">Editions</a>
+      <a href="compare.html">Compare</a>
+      <a href="advisory.html" aria-current="page">The Advisory</a>
+      <a href="how-its-built.html">How it&rsquo;s built</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero hero-dark">
+    <div class="wrap">
+      <p class="eyebrow">The Advisory edition</p>
+      <h1>Client management, supervision and Consumer Duty evidence in one system</h1>
+      <p class="lede">
+        The Advisory edition is a multi-tenant wealth management platform with an embedded
+        regulatory technology layer. It provides advisers with a complete client book,
+        compliance functions with firm-wide management information, and senior management with
+        a hierarchical view of outcomes across the organisation &mdash; from a single data set
+        and a single audit trail.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#consumer-duty">Consumer Duty coverage</a>
+        <a class="btn btn-ghost" href="#advisory-desk">The advisory desk</a>
+        <a class="btn btn-ghost" href="#hierarchy">Supervision &amp; hierarchy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Positioning ===================== -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="grid grid-3">
+        <div class="card card-accent">
+          <h3>One data set, three audiences</h3>
+          <p>
+            Client-facing wealth management, adviser workflow and compliance oversight are
+            served from the same records. The management information a compliance function
+            reports on is the same data an adviser is working in, so there is no reconciliation
+            step and no separate compliance database to keep current.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>Role determines visibility</h3>
+          <p>
+            Access is derived from the relationships held in the platform: an adviser sees only
+            the clients they are engaged with, a compliance manager sees the firm, and a manager
+            in the reporting hierarchy sees their subtree. The audit log is restricted to the
+            compliance function alone.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>Evidence is a by-product</h3>
+          <p>
+            Board reporting, supervisory evidence packs and the vulnerable customer register are
+            generated from the record of work already done. Nothing has to be assembled
+            retrospectively for a board meeting or a supervisory request.
+          </p>
+        </div>
+      </div>
+
+      <div class="note note-plain">
+        <p>
+          <strong>About the screenshots on this page.</strong> Every image is the running
+          application, captured from a demonstration environment. Client names, figures,
+          vulnerability flags and complaint counts are fictitious and are provided for
+          illustration.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Consumer Duty ===================== -->
+  <section id="consumer-duty" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Regulatory coverage</p>
+        <h2>FCA Consumer Duty &mdash; the four outcomes, module by module</h2>
+        <p>
+          The Consumer Duty requires firms to deliver good outcomes, to monitor whether they are
+          being delivered, to act where they are not, and to evidence all three to their board
+          and to the regulator. Each module below maps to an obligation and produces a durable
+          record.
+        </p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Consumer Duty outcomes mapped to the modules that evidence them.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Outcome</th>
+              <th scope="col">Module</th>
+              <th scope="col">What it produces</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" rowspan="3">Products and services</th>
+              <td>Cohort Outcomes</td>
+              <td>On-track and off-track rates by risk-profile cohort, with drill-down to the individual clients behind each figure and a warning where a cohort falls below a 50% on-track rate.</td>
+            </tr>
+            <tr>
+              <td>Annual Review Tracker</td>
+              <td>Overdue, due-soon and on-track counts; a review recorded against the client with the next one scheduled at 6, 12, 18 or 24 months.</td>
+            </tr>
+            <tr>
+              <td>Risk Assessment</td>
+              <td>An eight-question attitude-to-risk profile with a stated capacity for loss, written to the client&rsquo;s compliance record and carried into suitability reporting.</td>
+            </tr>
+            <tr>
+              <th scope="row" rowspan="2">Price and value</th>
+              <td>Charge Justification</td>
+              <td>Per-client service tier, annual charge, deliverables in the last twelve months, a computed value score and a red/amber/green status. Exportable to CSV.</td>
+            </tr>
+            <tr>
+              <td>Fair Value Assessment</td>
+              <td>The annual assessment by service tier: client count, revenue, average charge, on-track rate, average complaints and a RAG rating against stated thresholds.</td>
+            </tr>
+            <tr>
+              <th scope="row" rowspan="3">Consumer understanding</th>
+              <td>Suitability Reports</td>
+              <td>A COBS 9.4 suitability letter with a unique reference, drawn from the client&rsquo;s own circumstances, objectives, risk profile and charges, including risk warnings and alternatives considered.</td>
+            </tr>
+            <tr>
+              <td>Client Portal</td>
+              <td>A branded, read-only view of a client&rsquo;s position, issued on an expiring link and revocable at any time.</td>
+            </tr>
+            <tr>
+              <td>Account Access</td>
+              <td>A client-facing record of who at the firm opened their account, when, and in what role &mdash; the transparency side of the same audit trail.</td>
+            </tr>
+            <tr>
+              <th scope="row" rowspan="2">Consumer support</th>
+              <td>Vulnerable Customer Register</td>
+              <td>Flag type, severity, contextual notes, the support actions taken and a review-due date, with an active / reviewed / resolved lifecycle.</td>
+            </tr>
+            <tr>
+              <td>Vulnerability Scoring</td>
+              <td>An explainable 0&ndash;100 score per client with the contributing factors listed, banded critical, high, medium and low, for prioritisation.</td>
+            </tr>
+            <tr>
+              <th scope="row" rowspan="3">Governance and monitoring</th>
+              <td>MI Dashboard</td>
+              <td>Aggregate outcome metrics across the book, with every headline figure opening the list of clients behind it.</td>
+            </tr>
+            <tr>
+              <td>Board Report</td>
+              <td>The annual attestation across the four principles, with overview metrics, cohort outcomes and the fair value table, exportable as JSON or printed for the board pack.</td>
+            </tr>
+            <tr>
+              <td>FCA Evidence Export</td>
+              <td>A structured supervisory package over a twelve-month window in JSON, plus a flattened client-level CSV.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Compliance ===================== -->
+  <section id="compliance">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Compliance oversight</p>
+        <h2>Management information that resolves to a named client</h2>
+        <p>
+          A percentage is only useful if it can be turned into a list of people to contact. Every
+          headline metric in the compliance suite is a control: selecting it opens the cohort
+          behind it, and selecting a client from that cohort opens their record.
+        </p>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/compliance-dashboard.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/compliance-dashboard.webp" width="1800" height="1140"
+               alt="The Consumer Duty MI Dashboard showing total clients, vulnerable clients, goal on-track percentage, average annual charge, clients without a review in 90 days, off-track clients and total complaints, with a stacked bar of outcomes by risk profile and tiles of vulnerability flags by severity." loading="lazy">
+        </a>
+        <figcaption>
+          <b>Consumer Duty MI Dashboard.</b> Aggregate outcome metrics across the managed book:
+          client count, vulnerable proportion, goal attainment, average annual charge, review
+          backlog, off-track clients and complaints. Outcomes are broken down by risk cohort and
+          vulnerability flags by severity. A banner is raised where more than 20% of the book
+          carries an active vulnerability flag.
+        </figcaption>
+      </figure>
+
+      <div class="shot-grid">
+        <figure class="shot">
+          <a href="assets/img/screens/vulnerable-register.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/vulnerable-register.webp" width="1800" height="1140"
+                 alt="The Vulnerable Customer Register listing clients with flag type, severity, notes, review due date, status and edit controls, filtered by severity." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Vulnerable Customer Register.</b> Flags are recorded against one of seven types
+            &mdash; financial difficulty, cognitive impairment, bereavement, health condition,
+            life event, reduced capability, low financial resilience &mdash; at four severities,
+            with the support actions taken and a review-due date. The lifecycle is explicit:
+            active, reviewed, resolved. A flag with no recorded support action shows
+            identification without response, which is the point supervisors examine.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/vulnerability-scoring.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/vulnerability-scoring.webp" width="1800" height="1140"
+                 alt="The vulnerability scoring page showing a risk score out of 100 per client, banded critical, high, medium and low, with the contributing score factors listed for each client." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Vulnerability scoring.</b> A 0&ndash;100 score per client derived from weighted
+            signals: an active flag, an off-track goal, a missing or overdue review, complaints,
+            and service tier. Every score lists the factors that produced it, so the output is
+            explainable and can be challenged. Scoring prioritises; the register evidences the
+            response.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/charge-justification.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/charge-justification.webp" width="1800" height="1140"
+                 alt="The charge justification page showing each client with their service tier, annual charge, documents delivered in the last twelve months, a value score percentage and a RAG status." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Charge justification.</b> Value assessed per client against service tier, annual
+            charge and deliverables in the last twelve months. Scores above 80% read good, 50&ndash;80%
+            read review, below 50% read at risk. Total revenue and average value score are
+            reported for the book, and the table exports to CSV for the file.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/fair-value.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/fair-value.webp" width="1800" height="1140"
+                 alt="The fair value assessment page showing service tiers with client counts, total revenue, average charge, on-track percentage, average complaints and a RAG rating." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Fair value assessment.</b> The annual assessment grouped by service tier. Green
+            requires an on-track rate of at least 70% and average complaints of no more than 1.0;
+            a breach of either is amber, and multiple breaches are red. The page identifies the
+            tier to remediate rather than reporting a firm-wide average that conceals it.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/cohort-outcomes.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/cohort-outcomes.webp" width="1800" height="1140"
+                 alt="The cohort outcomes page showing risk profile cohorts with client counts and on-track percentages, colour coded, with drill-down into the clients in each cohort." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Cohort outcomes.</b> Goal attainment by risk-profile cohort, with the clients
+            behind each cohort one selection away &mdash; goal, target value and date, service
+            tier, vulnerability status and last review. A cohort below a 50% on-track rate raises
+            a warning.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/annual-review.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/annual-review.webp" width="1800" height="1140"
+                 alt="The annual review tracker showing counts for overdue, due soon, on track and total, with a client table showing last review, next review and days since." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Annual review tracker.</b> Overdue beyond 90 days, due within 30 days, on track,
+            and the total. Recording a review sets today as the last review date and schedules the
+            next at a chosen interval. The review backlog is the leading indicator of Consumer
+            Duty risk, and it is reported as a worklist rather than a statistic.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-2">
+        <figure class="shot">
+          <a href="assets/img/screens/board-report.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/board-report.webp" width="1800" height="1140"
+                 alt="The Consumer Duty Board Report showing overview metrics, a risk cohort outcomes table and a fair value assessment table, with export to JSON and print controls." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Consumer Duty board report.</b> The annual attestation and outcomes summary
+            assembled in one document: overview metrics, risk-cohort outcomes, the fair value
+            table by tier, and an attestation across the four principles recording who attested,
+            the date signed and the reporting period. Exportable as JSON for the record, or
+            printed for the board pack.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/fca-export.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/fca-export.webp" width="1800" height="1140"
+                 alt="The FCA evidence export page showing the structured evidence package contents and download options for JSON and CSV." loading="lazy">
+          </a>
+          <figcaption>
+            <b>FCA evidence export.</b> A structured supervisory package over a stated twelve-month
+            window: overview metrics, risk-profile breakdown, vulnerability breakdown, net-worth
+            summary and recent alert events. JSON carries the full package; CSV flattens it to one
+            row per client for analysis. Generating the board report and the evidence export from
+            the same period keeps the governance pack and the supervisory file consistent.
+          </figcaption>
+        </figure>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/audit-log.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/audit-log.webp" width="1800" height="1140"
+               alt="The audit log showing date and time, user name and email, a colour-coded action badge, resource type and identifier, and IP address for each recorded event." loading="lazy">
+        </a>
+        <figcaption>
+          <b>Audit log.</b> A firm-wide activity trail &mdash; authentication, role grants, client
+          record access, suitability generation, backups &mdash; filterable by action class. Access
+          is restricted to the compliance manager role; every other caller is refused. It is the
+          independent record behind access-control review, incident investigation and data-integrity
+          checks, and it is deliberately separate from the client-facing Account Access view.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== Advisory desk ===================== -->
+  <section id="advisory-desk" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The advisory desk</p>
+        <h2>The adviser&rsquo;s working day, with the file written as it goes</h2>
+        <p>
+          An adviser lands on their management information rather than on a client list, because
+          the first question of the day is which clients need attention. From there the workflow
+          runs through the client record, the risk profile, the recommendation and the letter
+          &mdash; and each step leaves the evidence the next one depends on.
+        </p>
+      </div>
+
+      <div class="shot-grid">
+        <figure class="shot">
+          <a href="assets/img/screens/suitability-report.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/suitability-report.webp" width="1800" height="1140"
+                 alt="The suitability report generator with a completed report preview showing a reference number, date, client name, advice type and the introduction and objectives sections of the letter." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Suitability reporting.</b> A COBS 9.4 letter generated against a client record and
+            issued with a unique reference. The letter sets out circumstances and objectives,
+            attitude to risk and capacity for loss, the recommendation and the reasons for it,
+            charges, risk warnings, alternatives considered, next steps and an adviser
+            declaration. Where the client carries a vulnerability flag, a tailored note is added
+            automatically. Reports are retained with their reference and can be reopened.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/risk-assessment.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/risk-assessment.webp" width="1800" height="1140"
+                 alt="The risk assessment page showing client selection and the start of an eight-question attitude to risk questionnaire with a progress indicator." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Attitude to risk.</b> An eight-question assessment covering experience, objective,
+            tolerance for falls, time horizon, allocation, income stability and attitude to risk.
+            The result assigns a profile &mdash; conservative, moderate, growth or adventurous
+            &mdash; each with a stated capacity for loss, and writes it to the client&rsquo;s
+            compliance record so that suitability reporting and supervisory evidence remain
+            consistent with it.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/adviser-scorecard.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/adviser-scorecard.webp" width="1800" height="1140"
+                 alt="The adviser scorecard showing total clients, on-track percentage, vulnerable count, complaints and average charge, with a per-client table of risk profile, tier, status, charge, last review and flags." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Adviser scorecard.</b> An adviser&rsquo;s own book measured on the same figures
+            their supervisor sees: client count, on-track rate, vulnerable clients, complaints and
+            average charge, with a per-client table beneath. Self-supervision precedes escalation.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/client-roadmap.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/client-roadmap.webp" width="1800" height="1140"
+                 alt="The client roadmap page listing clients who have shared their financial plan, with goals on track, must-have goals at risk, open flags and when the plan last changed." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Client roadmap.</b> Planning status across the book: for every client who has
+            consented to share their fact-find, whether their goals are on track, whether a
+            must-have goal is at risk, any open flags, and when the plan last changed. Clients
+            needing attention sort to the top. Only consented clients appear, and every view is
+            logged.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="grid grid-2">
+        <figure class="shot">
+          <a href="assets/img/screens/client-portal.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/client-portal.webp" width="1800" height="1140"
+                 alt="The client portal management page showing controls to select a client, set an expiry in days, choose a brand colour and select the sections to include, with a table of issued tokens." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Client portal.</b> A branded, read-only view of a client&rsquo;s position, issued on
+            a link that expires after a stated number of days and can be revoked at any time. The
+            sections included &mdash; net worth, goals, documents &mdash; are chosen per issue.
+            Issued links are listed with their status, so a firm can see at any moment what is
+            outstanding.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/account-access.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/account-access.webp" width="1800" height="1140"
+                 alt="The client-facing Account Access page listing who accessed the account, their role, the action and the timestamp." loading="lazy">
+          </a>
+          <figcaption>
+            <b>Account Access &mdash; the client&rsquo;s view.</b> The same access record, scoped
+            to the client and presented to them: who at the firm opened their account, in what
+            role, and when. Consumer understanding is not only about the documents a firm issues;
+            it is also about what a client can verify for themselves.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>Consent is explicit and revocable.</strong> An adviser sees a client&rsquo;s
+          financial planning fact-find only where the client has switched sharing on. Access is
+          read-only, the client can withdraw it at any point, every read is written to the access
+          log, and switching the consent on or off is itself an audited event. Notes and flags an
+          adviser records against a plan are visible to the client, because transparency is a
+          Consumer Duty expectation rather than an option.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Hierarchy ===================== -->
+  <section id="hierarchy">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Supervision and firm hierarchy</p>
+        <h2>Two views of the same book: who, and which line of management</h2>
+        <p>
+          Platform Overview presents every adviser side by side, which answers <em>which
+          adviser</em>. Firm Hierarchy rolls the same figures up through the reporting structure,
+          which answers <em>which team, and who is accountable</em>. Together they turn a single
+          amber indicator into a specific conversation with a named manager.
+        </p>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/platform-overview.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/platform-overview.webp" width="1800" height="1140"
+               alt="The Platform Overview showing adviser count, total clients, platform on-track percentage, vulnerable clients, clients without a review in 90 days, total complaints and average charge, above a table of adviser performance." loading="lazy">
+        </a>
+        <figcaption>
+          <b>Platform Overview.</b> Oversight across every adviser and their clients. Each adviser
+          row reports clients, on-track and off-track counts, on-track rate with a RAG indicator,
+          average charge, vulnerable clients, review backlog and complaints. Selecting a headline
+          figure opens the cohort behind it; selecting an adviser opens their full client list.
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <a href="assets/img/screens/firm-hierarchy.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/firm-hierarchy.webp" width="1800" height="1140"
+               alt="The Firm Hierarchy page viewed as CEO, showing direct reports, total clients, on-track percentage, vulnerable and complaint totals, above a table of two managing directors with tier badges, client counts, on-track percentages and alert pills." loading="lazy">
+        </a>
+        <figcaption>
+          <b>Firm Hierarchy.</b> The organisation navigated tier by tier &mdash; CEO, managing
+          director, vice-president, manager, adviser &mdash; with a breadcrumb showing position
+          and a summary band for the level in view. Each direct report carries their tier badge,
+          client count, on-track rate, vulnerable count, review backlog, average charge,
+          complaints, and an alerts column that surfaces the specific problems as badges, or a
+          single tick where the position is healthy. Selecting a management-tier row descends into
+          their part of the organisation.
+        </figcaption>
+      </figure>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Roll-up, not re-entry</h3>
+          <p>
+            Every figure at every tier is computed from the underlying client records. There is
+            no management reporting layer to populate and no monthly return for advisers to
+            complete, so the numbers a manager reads are the numbers as they stand.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Scoped to the reporting line</h3>
+          <p>
+            A manager&rsquo;s view is bounded by their own position in the hierarchy: the page
+            opens at their level and shows their subtree. Firm-wide visibility is a compliance
+            function, not a management grade.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Isolated or systemic</h3>
+          <p>
+            A single adviser with a red on-track rate is a conversation. Several advisers under
+            one manager showing amber is a capacity, process or training issue, and the roll-up is
+            what makes the difference visible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Controls ===================== -->
+  <section class="band" id="controls">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Controls and separation of duties</p>
+        <h2>How access is bounded, and how it is recorded</h2>
+      </div>
+
+      <ul class="speclist">
+        <li><span class="k">Client isolation</span><span class="v">Each household or client is a tenant, and every record carries its tenant. Queries are scoped to the tenant before any data is returned; a member of staff acting on a client supplies an explicit client context, and the platform verifies the relationship &mdash; an active engagement, a compliance role or platform administration &mdash; before answering.</span></li>
+        <li><span class="k">Adviser scope</span><span class="v">An adviser sees the clients they are engaged with and no others. Which of a client&rsquo;s accounts they may see is granted per account, not per relationship.</span></li>
+        <li><span class="k">Compliance scope</span><span class="v">A compliance manager has firm-wide visibility of the compliance suite and is the only role that may open the audit log. Every other caller is refused.</span></li>
+        <li><span class="k">Management scope</span><span class="v">A manager in the reporting hierarchy sees their own subtree, derived from the reporting chain rather than assigned by hand.</span></li>
+        <li><span class="k">Administrative floor</span><span class="v">The platform will not permit itself to be left without an active system administrator, and the first administrator cannot be deleted, demoted or deactivated. These invariants are enforced twice &mdash; in the application, so the message is useful, and in the database, so a defect or a direct connection cannot bypass them.</span></li>
+        <li><span class="k">Client record access</span><span class="v">Opening a client&rsquo;s overview is written to the audit log with the actor, the role, the resource and the time. Reading a shared financial plan is a separate, separately consented and separately logged event.</span></li>
+        <li><span class="k">Authentication</span><span class="v">Passwords are hashed with argon2id under a stated complexity policy. Sessions use short-lived signed access tokens with rotating refresh tokens held only as a hash. Time-based one-time-password two-factor authentication is available per user; a password reset revokes every session on every device.</span></li>
+        <li><span class="k">Records at rest</span><span class="v">Backups are held inside the database rather than as loose files, may be encrypted with a passphrase using AES-256-GCM, are scheduled with a retention count, and every run is logged.</span></li>
+        <li><span class="k">Deployment</span><span class="v">The platform runs self-contained on infrastructure of the firm&rsquo;s choosing &mdash; on-premises, in a private cloud or in a public one &mdash; which supports data residency and sovereignty requirements without a change to the software.</span></li>
+      </ul>
+
+      <div class="btn-row">
+        <a class="btn btn-primary" href="how-its-built.html">The full engineering and security position</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Scope statement ===================== -->
+  <section>
+    <div class="wrap-narrow">
+      <h2>Scope of the platform&rsquo;s role</h2>
+      <p>
+        WealthHorizon provides capabilities that support a firm in discharging its regulatory
+        obligations. It does not discharge them. The operating firm remains responsible for its
+        own permissions and regulatory status, for its data protection impact assessment, lawful
+        basis, retention policy and subject access handling, for the accuracy of what it records,
+        and for the advice it gives.
+      </p>
+      <p>
+        Nothing on this page is legal, regulatory or financial advice. Projections and planning
+        outputs are indicative and depend on assumptions entered by the user. Scoring and
+        prioritisation tools are decision support: they direct attention, and the judgement and
+        the record of the response remain the firm&rsquo;s.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="mailto:info@muneris.co.uk?subject=WealthHorizon%20Advisory%20edition">Enquire about the Advisory edition</a>
+        <a class="btn btn-ghost" href="compare.html">Compare the consumer editions</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:.8rem">
+          <img src="assets/img/wh-mark.svg" alt="">
+          <span class="brand-text">
+            <span class="brand-name">Wealth<em>Horizon</em></span>
+            <span class="brand-sub">by Muneris</span>
+          </span>
+        </a>
+        <p>Every account, any currency, one horizon.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html#editions">Editions</a></li>
+          <li><a href="compare.html">Free, Standard &amp; Pro</a></li>
+          <li><a href="compare.html#money">Versus Microsoft Money</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For firms</h4>
+        <ul>
+          <li><a href="advisory.html">The Advisory</a></li>
+          <li><a href="advisory.html#consumer-duty">Consumer Duty coverage</a></li>
+          <li><a href="advisory.html#hierarchy">Supervision &amp; hierarchy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Engineering</h4>
+        <ul>
+          <li><a href="how-its-built.html">How it&rsquo;s built</a></li>
+          <li><a href="how-its-built.html#security">Security architecture</a></li>
+          <li><a href="how-its-built.html#assurance">Testing &amp; assurance</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>
+        WealthHorizon is proprietary software. &copy; 2026 Muneris Management Ltd. All rights
+        reserved. Licensing enquiries: <a href="mailto:info@muneris.co.uk">info@muneris.co.uk</a>.
+      </p>
+      <p>
+        Screenshots show the application populated with demonstration data; names and figures are
+        fictitious. Microsoft and Microsoft Money are trademarks of Microsoft Corporation.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

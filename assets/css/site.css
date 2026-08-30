@@ -1,0 +1,381 @@
+/* Copyright (c) 2026 Muneris Management Ltd. All rights reserved. */
+/* WealthHorizon website — one stylesheet, no framework, no build step. */
+
+/* ---------------------------------------------------------------------------
+   1. Tokens
+   The palette is the application's own: Muneris cyan and slate from
+   frontend/src/theme.ts, the teal accent and ink from frontend/src/brand.css,
+   so the site and the product are visibly the same thing.
+--------------------------------------------------------------------------- */
+:root {
+  --cyan:        #51C8E8;
+  --slate:       #576E7E;
+  --orange:      #FF8A3D;
+  --accent:      #0E9E8E;
+  --accent-dark: #0c8678;
+  --accent-soft: rgba(14, 158, 142, 0.10);
+
+  --ink:         #1d2b34;
+  --ink-2:       #3d4f5a;
+  --muted:       #66757f;
+  --border:      #e3e8ec;
+  --border-firm: #cfd8de;
+
+  --bg:          #ffffff;
+  --bg-alt:      #f6f9fb;
+  --bg-deep:     #0f2235;
+  --bg-deep-2:   #16304a;
+
+  --good:        #157a4d;
+  --warn:        #9a6a00;
+  --bad:         #b3261e;
+
+  --shadow-sm:   0 1px 2px rgba(15, 34, 53, .06), 0 1px 3px rgba(15, 34, 53, .05);
+  --shadow-md:   0 2px 6px rgba(15, 34, 53, .07), 0 8px 24px rgba(15, 34, 53, .07);
+
+  --radius:      12px;
+  --radius-lg:   18px;
+  --measure:     68ch;
+  --header-h:    68px;
+
+  --font-brand:  'Quicksand', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body:   system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:   ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:         #e7edf1;
+    --ink-2:       #c2ced6;
+    --muted:       #93a3ad;
+    --border:      #24384a;
+    --border-firm: #35516a;
+    --bg:          #0d1b26;
+    --bg-alt:      #12242f;
+    --accent:      #2ec4b0;
+    --accent-dark: #45d6c2;
+    --accent-soft: rgba(46, 196, 176, 0.14);
+    --good:        #57c98d;
+    --warn:        #e0b64a;
+    --bad:         #ef7d74;
+    --shadow-sm:   0 1px 2px rgba(0, 0, 0, .35);
+    --shadow-md:   0 2px 6px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .30);
+    color-scheme: dark;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   2. Base
+--------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 .5em;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.3rem); }
+h2 { font-size: clamp(1.55rem, 1.2rem + 1.4vw, 2.2rem); margin-top: 0; }
+h3 { font-size: 1.2rem; }
+h4 { font-size: 1.02rem; font-weight: 600; }
+
+p  { margin: 0 0 1.05em; }
+ul, ol { margin: 0 0 1.05em; padding-left: 1.3em; }
+li { margin-bottom: .4em; }
+strong { font-weight: 650; color: var(--ink); }
+small { font-size: .875rem; }
+
+a { color: var(--accent-dark); text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+code { font-family: var(--font-mono); font-size: .88em; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 5px; padding: .08em .35em; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 999;
+  background: var(--accent); color: #fff; padding: 12px 18px; border-radius: 0 0 8px 0; font-weight: 600;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------------------------------------------------------------------------
+   3. Layout
+--------------------------------------------------------------------------- */
+.wrap { width: min(1160px, calc(100% - 2.5rem)); margin-inline: auto; }
+.wrap-narrow { width: min(780px, calc(100% - 2.5rem)); margin-inline: auto; }
+
+section { padding-block: clamp(3rem, 6vw, 5rem); }
+section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
+.band { background: var(--bg-alt); border-block: 1px solid var(--border); }
+
+.lede { font-size: 1.15rem; color: var(--ink-2); max-width: var(--measure); }
+.eyebrow {
+  font-family: var(--font-brand);
+  font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent-dark); margin: 0 0 .6rem;
+}
+.section-head { max-width: var(--measure); margin-bottom: 2.2rem; }
+.section-head p:last-child { margin-bottom: 0; }
+
+/* ---------------------------------------------------------------------------
+   4. Header / nav
+--------------------------------------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.site-header .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: var(--header-h); }
+
+.brand { display: flex; align-items: center; gap: .65rem; text-decoration: none; flex: 0 0 auto; }
+.brand img { width: 34px; height: 34px; border-radius: 9px; }
+.brand-text { font-family: var(--font-brand); line-height: 1.05; }
+.brand-name { font-size: 1.16rem; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.brand-name em { font-style: normal; color: var(--cyan); }
+.brand-sub { display: block; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+.site-nav { margin-left: auto; display: flex; align-items: center; gap: .15rem; flex-wrap: wrap; }
+.site-nav a {
+  display: inline-block; padding: .5rem .78rem; border-radius: 8px;
+  font-size: .95rem; font-weight: 550; color: var(--ink-2); text-decoration: none;
+}
+.site-nav a:hover { background: var(--bg-alt); color: var(--ink); }
+.site-nav a[aria-current="page"] { color: var(--accent-dark); background: var(--accent-soft); font-weight: 650; }
+
+.nav-toggle {
+  display: none; margin-left: auto;
+  background: none; border: 1px solid var(--border); border-radius: 9px;
+  padding: .5rem .7rem; color: var(--ink); font: inherit; font-size: .9rem; cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  /* The header row has to wrap: the navigation below 860px is a full-width
+     block on its own line, and without wrapping it pushes the row wider than
+     the viewport. */
+  .site-header .wrap { flex-wrap: wrap; }
+  .js .nav-toggle { display: block; }
+  /* Collapsed only where the toggle that reopens it exists. With JavaScript off
+     there is no toggle, so the navigation stays in the page rather than becoming
+     a menu with no way in. */
+  .js .site-nav { display: none; }
+  .site-nav {
+    width: 100%; order: 3; margin-left: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding-bottom: .75rem;
+  }
+  .js .site-nav.open { display: flex; }
+  .site-nav a { padding: .7rem .6rem; border-radius: 8px; min-height: 44px; }
+}
+
+/* ---------------------------------------------------------------------------
+   5. Buttons
+--------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 44px; padding: .6rem 1.15rem;
+  font: inherit; font-weight: 600; font-size: .97rem;
+  border-radius: 10px; border: 1px solid transparent; cursor: pointer;
+  text-decoration: none; transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-dark); color: #fff; }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--border-firm); }
+.btn-ghost:hover { background: var(--bg-alt); color: var(--ink); }
+.btn-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+
+/* ---------------------------------------------------------------------------
+   6. Hero
+--------------------------------------------------------------------------- */
+.hero { padding-block: clamp(3rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 4rem); }
+.hero h1 { max-width: 20ch; }
+.hero .lede { font-size: 1.22rem; }
+.hero-note { font-size: .93rem; color: var(--muted); margin-top: 1.6rem; max-width: var(--measure); }
+
+.hero-dark {
+  background:
+    radial-gradient(1000px 480px at 82% -12%, rgba(81, 200, 232, .20), transparent 62%),
+    linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-deep-2) 100%);
+  color: #eaf3f8;
+  border-bottom: 1px solid var(--bg-deep-2);
+}
+.hero-dark h1, .hero-dark h2 { color: #ffffff; }
+.hero-dark .lede { color: #c4d7e3; }
+.hero-dark .eyebrow { color: var(--cyan); }
+.hero-dark .hero-note { color: #93aebf; }
+.hero-dark a { color: var(--cyan); }
+/* `strong` and `.btn-primary` both set a colour for the light page. On the dark
+   hero the first is near-black on navy and the second is out-specified by the
+   rule above, so both are restated here rather than left to the cascade. */
+.hero-dark strong { color: #ffffff; }
+.hero-dark .btn-primary { color: #ffffff; }
+.hero-dark .btn-primary:hover { color: #ffffff; }
+.hero-dark .btn-ghost { color: #eaf3f8; border-color: rgba(255, 255, 255, .30); }
+.hero-dark .btn-ghost:hover { background: rgba(255, 255, 255, .09); color: #fff; }
+
+/* ---------------------------------------------------------------------------
+   7. Cards & grids
+--------------------------------------------------------------------------- */
+.grid { display: grid; gap: 1.25rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(272px, 100%), 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
+
+.card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.5rem; box-shadow: var(--shadow-sm);
+}
+.card h3 { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+.card-accent { border-top: 3px solid var(--accent); }
+
+.edition-card { display: flex; flex-direction: column; }
+.edition-card .price { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; color: var(--accent-dark); margin-bottom: .3rem; }
+.edition-card ul { padding-left: 1.15em; margin-bottom: 1.2rem; font-size: .96rem; }
+.edition-card .btn { margin-top: auto; align-self: flex-start; }
+
+.stat { text-align: left; }
+.stat .n { font-family: var(--font-brand); font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1.1; display: block; }
+.stat .l { font-size: .9rem; color: var(--muted); }
+
+.pill {
+  display: inline-block; padding: .15rem .55rem; border-radius: 999px;
+  font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  background: var(--accent-soft); color: var(--accent-dark); vertical-align: middle;
+}
+.pill-neutral { background: var(--bg-alt); color: var(--muted); border: 1px solid var(--border); }
+
+/* ---------------------------------------------------------------------------
+   8. Tabs
+--------------------------------------------------------------------------- */
+.tabs { margin-top: 2rem; }
+.tablist {
+  display: flex; gap: .4rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border); padding-bottom: 0; margin-bottom: 2rem;
+}
+.tablist button {
+  appearance: none; background: none; border: 0; border-bottom: 3px solid transparent;
+  font: inherit; font-family: var(--font-brand); font-weight: 650; font-size: 1.02rem;
+  color: var(--muted); padding: .7rem 1rem; min-height: 44px; cursor: pointer;
+  margin-bottom: -1px; border-radius: 8px 8px 0 0;
+}
+.tablist button:hover { color: var(--ink); background: var(--bg-alt); }
+.tablist button[aria-selected="true"] { color: var(--accent-dark); border-bottom-color: var(--accent); }
+.tabpanel[hidden] { display: none; }
+/* Progressive enhancement. The markup carries no `hidden`, so with JavaScript
+   off all three panels render and the page is whole. `html.js` is set in the
+   head before first paint, which hides them until site.js marks one active —
+   so there is no flash of all three either. The tablist itself is a control
+   with nothing to control when scripting is off, so it is hidden there. */
+.tablist { display: none; }
+.js .tablist { display: flex; }
+.js .tabpanel { display: none; }
+.js .tabpanel.is-active { display: block; }
+.tabpanel { animation: fade .18s ease-out; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* ---------------------------------------------------------------------------
+   9. Tables
+--------------------------------------------------------------------------- */
+.table-scroll {
+  overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg); -webkit-overflow-scrolling: touch;
+}
+table { border-collapse: collapse; width: 100%; font-size: .94rem; }
+caption { text-align: left; padding: 1rem 1.1rem; color: var(--muted); font-size: .9rem; border-bottom: 1px solid var(--border); }
+th, td { text-align: left; padding: .72rem 1.1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+thead th {
+  /* Sticky under the site header, not under the top of the viewport: the header
+     is sticky too, and `top: 0` parks the column titles behind it. */
+  position: sticky; top: var(--header-h); background: var(--bg-alt); z-index: 1;
+  font-family: var(--font-brand); font-weight: 700; font-size: .85rem;
+  letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2);
+  border-bottom: 1px solid var(--border-firm); white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: var(--bg-alt); }
+th[scope="row"] { font-weight: 600; font-family: var(--font-body); font-size: .94rem; min-width: 15rem; }
+.row-group th {
+  background: var(--bg-alt); font-family: var(--font-brand); font-weight: 700;
+  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-dark);
+}
+.row-group th, .row-group td { border-bottom: 1px solid var(--border-firm); }
+td.c, th.c { text-align: center; }
+.yes { color: var(--good); font-weight: 700; }
+.no  { color: var(--muted); }
+.part { color: var(--warn); font-weight: 650; }
+.cell-note { display: block; font-size: .82rem; color: var(--muted); font-weight: 400; line-height: 1.45; }
+
+/* ---------------------------------------------------------------------------
+   10. Figures / screenshots
+--------------------------------------------------------------------------- */
+figure.shot { margin: 0 0 1.75rem; }
+figure.shot a { display: block; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border-firm); box-shadow: var(--shadow-md); background: var(--bg-alt); }
+figure.shot img { width: 100%; }
+figure.shot figcaption { font-size: .9rem; color: var(--muted); margin-top: .7rem; line-height: 1.5; }
+figure.shot figcaption b { color: var(--ink-2); font-weight: 650; }
+.shot-grid { display: grid; gap: 1.75rem; grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); }
+
+/* ---------------------------------------------------------------------------
+   11. Prose blocks
+--------------------------------------------------------------------------- */
+.note {
+  border-left: 3px solid var(--accent); background: var(--accent-soft);
+  padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.75rem 0;
+}
+.note > :last-child { margin-bottom: 0; }
+.note-plain { border-left-color: var(--border-firm); background: var(--bg-alt); }
+
+.speclist { list-style: none; padding: 0; margin: 0; }
+.speclist li { display: flex; gap: .8rem; padding: .8rem 0; border-bottom: 1px solid var(--border); margin: 0; }
+.speclist li:last-child { border-bottom: 0; }
+.speclist .k { flex: 0 0 12.5rem; font-weight: 650; color: var(--ink-2); font-size: .95rem; }
+.speclist .v { flex: 1 1 auto; color: var(--ink-2); font-size: .95rem; }
+@media (max-width: 620px) { .speclist li { flex-direction: column; gap: .15rem; } .speclist .k { flex-basis: auto; } }
+
+.checks { list-style: none; padding: 0; }
+.checks li { position: relative; padding-left: 1.7rem; margin-bottom: .55rem; }
+.checks li::before {
+  content: ""; position: absolute; left: 0; top: .48em;
+  width: .95rem; height: .5rem; border-left: 2.5px solid var(--accent); border-bottom: 2.5px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* ---------------------------------------------------------------------------
+   12. Footer
+--------------------------------------------------------------------------- */
+.site-footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding-block: 3rem 2rem; font-size: .93rem; color: var(--muted); }
+.site-footer h4 { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: .8rem; }
+.site-footer ul { list-style: none; padding: 0; }
+.site-footer li { margin-bottom: .4rem; }
+.site-footer a { color: var(--ink-2); text-decoration: none; }
+.site-footer a:hover { color: var(--accent-dark); text-decoration: underline; }
+.footer-legal { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: .86rem; }
+.footer-legal p { margin-bottom: .5rem; max-width: var(--measure); }

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How WealthHorizon is built — engineering, security and assurance</title>
+<meta name="description" content="The engineering standards WealthHorizon is built to: the stack and versions, the specification-first development workflow, the continuous integration gates, the security architecture, accessibility, data protection posture and deployment model.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<!-- Set before first paint. Everything the site hides behind a control —
+     the mobile navigation, the inactive tab panels — is only hidden when
+     this class is present, so with JavaScript off the page is whole. -->
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/img/wh-mark.svg" alt="">
+      <span class="brand-text">
+        <span class="brand-name">Wealth<em>Horizon</em></span>
+        <span class="brand-sub">by Muneris</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#editions">Editions</a>
+      <a href="compare.html">Compare</a>
+      <a href="advisory.html">The Advisory</a>
+      <a href="how-its-built.html" aria-current="page">How it&rsquo;s built</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero hero-dark">
+    <div class="wrap">
+      <p class="eyebrow">Engineering, security and assurance</p>
+      <h1>How WealthHorizon is built</h1>
+      <p class="lede">
+        A firm putting client records into a system is entitled to know how that system is made,
+        what it is tested against, and what it does not claim. This page states the standards the
+        build is held to, the controls that are implemented, and &mdash; at the end &mdash; the
+        limitations that are known and deliberate.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-ghost" href="#stack">The stack</a>
+        <a class="btn btn-ghost" href="#assurance">Testing &amp; assurance</a>
+        <a class="btn btn-ghost" href="#security">Security</a>
+        <a class="btn btn-ghost" href="#limits">Known limitations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Scale ===================== -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="grid grid-4">
+        <div class="stat"><span class="n">121</span><span class="l">ordered, idempotent database migrations, applied automatically on start</span></div>
+        <div class="stat"><span class="n">167</span><span class="l">backend domain services, one per bounded context, holding all the SQL</span></div>
+        <div class="stat"><span class="n">69</span><span class="l">feature pages in the application, code-split by route</span></div>
+        <div class="stat"><span class="n">5,883</span><span class="l">automated tests across the two suites, all required to pass to merge</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Stack ===================== -->
+  <section id="stack" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">1. The stack</p>
+        <h2>Current, supported versions &mdash; and a stated reason for anything held back</h2>
+        <p>
+          Both halves of the application are written in TypeScript under <code>strict</code>, and
+          compile to ES2022. Dependency updates are taken in verified batches rather than one at a
+          time, because a lockfile that has never been resolved against its siblings has not been
+          tested.
+        </p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Languages, runtimes and libraries.</caption>
+          <thead>
+            <tr><th scope="col">Layer</th><th scope="col">Technology</th><th scope="col">Version</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Front-end framework</th><td>React</td><td>18.3</td></tr>
+            <tr><th scope="row">Build tool</th><td>Vite</td><td>6</td></tr>
+            <tr><th scope="row">Language</th><td>TypeScript, ESM, <code>strict: true</code></td><td>5.7</td></tr>
+            <tr><th scope="row">Component library</th><td>Fluent UI v9 (Fluent 2), Griffel CSS-in-JS</td><td>9.x</td></tr>
+            <tr><th scope="row">Server runtime</th><td>Node.js (LTS)</td><td>22</td></tr>
+            <tr><th scope="row">Web framework</th><td>Express</td><td>4.21</td></tr>
+            <tr><th scope="row">Request validation</th><td>zod, at every route boundary</td><td>3.24</td></tr>
+            <tr><th scope="row">Password hashing</th><td>argon2 (argon2id)</td><td>0.41</td></tr>
+            <tr><th scope="row">Database</th><td>PostgreSQL</td><td>16</td></tr>
+            <tr><th scope="row">Database driver</th><td><code>node-postgres</code></td><td>8.13</td></tr>
+            <tr><th scope="row">Unit and integration tests</th><td>Vitest (both packages)</td><td>4 / 2</td></tr>
+            <tr><th scope="row">Component tests</th><td>jsdom + React Testing Library</td><td>&mdash;</td></tr>
+            <tr><th scope="row">End-to-end tests</th><td>Playwright, with phone and tablet device profiles</td><td>&mdash;</td></tr>
+            <tr><th scope="row">Deployment</th><td>Docker Compose &mdash; database, API, web</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note note-plain">
+        <p>
+          <strong>Held back deliberately.</strong> Three major upgrades are outstanding, each for a
+          stated engineering reason rather than caution: Express 5 changes the type of route
+          parameters and the routing engine, and needs its own change route by route; Vite 8
+          swaps the bundler, which changes what is emitted and needs a build step added to
+          continuous integration first; and the React plugin upgrade is paired with it. Recording
+          why a version is not taken is part of the standard.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Workflow ===================== -->
+  <section id="workflow">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">2. How a change is made</p>
+        <h2>Specification first, then a failing test, then the smallest change that passes it</h2>
+        <p>
+          The development standard for this codebase is written down and applies to every
+          non-trivial change. It optimises for verified behaviour rather than apparent progress.
+        </p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>1 &middot; Understand and specify</h3>
+          <p>
+            The goal is restated, the expected behaviour identified, and the edge cases, failure
+            modes and backwards-compatibility risks named &mdash; against the existing code and
+            tests, not against an assumed architecture.
+          </p>
+        </div>
+        <div class="card">
+          <h3>2 &middot; Test plan, then failing tests</h3>
+          <p>
+            A plan covering the happy path, boundaries, error cases, regression risks and any
+            security or data-integrity behaviour. The tests are written and run <em>before</em>
+            the production change, and must fail for the expected reason.
+          </p>
+        </div>
+        <div class="card">
+          <h3>3 &middot; Minimal implementation</h3>
+          <p>
+            The smallest production change that passes the tests, following existing conventions.
+            Broad opportunistic refactoring during a feature or a fix is not permitted.
+          </p>
+        </div>
+        <div class="card">
+          <h3>4 &middot; Refactor under test</h3>
+          <p>
+            Naming, structure and duplication are improved once the tests pass, with behaviour
+            unchanged and the tests re-run afterwards.
+          </p>
+        </div>
+        <div class="card">
+          <h3>5 &middot; Quality gate</h3>
+          <p>
+            Unit tests, affected integration tests, type checks, lint and formatting, and the
+            build. Anything that cannot be run is stated explicitly, along with what should be run
+            by hand.
+          </p>
+        </div>
+        <div class="card">
+          <h3>6 &middot; Documentation in the same change</h3>
+          <p>
+            Documentation is a deliverable, not a follow-up. A change to a page, route, role or
+            feature updates the in-application help, the relevant user guide and the architecture
+            documents in the same change.
+          </p>
+        </div>
+      </div>
+
+      <div class="note">
+        <p>
+          Four rules are absolute: a test is never weakened, skipped or deleted to make a suite
+          pass; coverage is never removed without a stated reason; public behaviour never changes
+          without a test; and no claim is made that tests pass unless they were run.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Assurance ===================== -->
+  <section id="assurance" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">3. Testing and assurance</p>
+        <h2>Five gates, every one of which blocks a merge</h2>
+        <p>
+          Continuous integration runs on every pull request. A change that fails any of the
+          following cannot be merged.
+        </p>
+      </div>
+
+      <ul class="speclist">
+        <li>
+          <span class="k">Type check &mdash; front end</span>
+          <span class="v">The whole SPA must compile clean under <code>strict</code> with no emit. Type errors are a build failure, not a warning.</span>
+        </li>
+        <li>
+          <span class="k">Type check &mdash; back end</span>
+          <span class="v">The same, independently, for the API and its services.</span>
+        </li>
+        <li>
+          <span class="k">SQL against the real schema</span>
+          <span class="v">Every migration is applied to a live PostgreSQL 16 instance to build the actual schema, and then every static query in the backend is <code>PREPARE</code>d against it. Preparing validates every table and column reference without executing anything &mdash; so a query referring to a column that does not exist fails the build. This is the class of defect a type checker cannot see, and it is caught before merge rather than in production.</span>
+        </li>
+        <li>
+          <span class="k">Front-end test suite</span>
+          <span class="v">2,693 tests across 224 files &mdash; pure calculation helpers, formatting and responsive logic, and component behaviour under jsdom.</span>
+        </li>
+        <li>
+          <span class="k">Back-end test suite</span>
+          <span class="v">3,190 tests across 246 files, run against a migrated and seeded PostgreSQL instance so that the database-backed tests exercise real data rather than a mock.</span>
+        </li>
+      </ul>
+
+      <h3 style="margin-top:2.5rem">What the tests are pointed at</h3>
+      <p>
+        Testing favours pure functions with no database dependency, because that is where the
+        arithmetic lives and where a defect is silent. Financial software fails quietly: a wrong
+        answer is still a number. The suites therefore concentrate on the calculations that
+        produce a figure a person will act on &mdash;
+      </p>
+      <ul class="checks">
+        <li>Foreign exchange conversion and the historic rate held per transaction.</li>
+        <li>The tax engine, allowances and the capital gains matching rules.</li>
+        <li>Long-term projection, drawdown ordering and the Monte Carlo simulation.</li>
+        <li>Lot tracking, corporate actions and the account valuation rule.</li>
+        <li>Compound interest in the savings estimator &mdash; where taking a twelfth of a rate rather than its twelfth root pays 12.68% a year on a screen that says 12%.</li>
+        <li>Import parsers, balance reconciliation and duplicate detection across every supported file format.</li>
+        <li>Backup encryption, round-tripped and verified including the authentication tag.</li>
+        <li>Role visibility &mdash; that an adviser cannot see a client they are not engaged with, and that the audit log refuses every caller but compliance.</li>
+      </ul>
+
+      <div class="note note-plain">
+        <p>
+          Import readers are additionally verified against real broker and bank files rather than
+          synthetic ones: complete files from Trading&nbsp;212, Saxo, Barclays and QIF sources are
+          imported and reconciled row for row, and a row that cannot be read is reported rather
+          than dropped.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Security ===================== -->
+  <section id="security">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">4. Security architecture</p>
+        <h2>The controls, and where each is enforced</h2>
+        <p>
+          Authorisation is enforced in two layers: in the application services, where a refusal
+          can be explained, and in the database as constraints and triggers, so that a defect or a
+          direct connection cannot bypass it.
+        </p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Implemented controls.</caption>
+          <thead>
+            <tr><th scope="col">Control</th><th scope="col">Implementation</th></tr>
+          </thead>
+          <tbody>
+            <tr class="row-group"><th colspan="2" scope="colgroup">Identity and session</th></tr>
+            <tr><th scope="row">Password storage</th><td>argon2id hashing. Plaintext passwords are never stored or written to a log.</td></tr>
+            <tr><th scope="row">Password policy</th><td>At least ten characters with upper case, lower case, a digit and a symbol, and a common-password list rejected.</td></tr>
+            <tr><th scope="row">Session tokens</th><td>Short-lived signed access tokens, default fifteen minutes, refreshed transparently. Refresh tokens are 32 random bytes; only a SHA-256 hash of one is ever stored.</td></tr>
+            <tr><th scope="row">Revocation</th><td>Signing out revokes the presented refresh token. A password reset revokes every refresh token for that user, on every device.</td></tr>
+            <tr><th scope="row">Two-factor authentication</th><td>Optional per user, time-based one-time password, enforced at sign-in once verified.</td></tr>
+            <tr><th scope="row">Address verification</th><td>Single-use, time-limited e-mail verification where outbound mail is configured; auto-verified where it is not, so an offline installation cannot lock out its own operator.</td></tr>
+            <tr><th scope="row">Account enumeration</th><td>Password reset and verification resend always answer success, whether or not the address is registered.</td></tr>
+            <tr><th scope="row">Reset token handling</th><td>32 random bytes, stored only as a SHA-256 hash, valid for one hour, single use. A weak replacement password is refused before the token is consumed.</td></tr>
+            <tr><th scope="row">Abuse limiting</th><td>Password-reset requests are limited per address, and the address is hashed in the counter so the list of people who forgot a password is not held in the clear in order to count to five.</td></tr>
+
+            <tr class="row-group"><th colspan="2" scope="colgroup">Authorisation and isolation</th></tr>
+            <tr><th scope="row">Tenant isolation</th><td>Every record carries its tenant; every query is scoped to it. Staff acting on a client supply an explicit client context, which is checked against an active relationship before any data is returned.</td></tr>
+            <tr><th scope="row">Role-based access</th><td>Roles and permissions are data, not code branches: standard user, adviser, compliance manager, hierarchy manager, system administrator. Navigation and routes are both filtered, and the API refuses independently of the interface.</td></tr>
+            <tr><th scope="row">Administrative invariants</th><td>The system always retains at least one active administrator; the first administrator cannot be deleted, demoted or deactivated. Enforced in the service layer and again by database triggers, each with its own error code.</td></tr>
+            <tr><th scope="row">Deletion safety</th><td>Deleting users is planned across the whole selection rather than row by row, so two administrators cannot each pass a &ldquo;not the last one&rdquo; check and together leave none. Every reference to a user is classified from the live database catalogue, so a table added later cannot reintroduce the defect.</td></tr>
+
+            <tr class="row-group"><th colspan="2" scope="colgroup">Data and integrity</th></tr>
+            <tr><th scope="row">Input validation</th><td>zod schemas at the route boundary, with database constraints and enumerated types as the backstop. Validation failures return a structured error, never a stack trace.</td></tr>
+            <tr><th scope="row">Backup encryption</th><td>AES-256-GCM with a random per-bundle salt and initialisation vector, and a key derived with PBKDF2-SHA256 over 100,000 iterations. Authenticated encryption means a wrong passphrase fails the tag check rather than producing plausible rubbish.</td></tr>
+            <tr><th scope="row">Backup lifecycle</th><td>Scheduled daily, weekly or monthly, with a retention count that prunes older snapshots and a log of every run.</td></tr>
+            <tr><th scope="row">Audit trail</th><td>Authentication, role grants, client record access, planning access, suitability generation and backups are recorded with actor, action, resource, time and address. Writing an audit entry can never fail a request.</td></tr>
+
+            <tr class="row-group"><th colspan="2" scope="colgroup">Outbound and content</th></tr>
+            <tr><th scope="row">Server-side request forgery</th><td>The only outbound fetch of a user-supplied address &mdash; an institution&rsquo;s logo &mdash; passes an allowlist of shapes rather than a blocklist of dangers: HTTP and HTTPS only, ports 80 and 443 only, no embedded credentials, and a public host. Addresses are judged numerically, so obfuscated forms of loopback and private ranges are refused, as are link-local and cloud-metadata addresses in every IPv4-mapped form. A bare name with no dot is refused because that is another container. Every redirect hop is re-checked.</td></tr>
+            <tr><th scope="row">Content type</th><td>The bytes decide the type, never the upstream header. Only known image signatures are stored; SVG is refused because it is a scripting-capable document and an active document served from our own origin is cross-site scripting. Stored images are served with no-sniff, a restrictive content-security policy and a same-site resource policy.</td></tr>
+            <tr><th scope="row">Secrets</th><td>Supplied as environment variables and required at start, so a deployment missing one fails immediately rather than running insecurely. Configuration files are excluded from version control and from the release package; deployment scripts generate strong random values where none is supplied.</td></tr>
+            <tr><th scope="row">Demonstration data</th><td>Every demonstration account and fixture is behind an explicit flag that defaults to off. A production installation ships with no login accounts at all; the first person to register becomes the first administrator.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Data protection ===================== -->
+  <section class="band" id="data-protection">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">5. Data protection</p>
+        <h2>Designed for a UK GDPR and Data Protection Act posture</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Data minimisation and purpose limitation</h3>
+          <p>
+            The client-facing access record returns deliberately limited fields &mdash; who, what,
+            when &mdash; and never firm-wide detail. The firm-wide audit trail is a separate,
+            separately restricted view.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Integrity and confidentiality</h3>
+          <p>
+            argon2id password hashing, hashed session tokens, authenticated backup encryption,
+            tenant isolation, and access invariants enforced at the database as well as in the
+            application.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Accountability</h3>
+          <p>
+            An activity trail covering access to and change of client records, including access by
+            staff, available to the compliance function and, in its client-scoped form, to the
+            client themselves.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Residency and sovereignty</h3>
+          <p>
+            The platform runs self-contained on infrastructure of the firm&rsquo;s choosing.
+            Backups remain inside the database volume. There is no requirement for data to leave
+            the jurisdiction, or the building.
+          </p>
+        </div>
+      </div>
+      <div class="note note-plain">
+        <p>
+          These are platform capabilities that support compliance. The operating firm remains the
+          data controller and is responsible for its own data protection impact assessment, lawful
+          basis, retention policy and subject access request handling.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Accessibility ===================== -->
+  <section id="accessibility">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">6. Accessibility and devices</p>
+        <h2>Requirements enforced globally, not decided per screen</h2>
+      </div>
+      <ul class="speclist">
+        <li><span class="k">Target size</span><span class="v">Interactive elements meet a 44&times;44&nbsp;pixel minimum on touch devices, applied by a global rule rather than left to each component. A form control counts as one target, not several.</span></li>
+        <li><span class="k">Visible focus</span><span class="v">Every custom interactive element shows a focus ring on keyboard focus. Removing an outline without providing an equivalent is not permitted.</span></li>
+        <li><span class="k">Keyboard operability</span><span class="v">Anything that behaves as a button is operable by keyboard: a tab stop, and Enter and Space firing the same handler. This covers clickable table rows, cards, collapsible headers and metric tiles.</span></li>
+        <li><span class="k">Semantics</span><span class="v">Navigation marks the current page, collapsible groups announce their state, and icon-only controls carry an accessible label.</span></li>
+        <li><span class="k">Reading and zoom</span><span class="v">Inputs use a 16&nbsp;pixel minimum font size on mobile so that focusing a field does not zoom the page.</span></li>
+        <li><span class="k">Physical screen</span><span class="v">Safe-area insets keep content clear of a notch, a dynamic island and a home indicator. Full-height layouts use dynamic viewport units so content is not clipped behind a browser toolbar that moves.</span></li>
+        <li><span class="k">Device envelope</span><span class="v">iPhone 13 and newer and equivalent Android phones; iPad Air 2020 and newer in both orientations; desktop and large desktop. Below tablet width the navigation rail becomes a drawer and wide tables scroll within themselves rather than overflowing the page.</span></li>
+        <li><span class="k">Verification</span><span class="v">End-to-end tests run against phone and tablet device profiles as well as desktop.</span></li>
+      </ul>
+      <div class="note note-plain">
+        <p>
+          These implement the WCAG&nbsp;2.2 success criteria for keyboard operability, visible
+          focus and target size. No third-party conformance audit has been commissioned, and no
+          formal conformance level is claimed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Deployment ===================== -->
+  <section class="band" id="deployment">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">7. Deployment and ownership</p>
+        <h2>Three containers, no vendor lock-in</h2>
+      </div>
+      <div class="grid grid-2">
+        <div>
+          <p>
+            The whole system is a PostgreSQL database, a Node API and an nginx-served single-page
+            application. Because that is all it is, the same artefact runs unchanged on a
+            self-hosted machine, a network-attached appliance, any public cloud, or a managed
+            container platform.
+          </p>
+          <p>
+            The database schema is applied by the API on start-up. The runner is idempotent
+            &mdash; applied files are recorded and skipped, and a file that errored is re-attempted
+            next time &mdash; and understands complex SQL, treating a semicolon as a terminator
+            only at the top level so that function bodies and string literals survive intact.
+          </p>
+          <p>
+            Every build carries a version stamp committed with the source rather than derived at
+            deploy time, so the number on the screen identifies the exact build running.
+          </p>
+        </div>
+        <div>
+          <h3>Licensing and provenance</h3>
+          <p>
+            WealthHorizon is proprietary software owned by Muneris Management Ltd. All rights
+            reserved. It is not open source, and no licence is granted by access to the source;
+            use is governed by a separate written agreement.
+          </p>
+          <p>Ownership is maintained through three mechanisms:</p>
+          <ul class="checks">
+            <li>A copyright and proprietary notice in every source file, applied and maintained by tooling.</li>
+            <li>An origin sign-off on every commit, certifying provenance and the right to submit under the stated terms.</li>
+            <li>Intellectual property assignment terms binding every authorised contributor, so that ownership does not fragment.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Limitations ===================== -->
+  <section id="limits">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">8. Known limitations</p>
+        <h2>What is not claimed</h2>
+        <p>
+          A security position that lists only its strengths is not a security position. The
+          following are known, documented, and stated here because a firm assessing the platform
+          should assess it accurately.
+        </p>
+      </div>
+
+      <ul class="speclist">
+        <li>
+          <span class="k">Sign-in rate limiting</span>
+          <span class="v">Password reset is rate limited; sign-in is not. Behind a reverse proxy the only address the server can see is the proxy&rsquo;s, so a per-address limit collapses to a single shared bucket that would lock out a whole household, and a per-account limit would hand anybody a way to lock a named person out of their own money. This requires a deployment-level decision about trusting a forwarded address, and it is treated as one rather than papered over.</span>
+        </li>
+        <li>
+          <span class="k">Account identifiers</span>
+          <span class="v">A sort code or account number entered by a user is stored as entered. Nothing masks or encrypts that field, and it is therefore present in backups, which are themselves encrypted at rest where a passphrase is set. Both the in-application help and the user guide say so and recommend recording only the last few digits. A firm requiring a stronger control here should mask on write or hold the field encrypted; that is a change, not current behaviour.</span>
+        </li>
+        <li>
+          <span class="k">Row-level security</span>
+          <span class="v">Tenant isolation is enforced in the service layer, where every query is scoped by tenant. The schema also ships illustrative PostgreSQL row-level-security policies, commented out, as a documented hardening path. They are not enabled today.</span>
+        </li>
+        <li>
+          <span class="k">Open Banking</span>
+          <span class="v">The account-aggregation integration works against a provider&rsquo;s sandbox and interface. Production use requires the regulatory permissions and provider onboarding that any account information service requires, and that is a firm-level undertaking rather than a configuration setting.</span>
+        </li>
+        <li>
+          <span class="k">Broker connections</span>
+          <span class="v">The Trading&nbsp;212 engine is built and the boundary is read-only, enforced by an allowlist from which the order endpoint is deliberately absent. Saxo remains at design stage. Reconciliation reports differences; it never applies them.</span>
+        </li>
+        <li>
+          <span class="k">Vulnerability scoring</span>
+          <span class="v">The score is a weighted, explainable calculation over recorded signals. It is decision support for prioritisation. It is not a determination that a client is vulnerable, and it does not replace the judgement, the conversation or the record of the response.</span>
+        </li>
+        <li>
+          <span class="k">Planning outputs</span>
+          <span class="v">Projections, forecasts and estate calculations are indicative and depend entirely on assumptions the user enters. They are not financial advice, a personal recommendation or a guarantee, and they are labelled as such in the product as well as here.</span>
+        </li>
+      </ul>
+
+      <div class="btn-row">
+        <a class="btn btn-primary" href="mailto:info@muneris.co.uk?subject=WealthHorizon%20technical%20enquiry">Technical or due-diligence enquiry</a>
+        <a class="btn btn-ghost" href="advisory.html">The Advisory edition</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:.8rem">
+          <img src="assets/img/wh-mark.svg" alt="">
+          <span class="brand-text">
+            <span class="brand-name">Wealth<em>Horizon</em></span>
+            <span class="brand-sub">by Muneris</span>
+          </span>
+        </a>
+        <p>Every account, any currency, one horizon.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html#editions">Editions</a></li>
+          <li><a href="compare.html">Free, Standard &amp; Pro</a></li>
+          <li><a href="compare.html#money">Versus Microsoft Money</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For firms</h4>
+        <ul>
+          <li><a href="advisory.html">The Advisory</a></li>
+          <li><a href="advisory.html#consumer-duty">Consumer Duty coverage</a></li>
+          <li><a href="advisory.html#hierarchy">Supervision &amp; hierarchy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Engineering</h4>
+        <ul>
+          <li><a href="how-its-built.html">How it&rsquo;s built</a></li>
+          <li><a href="how-its-built.html#security">Security architecture</a></li>
+          <li><a href="how-its-built.html#assurance">Testing &amp; assurance</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>
+        WealthHorizon is proprietary software. &copy; 2026 Muneris Management Ltd. All rights
+        reserved. Licensing enquiries: <a href="mailto:info@muneris.co.uk">info@muneris.co.uk</a>.
+      </p>
+      <p>
+        Figures on this page describe the codebase as built. Microsoft and Microsoft Money are
+        trademarks of Microsoft Corporation.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
