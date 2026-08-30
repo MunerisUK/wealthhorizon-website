@@ -3,65 +3,119 @@
 
 /* ---------------------------------------------------------------------------
    1. Tokens
-   The palette is the application's own: Muneris cyan and slate from
-   frontend/src/theme.ts, the teal accent and ink from frontend/src/brand.css,
-   so the site and the product are visibly the same thing.
+
+   The palette is taken from the Muneris mark: slate blue-grey, a warm orange
+   and a cyan. Slate carries the structure, orange is the single accent, and
+   the cyan is held back for the wordmark alone — it is the one colour of the
+   three that has been worn out elsewhere.
+
+   Three deliberate absences, because each is a house style rather than a
+   design decision: no gradient anywhere, no glow behind a heading, and no
+   frosted-glass panels. Surfaces are flat and are separated by a hairline
+   rule. The page ground is warm off-white rather than blue-white, which is
+   what stops a document of tables and figures reading as cold.
 --------------------------------------------------------------------------- */
 :root {
-  --cyan:        #51C8E8;
-  --slate:       #576E7E;
-  --orange:      #FF8A3D;
-  --accent:      #0E9E8E;
-  --accent-dark: #0c8678;
-  --accent-soft: rgba(14, 158, 142, 0.10);
+  /* Brand — exactly as the application defines them (frontend/src/theme.ts) */
+  --brand-slate:  #576E7E;
+  --brand-orange: #FF8A3D;
+  --brand-cyan:   #51C8E8;
+  /* Brand cyan is 1.9:1 on the page ground — a mark colour, not an ink
+     one. The wordmark uses a darkened cyan on light and the brand value
+     itself wherever the ground is the deep slate. */
+  --wordmark-2:   #17798F;
 
-  --ink:         #1d2b34;
-  --ink-2:       #3d4f5a;
-  --muted:       #66757f;
-  --border:      #e3e8ec;
-  --border-firm: #cfd8de;
+  /* Accent: orange fills, a darkened burnt orange for anything set as text.
+     #FF8A3D under body text is 2.35:1 against white — a fill colour, not an
+     ink one, so the two are separate tokens and never substituted. */
+  --accent:       #FF8A3D;
+  --accent-ink:   #9C4A0B;
+  /* The ink that sits ON an orange fill. Deliberately constant across light
+     and dark: an orange button is the same orange in both, so flipping this
+     with the scheme puts near-white on #FF9A57 at 1.9:1. */
+  --on-accent:    #16222B;
+  --accent-soft:  #FBEDE1;
+  --accent-line:  #E9C6A6;
 
-  --bg:          #ffffff;
-  --bg-alt:      #f6f9fb;
-  --bg-deep:     #0f2235;
-  --bg-deep-2:   #16304a;
+  /* Ink */
+  --ink:          #22303A;
+  --ink-strong:   #16222B;
+  --ink-2:        #4A5D69;
+  --muted:        #5F6E78;
 
-  --good:        #157a4d;
-  --warn:        #9a6a00;
-  --bad:         #b3261e;
+  /* Ground */
+  --bg:           #FCFBF9;
+  --surface:      #FFFFFF;
+  --bg-alt:       #F2EFE9;
+  --border:       #DFD9CF;
+  --border-firm:  #C9C1B4;
+  --thead:        #E7E1D6;
 
-  --shadow-sm:   0 1px 2px rgba(15, 34, 53, .06), 0 1px 3px rgba(15, 34, 53, .05);
-  --shadow-md:   0 2px 6px rgba(15, 34, 53, .07), 0 8px 24px rgba(15, 34, 53, .07);
+  /* Deep slate — the dark band. Flat; there is no second stop. */
+  --deep:         #2C3C45;
+  --deep-2:       #22303A;
+  --on-deep:      #EDF1F3;
+  --on-deep-2:    #C0CCD3;
+  --on-deep-3:    #9DAFB8;
+  --accent-on-deep: #FFA463;
 
-  --radius:      12px;
-  --radius-lg:   18px;
-  --measure:     68ch;
-  --header-h:    68px;
+  /* Semantic — traditional printing colours, not signal-light ones */
+  --good:         #1E6B47;
+  --warn:         #8A5A16;
+  --bad:          #A03328;
 
-  --font-brand:  'Quicksand', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-body:   system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-mono:   ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --shadow-sm:    none;
+  --shadow-md:    0 1px 2px rgba(34, 48, 58, .07);
+
+  --radius:       6px;
+  --radius-lg:    8px;
+  --measure:      68ch;
+  --header-h:     68px;
+
+  --font-brand:   'Quicksand', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-body:    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 
   color-scheme: light;
 }
 
+/* Dark: a warm, desaturated slate. Not navy — navy plus an accent is the
+   look this palette exists to avoid, and it would put the site back where
+   it started the moment a reader's system was set to dark. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink:         #e7edf1;
-    --ink-2:       #c2ced6;
-    --muted:       #93a3ad;
-    --border:      #24384a;
-    --border-firm: #35516a;
-    --bg:          #0d1b26;
-    --bg-alt:      #12242f;
-    --accent:      #2ec4b0;
-    --accent-dark: #45d6c2;
-    --accent-soft: rgba(46, 196, 176, 0.14);
-    --good:        #57c98d;
-    --warn:        #e0b64a;
-    --bad:         #ef7d74;
-    --shadow-sm:   0 1px 2px rgba(0, 0, 0, .35);
-    --shadow-md:   0 2px 6px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .30);
+    --ink:          #E6E3DD;
+    --ink-strong:   #F4F2EE;
+    --ink-2:        #C2CCD2;
+    --muted:        #9BAAB3;
+
+    --bg:           #1A2228;
+    --surface:      #212B32;
+    --bg-alt:       #263139;
+    --border:       #34424B;
+    --border-firm:  #47585F;
+    --thead:        #2E3A43;
+
+    --accent:       #FF9A57;
+    --accent-ink:   #FFA96B;
+    --wordmark-2:   #51C8E8;
+    --accent-soft:  #33291F;
+    --accent-line:  #6B4A2C;
+
+    --deep:         #131A1F;
+    --deep-2:       #0E1418;
+    --on-deep:      #EDF1F3;
+    --on-deep-2:    #C0CCD3;
+    --on-deep-3:    #9DAFB8;
+    --accent-on-deep: #FFA463;
+
+    --good:         #5FBF8C;
+    --warn:         #D9A24A;
+    --bad:          #E8776A;
+
+    --shadow-sm:    none;
+    --shadow-md:    none;
+
     color-scheme: dark;
   }
 }
@@ -92,36 +146,41 @@ h1, h2, h3, h4 {
   font-family: var(--font-brand);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--ink);
+  color: var(--ink-strong);
   margin: 0 0 .5em;
   letter-spacing: -0.015em;
 }
-h1 { font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.3rem); }
-h2 { font-size: clamp(1.55rem, 1.2rem + 1.4vw, 2.2rem); margin-top: 0; }
-h3 { font-size: 1.2rem; }
+h1 { font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.2rem); max-width: 22ch; }
+h2 { font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.1rem); margin-top: 0; }
+h3 { font-size: 1.18rem; }
 h4 { font-size: 1.02rem; font-weight: 600; }
 
 p  { margin: 0 0 1.05em; }
 ul, ol { margin: 0 0 1.05em; padding-left: 1.3em; }
 li { margin-bottom: .4em; }
-strong { font-weight: 650; color: var(--ink); }
+strong { font-weight: 650; color: var(--ink-strong); }
 small { font-size: .875rem; }
 
-a { color: var(--accent-dark); text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); text-underline-offset: 3px; }
-a:hover { color: var(--accent); }
+a { color: var(--accent-ink); text-decoration-color: var(--accent-line); text-underline-offset: 3px; }
+a:hover { color: var(--ink-strong); text-decoration-color: currentColor; }
 a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 img { max-width: 100%; height: auto; display: block; }
-code { font-family: var(--font-mono); font-size: .88em; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 5px; padding: .08em .35em; }
+code {
+  font-family: var(--font-mono); font-size: .88em;
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-radius: 3px; padding: .08em .35em;
+}
 hr { border: 0; border-top: 1px solid var(--border); margin: 3rem 0; }
 
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 999;
-  background: var(--accent); color: #fff; padding: 12px 18px; border-radius: 0 0 8px 0; font-weight: 600;
+  background: var(--accent); color: var(--on-accent);
+  padding: 12px 18px; border-radius: 0 0 var(--radius) 0; font-weight: 700;
 }
 .skip-link:focus { left: 0; }
 
@@ -136,10 +195,18 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
 .band { background: var(--bg-alt); border-block: 1px solid var(--border); }
 
 .lede { font-size: 1.15rem; color: var(--ink-2); max-width: var(--measure); }
+
+/* The eyebrow carries a short orange rule rather than being set in the accent
+   colour at 12px, where a warm hue on a warm ground is hard to read. */
 .eyebrow {
   font-family: var(--font-brand);
   font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--accent-dark); margin: 0 0 .6rem;
+  color: var(--accent-ink); margin: 0 0 .8rem;
+  display: flex; align-items: center; gap: .7rem;
+}
+.eyebrow::before {
+  content: ""; flex: 0 0 auto;
+  width: 26px; height: 3px; background: var(--accent); border-radius: 2px;
 }
 .section-head { max-width: var(--measure); margin-bottom: 2.2rem; }
 .section-head p:last-child { margin-bottom: 0; }
@@ -149,30 +216,35 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
 --------------------------------------------------------------------------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: saturate(1.6) blur(10px);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
 .site-header .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: var(--header-h); }
 
 .brand { display: flex; align-items: center; gap: .65rem; text-decoration: none; flex: 0 0 auto; }
-.brand img { width: 34px; height: 34px; border-radius: 9px; }
+.brand img { width: 34px; height: 34px; border-radius: var(--radius); }
 .brand-text { font-family: var(--font-brand); line-height: 1.05; }
-.brand-name { font-size: 1.16rem; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
-.brand-name em { font-style: normal; color: var(--cyan); }
+.brand-name { font-size: 1.16rem; font-weight: 700; color: var(--ink-strong); letter-spacing: -.01em; }
+/* The one place the brand cyan appears, as it does in the application's own
+   wordmark: "Wealth" in ink, "Horizon" in cyan. */
+.brand-name em { font-style: normal; color: var(--wordmark-2); }
 .brand-sub { display: block; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
 
 .site-nav { margin-left: auto; display: flex; align-items: center; gap: .15rem; flex-wrap: wrap; }
 .site-nav a {
-  display: inline-block; padding: .5rem .78rem; border-radius: 8px;
+  display: inline-block; padding: .5rem .78rem; border-radius: var(--radius);
   font-size: .95rem; font-weight: 550; color: var(--ink-2); text-decoration: none;
 }
-.site-nav a:hover { background: var(--bg-alt); color: var(--ink); }
-.site-nav a[aria-current="page"] { color: var(--accent-dark); background: var(--accent-soft); font-weight: 650; }
+.site-nav a:hover { background: var(--bg-alt); color: var(--ink-strong); }
+.site-nav a[aria-current="page"] {
+  color: var(--ink-strong); font-weight: 700;
+  box-shadow: inset 0 -3px 0 var(--accent);
+  border-radius: 0;
+}
 
 .nav-toggle {
   display: none; margin-left: auto;
-  background: none; border: 1px solid var(--border); border-radius: 9px;
+  background: none; border: 1px solid var(--border-firm); border-radius: var(--radius);
   padding: .5rem .7rem; color: var(--ink); font: inherit; font-size: .9rem; cursor: pointer;
 }
 
@@ -181,10 +253,10 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
      block on its own line, and without wrapping it pushes the row wider than
      the viewport. */
   .site-header .wrap { flex-wrap: wrap; }
-  .js .nav-toggle { display: block; }
   /* Collapsed only where the toggle that reopens it exists. With JavaScript off
      there is no toggle, so the navigation stays in the page rather than becoming
      a menu with no way in. */
+  .js .nav-toggle { display: block; }
   .js .site-nav { display: none; }
   .site-nav {
     width: 100%; order: 3; margin-left: 0;
@@ -192,53 +264,58 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
     padding-bottom: .75rem;
   }
   .js .site-nav.open { display: flex; }
-  .site-nav a { padding: .7rem .6rem; border-radius: 8px; min-height: 44px; }
+  .site-nav a { padding: .7rem .6rem; border-radius: var(--radius); min-height: 44px; }
+  .site-nav a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--accent); }
 }
 
 /* ---------------------------------------------------------------------------
    5. Buttons
+   The primary button is the brand orange with ink text on it. White on
+   #FF8A3D is 2.35:1 and unreadable; ink on the same fill is 6.9:1, and it is
+   also the more distinctive of the two.
 --------------------------------------------------------------------------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
   min-height: 44px; padding: .6rem 1.15rem;
-  font: inherit; font-weight: 600; font-size: .97rem;
-  border-radius: 10px; border: 1px solid transparent; cursor: pointer;
+  font: inherit; font-weight: 650; font-size: .97rem;
+  border-radius: var(--radius); border: 1px solid transparent; cursor: pointer;
   text-decoration: none; transition: background .15s ease, border-color .15s ease, color .15s ease;
 }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: var(--accent-dark); color: #fff; }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--border-firm); }
-.btn-ghost:hover { background: var(--bg-alt); color: var(--ink); }
+.btn-primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.btn-primary:hover { background: #F07A2B; color: var(--on-accent); border-color: #F07A2B; }
+.btn-ghost { background: transparent; color: var(--ink-strong); border-color: var(--border-firm); }
+.btn-ghost:hover { background: var(--bg-alt); color: var(--ink-strong); }
 .btn-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
 
 /* ---------------------------------------------------------------------------
    6. Hero
 --------------------------------------------------------------------------- */
-.hero { padding-block: clamp(3rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 4rem); }
-.hero h1 { max-width: 20ch; }
-.hero .lede { font-size: 1.22rem; }
+.hero { padding-block: clamp(3rem, 7vw, 5rem) clamp(2.5rem, 5vw, 3.5rem); }
+.hero .lede { font-size: 1.2rem; }
 .hero-note { font-size: .93rem; color: var(--muted); margin-top: 1.6rem; max-width: var(--measure); }
 
+/* Flat deep slate, with the accent stated as a rule at the top of the block
+   rather than as light coming from nowhere. */
 .hero-dark {
-  background:
-    radial-gradient(1000px 480px at 82% -12%, rgba(81, 200, 232, .20), transparent 62%),
-    linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-deep-2) 100%);
-  color: #eaf3f8;
-  border-bottom: 1px solid var(--bg-deep-2);
+  background: var(--deep);
+  border-top: 4px solid var(--accent);
+  border-bottom: 1px solid var(--deep-2);
+  color: var(--on-deep);
 }
 .hero-dark h1, .hero-dark h2 { color: #ffffff; }
-.hero-dark .lede { color: #c4d7e3; }
-.hero-dark .eyebrow { color: var(--cyan); }
-.hero-dark .hero-note { color: #93aebf; }
-.hero-dark a { color: var(--cyan); }
-/* `strong` and `.btn-primary` both set a colour for the light page. On the dark
-   hero the first is near-black on navy and the second is out-specified by the
-   rule above, so both are restated here rather than left to the cascade. */
+.hero-dark .lede { color: var(--on-deep-2); }
+.hero-dark .eyebrow { color: var(--accent-on-deep); }
+.hero-dark .eyebrow::before { background: var(--accent-on-deep); }
+.hero-dark .hero-note { color: var(--on-deep-2); }
+.hero-dark a { color: var(--accent-on-deep); text-decoration-color: currentColor; }
+/* `strong` and `.btn-primary` both set a colour for the light page, and the
+   rule above out-specifies the second, so both are restated here rather than
+   left to the cascade. */
 .hero-dark strong { color: #ffffff; }
-.hero-dark .btn-primary { color: #ffffff; }
-.hero-dark .btn-primary:hover { color: #ffffff; }
-.hero-dark .btn-ghost { color: #eaf3f8; border-color: rgba(255, 255, 255, .30); }
-.hero-dark .btn-ghost:hover { background: rgba(255, 255, 255, .09); color: #fff; }
+.hero-dark .btn-primary,
+.hero-dark .btn-primary:hover { color: var(--on-accent); text-decoration: none; }
+.hero-dark .btn-ghost { color: var(--on-deep); border-color: rgba(255, 255, 255, .32); text-decoration: none; }
+.hero-dark .btn-ghost:hover { background: rgba(255, 255, 255, .08); color: #fff; }
 
 /* ---------------------------------------------------------------------------
    7. Cards & grids
@@ -249,7 +326,7 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
 .grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); }
 
 .card {
-  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 1.5rem; box-shadow: var(--shadow-sm);
 }
 .card h3 { margin-top: 0; }
@@ -257,56 +334,57 @@ section.tight { padding-block: clamp(2rem, 4vw, 3rem); }
 .card-accent { border-top: 3px solid var(--accent); }
 
 .edition-card { display: flex; flex-direction: column; }
-.edition-card .price { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; color: var(--accent-dark); margin-bottom: .3rem; }
+.edition-card .price { font-family: var(--font-brand); font-size: 1.05rem; font-weight: 700; color: var(--accent-ink); margin-bottom: .3rem; }
 .edition-card ul { padding-left: 1.15em; margin-bottom: 1.2rem; font-size: .96rem; }
 .edition-card .btn { margin-top: auto; align-self: flex-start; }
 
-.stat { text-align: left; }
-.stat .n { font-family: var(--font-brand); font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1.1; display: block; }
+/* A figure with a rule over it, the way a statistic is set in a report. */
+.stat { text-align: left; border-top: 3px solid var(--brand-slate); padding-top: .8rem; }
+.stat .n { font-family: var(--font-brand); font-size: 2rem; font-weight: 700; color: var(--ink-strong); line-height: 1.1; display: block; }
 .stat .l { font-size: .9rem; color: var(--muted); }
 
 .pill {
-  display: inline-block; padding: .15rem .55rem; border-radius: 999px;
+  display: inline-block; padding: .15rem .55rem; border-radius: 3px;
   font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
-  background: var(--accent-soft); color: var(--accent-dark); vertical-align: middle;
+  background: var(--accent-soft); color: var(--accent-ink); border: 1px solid var(--accent-line);
+  vertical-align: middle;
 }
-.pill-neutral { background: var(--bg-alt); color: var(--muted); border: 1px solid var(--border); }
+.pill-neutral { background: var(--bg-alt); color: var(--muted); border-color: var(--border); }
 
 /* ---------------------------------------------------------------------------
    8. Tabs
 --------------------------------------------------------------------------- */
 .tabs { margin-top: 2rem; }
 .tablist {
-  display: flex; gap: .4rem; flex-wrap: wrap;
-  border-bottom: 1px solid var(--border); padding-bottom: 0; margin-bottom: 2rem;
+  display: none; gap: .4rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border); margin-bottom: 2rem;
 }
+/* The tablist is a control with nothing to control when scripting is off, so
+   it appears only alongside the script that drives it. */
+.js .tablist { display: flex; }
 .tablist button {
   appearance: none; background: none; border: 0; border-bottom: 3px solid transparent;
   font: inherit; font-family: var(--font-brand); font-weight: 650; font-size: 1.02rem;
   color: var(--muted); padding: .7rem 1rem; min-height: 44px; cursor: pointer;
-  margin-bottom: -1px; border-radius: 8px 8px 0 0;
+  margin-bottom: -1px; border-radius: var(--radius) var(--radius) 0 0;
 }
-.tablist button:hover { color: var(--ink); background: var(--bg-alt); }
-.tablist button[aria-selected="true"] { color: var(--accent-dark); border-bottom-color: var(--accent); }
+.tablist button:hover { color: var(--ink-strong); background: var(--bg-alt); }
+.tablist button[aria-selected="true"] { color: var(--ink-strong); border-bottom-color: var(--accent); }
 .tabpanel[hidden] { display: none; }
 /* Progressive enhancement. The markup carries no `hidden`, so with JavaScript
    off all three panels render and the page is whole. `html.js` is set in the
    head before first paint, which hides them until site.js marks one active —
-   so there is no flash of all three either. The tablist itself is a control
-   with nothing to control when scripting is off, so it is hidden there. */
-.tablist { display: none; }
-.js .tablist { display: flex; }
+   so there is no flash of all three either. */
 .js .tabpanel { display: none; }
-.js .tabpanel.is-active { display: block; }
-.tabpanel { animation: fade .18s ease-out; }
-@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.js .tabpanel.is-active { display: block; animation: fade .18s ease-out; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 
 /* ---------------------------------------------------------------------------
    9. Tables
 --------------------------------------------------------------------------- */
 .table-scroll {
   overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius);
-  background: var(--bg); -webkit-overflow-scrolling: touch;
+  background: var(--surface); -webkit-overflow-scrolling: touch;
 }
 table { border-collapse: collapse; width: 100%; font-size: .94rem; }
 caption { text-align: left; padding: 1rem 1.1rem; color: var(--muted); font-size: .9rem; border-bottom: 1px solid var(--border); }
@@ -314,19 +392,22 @@ th, td { text-align: left; padding: .72rem 1.1rem; border-bottom: 1px solid var(
 thead th {
   /* Sticky under the site header, not under the top of the viewport: the header
      is sticky too, and `top: 0` parks the column titles behind it. */
-  position: sticky; top: var(--header-h); background: var(--bg-alt); z-index: 1;
+  position: sticky; top: var(--header-h); background: var(--thead); z-index: 1;
   font-family: var(--font-brand); font-weight: 700; font-size: .85rem;
   letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2);
   border-bottom: 1px solid var(--border-firm); white-space: nowrap;
 }
 tbody tr:last-child td { border-bottom: 0; }
 tbody tr:hover { background: var(--bg-alt); }
-th[scope="row"] { font-weight: 600; font-family: var(--font-body); font-size: .94rem; min-width: 15rem; }
+th[scope="row"] { font-weight: 600; font-family: var(--font-body); font-size: .94rem; min-width: 15rem; color: var(--ink-strong); }
 .row-group th {
   background: var(--bg-alt); font-family: var(--font-brand); font-weight: 700;
-  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-dark);
+  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-strong);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 .row-group th, .row-group td { border-bottom: 1px solid var(--border-firm); }
+.row-group + tr th, .row-group + tr td { border-top: 0; }
+.row-group th { border-top: 1px solid var(--border-firm); }
 td.c, th.c { text-align: center; }
 .yes { color: var(--good); font-weight: 700; }
 .no  { color: var(--muted); }
@@ -337,10 +418,15 @@ td.c, th.c { text-align: center; }
    10. Figures / screenshots
 --------------------------------------------------------------------------- */
 figure.shot { margin: 0 0 1.75rem; }
-figure.shot a { display: block; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border-firm); box-shadow: var(--shadow-md); background: var(--bg-alt); }
+figure.shot a {
+  display: block; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border-firm); background: var(--bg-alt);
+  box-shadow: var(--shadow-md);
+}
+figure.shot a:hover { border-color: var(--accent); }
 figure.shot img { width: 100%; }
 figure.shot figcaption { font-size: .9rem; color: var(--muted); margin-top: .7rem; line-height: 1.5; }
-figure.shot figcaption b { color: var(--ink-2); font-weight: 650; }
+figure.shot figcaption b { color: var(--ink-strong); font-weight: 650; }
 .shot-grid { display: grid; gap: 1.75rem; grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); }
 
 /* ---------------------------------------------------------------------------
@@ -351,12 +437,12 @@ figure.shot figcaption b { color: var(--ink-2); font-weight: 650; }
   padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.75rem 0;
 }
 .note > :last-child { margin-bottom: 0; }
-.note-plain { border-left-color: var(--border-firm); background: var(--bg-alt); }
+.note-plain { border-left-color: var(--brand-slate); background: var(--bg-alt); }
 
 .speclist { list-style: none; padding: 0; margin: 0; }
 .speclist li { display: flex; gap: .8rem; padding: .8rem 0; border-bottom: 1px solid var(--border); margin: 0; }
 .speclist li:last-child { border-bottom: 0; }
-.speclist .k { flex: 0 0 12.5rem; font-weight: 650; color: var(--ink-2); font-size: .95rem; }
+.speclist .k { flex: 0 0 12.5rem; font-weight: 650; color: var(--ink-strong); font-size: .95rem; }
 .speclist .v { flex: 1 1 auto; color: var(--ink-2); font-size: .95rem; }
 @media (max-width: 620px) { .speclist li { flex-direction: column; gap: .15rem; } .speclist .k { flex-basis: auto; } }
 
@@ -364,18 +450,27 @@ figure.shot figcaption b { color: var(--ink-2); font-weight: 650; }
 .checks li { position: relative; padding-left: 1.7rem; margin-bottom: .55rem; }
 .checks li::before {
   content: ""; position: absolute; left: 0; top: .48em;
-  width: .95rem; height: .5rem; border-left: 2.5px solid var(--accent); border-bottom: 2.5px solid var(--accent);
+  width: .95rem; height: .5rem;
+  border-left: 2.5px solid var(--accent); border-bottom: 2.5px solid var(--accent);
   transform: rotate(-45deg);
 }
 
 /* ---------------------------------------------------------------------------
    12. Footer
 --------------------------------------------------------------------------- */
-.site-footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding-block: 3rem 2rem; font-size: .93rem; color: var(--muted); }
-.site-footer h4 { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: .8rem; }
+.site-footer {
+  background: var(--deep); color: var(--on-deep-2);
+  border-top: 4px solid var(--accent);
+  padding-block: 3rem 2rem; font-size: .93rem;
+}
+.site-footer .brand-name { color: #ffffff; }
+.site-footer .brand-name em { color: var(--brand-cyan); }
+.site-footer .brand-sub { color: var(--on-deep-3); }
+.site-footer h4 { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: #ffffff; margin-bottom: .8rem; }
 .site-footer ul { list-style: none; padding: 0; }
 .site-footer li { margin-bottom: .4rem; }
-.site-footer a { color: var(--ink-2); text-decoration: none; }
-.site-footer a:hover { color: var(--accent-dark); text-decoration: underline; }
-.footer-legal { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: .86rem; }
+.site-footer a { color: var(--on-deep-2); text-decoration: none; }
+.site-footer a:hover { color: var(--accent-on-deep); text-decoration: underline; }
+.footer-legal { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, .16); font-size: .86rem; color: var(--on-deep-3); }
 .footer-legal p { margin-bottom: .5rem; max-width: var(--measure); }
+.footer-legal a { color: var(--accent-on-deep); }
