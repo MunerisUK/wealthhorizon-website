@@ -1,0 +1,46 @@
+# Copyright (c) 2026 Muneris Management Ltd. All rights reserved.
+#
+# The gate. A pull request is green when this passes and the Netlify deploy
+# preview succeeds — Netlify proves the site deploys, this proves it is
+# correct, and neither substitutes for the other.
+
+name: Checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Markup, contrast, layout and scripting
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # Only Chromium. The checks are about the rules the site sets for
+      # itself — contrast, layout, progressive enhancement — not about
+      # cross-engine rendering.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run checks
+        run: npm run check
