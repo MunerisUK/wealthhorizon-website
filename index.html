@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WealthHorizon — every account, any currency, one horizon</title>
+<meta name="description" content="WealthHorizon keeps track of your accounts, investments and plans in one place. Four editions: Free, Standard, Pro and Advisory.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<!-- Set before first paint. Everything the site hides behind a control —
+     the mobile navigation, the inactive tab panels — is only hidden when
+     this class is present, so with JavaScript off the page is whole. -->
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/img/wh-mark.svg" alt="">
+      <span class="brand-text">
+        <span class="brand-name">Wealth<em>Horizon</em></span>
+        <span class="brand-sub">by Muneris</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="index.html#editions">Editions</a>
+      <a href="compare.html">Compare</a>
+      <a href="advisory.html">The Advisory</a>
+      <a href="how-its-built.html">How it&rsquo;s built</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero hero-feature">
+    <div class="wrap">
+      <p class="eyebrow">Personal finance software</p>
+      <h1>Every account, any currency, one horizon.</h1>
+      <p class="lede">
+        WealthHorizon keeps a record of what you own and what you owe &mdash; current accounts,
+        savings, cards, mortgages, investments, pensions and property &mdash; and works out what
+        it all comes to. It is a replacement for Microsoft Money, and it runs in a browser
+        on your phone, your tablet or your desktop.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#editions">See the four editions</a>
+        <a class="btn btn-ghost" href="compare.html#money">Compare with Microsoft Money</a>
+      </div>
+      <p class="hero-note">
+        There are four editions. <strong>Free</strong> holds up to 30 accounts and 1,000 transactions.
+        <strong>Standard</strong> removes those limits. <strong>Pro</strong> adds long-term planning, tax
+        and forecasting. <strong>Advisory</strong> is for regulated firms managing client books.
+      </p>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap">
+      <div class="grid grid-4">
+        <div class="stat"><span class="n">19</span><span class="l">account types, from current accounts and cards to pensions, property and vehicles</span></div>
+        <div class="stat"><span class="n">198</span><span class="l">currencies &mdash; and every entry keeps its own rate, date and source</span></div>
+        <div class="stat"><span class="n">.mny</span><span class="l">Microsoft Money files read directly, along with QIF, OFX, CSV and Excel</span></div>
+        <div class="stat"><span class="n">Yours</span><span class="l">run it on your own machine or ours; the data does not have to leave</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== What it does ===================== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What it does</p>
+        <h2>A register, a portfolio and a plan &mdash; in one place</h2>
+        <p>
+          Most people keeping track of their money end up with three things: a register of
+          transactions, a spreadsheet of investments, and another spreadsheet for the plan.
+          WealthHorizon holds all three, so a change in one shows up in the others.
+        </p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card card-accent">
+          <h3>The register</h3>
+          <p>
+            One row per transaction, with a running balance after each, so you can reconcile
+            against a statement by finding the row where the two stop agreeing. Splits, matched
+            transfers between your own accounts, payees, categories and repeating payments all
+            work the way they did in Money.
+          </p>
+          <p>You can type the arithmetic into an amount box &mdash; <code>120+45.50+18</code> &mdash; and it works it out.</p>
+        </div>
+        <div class="card card-accent">
+          <h3>Your investments</h3>
+          <p>
+            Holdings are priced in the currency they are quoted in, and each purchase is tracked
+            as its own lot, so a disposal knows what it cost. Share splits, dividends, corporate
+            actions, foreign withholding tax and an investment account&rsquo;s own cash side are all handled.
+          </p>
+          <p>An account with a missing price says so, rather than quietly reading short.</p>
+        </div>
+        <div class="card card-accent">
+          <h3>What it comes to</h3>
+          <p>
+            One net worth figure, and a panel underneath that shows the sum: every account,
+            its balance, the rate it was converted at and what that came to. If a currency has
+            no rate, the figure is shown in its own currency rather than guessed at.
+          </p>
+          <p>Snapshots record where you stood on a date, so the chart is a record, not a re-estimate.</p>
+        </div>
+      </div>
+
+      <figure class="shot" style="margin-top:2.5rem">
+        <a href="assets/img/screens/home-dashboard.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/home-dashboard.webp" width="1800" height="1140" loading="lazy"
+               alt="The WealthHorizon home dashboard showing net worth in pounds, the change since the last snapshot, average daily change, active account count and number of jurisdictions, above quick actions and a money-in-versus-out chart with an allocation donut.">
+        </a>
+        <figcaption>
+          <b>The dashboard.</b> Where you stand, what has changed since you last looked, and the
+          things you came here to do. Shown with a demonstration household loaded.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== Editions ===================== -->
+  <section id="editions">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Editions</p>
+        <h2>Three editions, plus a free one to start with</h2>
+        <p>
+          Standard is the like-for-like replacement for Microsoft Money. Pro adds the planning,
+          tax and forecasting work that Money never did. Advisory is a different product for a
+          different reader &mdash; it is for regulated firms, and it is described in
+          <a href="advisory.html">The Advisory</a>.
+        </p>
+      </div>
+
+      <div class="tabs" data-tabs>
+        <div class="tablist" role="tablist" aria-label="Editions">
+          <button type="button" role="tab" id="tab-standard" aria-controls="standard" aria-selected="true">Standard</button>
+          <button type="button" role="tab" id="tab-pro" aria-controls="pro" aria-selected="false" tabindex="-1">Pro</button>
+          <button type="button" role="tab" id="tab-advisory" aria-controls="advisory" aria-selected="false" tabindex="-1">Advisory</button>
+        </div>
+
+        <!-- ---------- Standard ---------- -->
+        <div class="tabpanel" id="standard" role="tabpanel" aria-labelledby="tab-standard" tabindex="0">
+          <div class="grid grid-2" style="align-items:start">
+            <div>
+              <h3>Standard &mdash; what Microsoft Money did, without the Windows</h3>
+              <p class="lede">
+                Standard is meant as a like-for-like replacement. If you kept your accounts in
+                Money, the things you used every day are here, in the same shapes and under the
+                same headings.
+              </p>
+              <p>
+                Your old file comes across. WealthHorizon reads <code>.mny</code> and
+                <code>.mdb</code>/<code>.accdb</code> files directly, as well as QIF, OFX, CSV and
+                Excel, and shows you what it found &mdash; account by account, with the balances it
+                calculated &mdash; before anything is saved.
+              </p>
+              <div class="note">
+                <p>
+                  <strong>What Standard does not include.</strong> The long-term planner, the
+                  month-end funding plan, share price forecasts, inheritance tax and the capital
+                  gains tools are all in Pro. Nothing in Standard is time-limited or reduced.
+                </p>
+              </div>
+              <div class="btn-row">
+                <a class="btn btn-primary" href="compare.html">Full feature comparison</a>
+                <a class="btn btn-ghost" href="compare.html#money">Compared with Microsoft Money</a>
+              </div>
+            </div>
+
+            <div>
+              <h4>In Standard</h4>
+              <ul class="checks">
+                <li><strong>Accounts</strong> of every kind &mdash; current, savings, credit card, loan, mortgage, investment, pension, property, vehicle &mdash; each with its own country, currency and tax wrapper.</li>
+                <li><strong>The register</strong> with a running balance, splits, matched transfers, payees, categories, and arithmetic in the amount box.</li>
+                <li><strong>Repeating payments</strong> &mdash; weekly to yearly, with the month laid out as a calendar of what is due.</li>
+                <li><strong>Investments</strong> &mdash; holdings, lots, prices, dividends, share splits and an account&rsquo;s own cash side.</li>
+                <li><strong>Reports</strong> arranged under Money&rsquo;s own headings: spending by category and by payee, comparisons between periods, account balances with detail.</li>
+                <li><strong>Imports</strong> from Money, QIF, OFX, Trading&nbsp;212, Saxo, Barclays and any CSV or spreadsheet, with the columns mapped by you and a preview before it commits.</li>
+                <li><strong>Exports</strong> to CSV, Excel, QIF and OFX, per account.</li>
+                <li><strong>Multiple currencies</strong>, with each entry keeping the rate it was converted at.</li>
+                <li><strong>Backups</strong> you can schedule, encrypt and restore.</li>
+                <li><strong>Documents</strong> filed against an account &mdash; statements, contract notes, certificates.</li>
+                <li><strong>Household access</strong> &mdash; share an account with a partner, or give read-only access, and see who has looked at what.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:2.5rem">What it looks like</h4>
+          <p style="color:var(--muted);font-size:.93rem;max-width:var(--measure)">
+            The application, with a demonstration household loaded. Select an image to see it full size.
+          </p>
+          <div class="shot-grid">
+            <figure class="shot">
+              <a href="assets/img/screens/accounts.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/accounts.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Accounts page listing bank, savings, investment, pension, property and liability accounts grouped by category, each with its country flag, type, tax wrapper, balance, transaction count and last-updated date, with totals by currency across the top.">
+              </a>
+              <figcaption><b>Accounts.</b> Everything you own and owe, grouped, with a total per currency across the top and the transaction count and last update on every row.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/net-worth.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/net-worth.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Net Worth page showing net worth, assets, liabilities and the largest holding, a donut chart of allocation, a table by category and jurisdiction, and a How this is calculated panel breaking the figure into assets and liabilities.">
+              </a>
+              <figcaption><b>Net worth, and the sum behind it.</b> One figure, with a panel underneath that opens onto every account, the rate it was converted at and what that came to.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/allocation.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/allocation.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Asset Allocation page showing gross assets, net worth and region count, a portfolio mix bar, and donut charts by asset class and by geography with percentages.">
+              </a>
+              <figcaption><b>Allocation.</b> What you are actually invested in, by asset class and by region, with the detail underneath.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/exposure.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/exposure.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Currency Exposure page showing a stacked bar of GBP, EUR, USD and SGD exposure and a table of each currency's allocation, amount held natively, cash, holdings and total converted to base currency.">
+              </a>
+              <figcaption><b>Currency exposure.</b> What you hold in each currency, held natively and converted, so a move in one rate is a number rather than a surprise.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/reports.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/reports.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Reports gallery arranged under Income and Expenses and Assets and Liabilities headings, with cards for spending by category, spending by payee, transactions by category, monthly income and expenses, account balances and net worth over time.">
+              </a>
+              <figcaption><b>Reports.</b> The gallery, under Microsoft Money&rsquo;s own headings, so the report you used every month is where you go looking for it.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/recurring.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/recurring.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Recurring Transactions page listing council tax, gym, mortgages, rent, utilities, subscriptions, ISA investments and salary, each with the account, amount, frequency, next due date and auto-enter setting.">
+              </a>
+              <figcaption><b>Repeating payments.</b> What goes out and comes in, every month, with the next date due &mdash; as a list, or laid out as a calendar month.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/prices.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/prices.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Prices page listing instruments with their symbol, ISIN, SEDOL, exchange, currency, holding quantity, latest price and as-at date, with controls to add a price, refresh all, import and export.">
+              </a>
+              <figcaption><b>Prices.</b> One curated list of the instruments you hold, with the price, when it was taken and where from. Refreshed automatically, or entered by hand.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/wealth-over-time.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/wealth-over-time.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Wealth Over Time page showing latest net worth and change over the period above a stacked area chart of cash and savings, ISA and tax-free, pensions, investments and property over several years.">
+              </a>
+              <figcaption><b>Wealth over time.</b> Snapshots recorded on a date, so the chart is a record of where you stood rather than a re-estimate of it.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- ---------- Pro ---------- -->
+        <div class="tabpanel" id="pro" role="tabpanel" aria-labelledby="tab-pro" tabindex="0">
+          <div class="grid grid-2" style="align-items:start">
+            <div>
+              <h3>Pro &mdash; everything in Standard, and the questions Money could not answer</h3>
+              <p class="lede">
+                Money told you where you stood. Pro is about where you are heading: whether the
+                plan works, what the month needs, what a holding might be worth, and what the
+                tax will be.
+              </p>
+
+              <h4>Long-term planning</h4>
+              <p>
+                Build a plan and see it year by year. Say what you intend to live on and the
+                projection works out what your guaranteed income &mdash; state pension, defined
+                benefit, earnings &mdash; leaves uncovered, and draws exactly that, grossed up for
+                the tax you will pay on it. It tells you the first year you fall short, when each
+                pot runs out, and what is left at the end.
+              </p>
+              <p>
+                Three outlooks, what-if scenarios, and a Monte Carlo simulation for the range of
+                outcomes rather than a single line. The order you spend your pots in is yours to
+                set, because which pot you spend first is a tax decision rather than an arithmetic one.
+              </p>
+
+              <h4>Month-end planning</h4>
+              <p>
+                The month before it happens: one row per account showing what it opens with, what
+                comes in, what is due, its worst point, and whether it gets through. Then a
+                worksheet of what to move from where &mdash; with the reason each source was chosen
+                and what else was considered &mdash; and the list of transfers grouped by the bank
+                you log into, so it is one visit per login rather than one per movement.
+              </p>
+
+              <h4>Share price forecasting</h4>
+              <p>
+                A grid of what you expect each holding to be worth: instruments down the side,
+                dates across the top, a price in the cell. A growth rate cannot say that one company
+                does something different from another, and an unlisted holding has no market price
+                at all &mdash; a forecast is the only price it will ever have. Import the spreadsheet
+                you already keep, and export it back.
+              </p>
+
+              <h4>Inheritance tax and capital gains</h4>
+              <p>
+                An estate valuation with the nil-rate bands applied and the sum shown line by line,
+                a register of gifts against the seven-year rule, and the strategies worth
+                considering. For capital gains: FIFO or the full UK matching rules &mdash; same day,
+                then the following 30 days, then the pool &mdash; with unused losses and allowance
+                brought into the picture.
+              </p>
+            </div>
+
+            <div>
+              <h4>In Pro, in addition to Standard</h4>
+              <ul class="checks">
+                <li><strong>Advanced Planner</strong> &mdash; outlooks, what-if scenarios, Monte Carlo, pensions, income streams with start and end years, inflation and retirement spending.</li>
+                <li><strong>Planning wizard</strong> &mdash; a guided fact-find that only asks the questions that apply to you, pre-filled from your accounts.</li>
+                <li><strong>FIRE mode</strong> &mdash; your FIRE number, savings rate, years to independence, Coast and Barista, and a bridge planner for the gap before pension access age.</li>
+                <li><strong>Roadmap and goals</strong> &mdash; goals on a timeline against your plan and your actual wealth, with the shortfall quantified.</li>
+                <li><strong>Month-end plan</strong> &mdash; the picture of the month, the transfer worksheet, the bank instruction list and a journal of what you decided to move.</li>
+                <li><strong>Monthly pack</strong> &mdash; where you stand, what is due, how the goals are going, in one printable run.</li>
+                <li><strong>Price forecast</strong> &mdash; per instrument, per date, imported and exported as a spreadsheet.</li>
+                <li><strong>Estate &amp; IHT planner</strong> &mdash; liability, nil-rate bands, the seven-year gift register.</li>
+                <li><strong>Capital gains</strong> &mdash; FIFO or full UK matching rules, plus an optimiser that finds loss-harvesting opportunities.</li>
+                <li><strong>Dividend tracker</strong> &mdash; income by security and by account, with withholding tax and the year-on-year change.</li>
+                <li><strong>Tax workspace</strong> &mdash; calculator, allowances used and remaining, up to three jurisdictions side by side, residency day counts.</li>
+                <li><strong>Cash flow forecast</strong> &mdash; twelve months of inflows and outflows from your repeating items.</li>
+                <li><strong>Rebalancing and exposure</strong> &mdash; drift against target, and what you are exposed to by currency, geography and sector.</li>
+                <li><strong>Connections</strong> &mdash; Open Banking and a read-only Trading&nbsp;212 link, both optional.</li>
+                <li><strong>Alerts and data health</strong> &mdash; price thresholds, net-worth thresholds, overdue items, stale prices and missing rates.</li>
+              </ul>
+              <div class="btn-row">
+                <a class="btn btn-primary" href="compare.html">Free, Standard and Pro side by side</a>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="margin-top:2.5rem">What it looks like</h4>
+          <p style="color:var(--muted);font-size:.93rem;max-width:var(--measure)">
+            The Pro tools, with a demonstration household loaded. Select an image to see it full size.
+          </p>
+          <div class="shot-grid">
+            <figure class="shot">
+              <a href="assets/img/screens/planner.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/planner.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Advanced Planner showing tabs for My forecast, What if, Pensions, Income streams, Price forecast, Inflation and Retirement spending, with plan, target spending, from year and outlook controls above a projection chart running to 40 million.">
+              </a>
+              <figcaption><b>Advanced Planner.</b> The plan year by year, on your own assumptions. The tabs across the top are where pensions, income streams, price forecasts, inflation and retirement spending are set.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/planning-wizard.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/planning-wizard.webp" width="1800" height="1140" loading="lazy"
+                     alt="The guided Planning wizard asking what type of planning journey you are on, with cards for traditional retirement, early retirement or FIRE, financial independence still working, semi-retirement, business exit and adviser-led wealth plan.">
+              </a>
+              <figcaption><b>Guided planning.</b> Six starting points, and only the questions that apply to you. If you have no children it never asks about school fees.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/estate-iht.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/estate-iht.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Estate and IHT Planner showing estate value, effective nil-rate band, IHT liability and gift allowance left, an IHT breakdown showing estate value less nil-rate band times 40 per cent, a gift register and estate planning strategies.">
+              </a>
+              <figcaption><b>Estate &amp; IHT.</b> The liability worked out line by line rather than asserted, with the seven-year gift register and the strategies quantified underneath.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/cash-flow.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/cash-flow.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Cash Flow Forecast showing, for each account, its projected lowest balance over the next 60 days, the date it occurs and how many payments are due before then.">
+              </a>
+              <figcaption><b>Cash flow.</b> The lowest each account gets to before the next funding day, and the date it happens &mdash; which is the figure that matters, not the closing balance.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- ---------- Advisory ---------- -->
+        <div class="tabpanel" id="advisory" role="tabpanel" aria-labelledby="tab-advisory" tabindex="0">
+          <div class="grid grid-2" style="align-items:start">
+            <div>
+              <h3>Advisory &mdash; a client book, and the evidence that goes with it</h3>
+              <p class="lede">
+                The Advisory edition is for regulated firms. It gives every client the Pro
+                product, and gives the firm the supervision, governance and record-keeping layer
+                that sits above it: a management-information dashboard, a vulnerable customer
+                register, fair value and charge assessments, suitability reporting, a firm
+                hierarchy and an immutable audit trail.
+              </p>
+              <p>
+                It is built around the FCA Consumer Duty&rsquo;s four outcomes &mdash; products and
+                services, price and value, consumer understanding and consumer support &mdash; and
+                around the requirement to monitor outcomes, act on poor ones, and evidence both.
+              </p>
+              <div class="note">
+                <p>
+                  The Advisory edition has its own section of this site, with detail on each
+                  module and screenshots of the advisory, compliance and firm-hierarchy views.
+                </p>
+              </div>
+              <div class="btn-row">
+                <a class="btn btn-primary" href="advisory.html">Read The Advisory</a>
+                <a class="btn btn-ghost" href="how-its-built.html">How it is built</a>
+              </div>
+            </div>
+
+            <div>
+              <h4>In Advisory, in addition to Pro</h4>
+              <ul class="checks">
+                <li><strong>Client book</strong> &mdash; step into a client&rsquo;s account, with every access written to a log the client can read.</li>
+                <li><strong>Consumer Duty MI dashboard</strong> &mdash; outcomes, vulnerability, charges, reviews and complaints across the book.</li>
+                <li><strong>Vulnerable customer register</strong> &mdash; flag type, severity, support actions taken and review dates.</li>
+                <li><strong>Vulnerability scoring</strong> &mdash; an explainable score per client, with the contributing factors listed.</li>
+                <li><strong>Fair value and charge justification</strong> &mdash; value assessed by service tier and per client, RAG-rated.</li>
+                <li><strong>Annual review tracker</strong> &mdash; overdue, due soon and on track, with the review recorded when it is done.</li>
+                <li><strong>Risk assessment</strong> &mdash; an eight-question profile with a stated capacity for loss.</li>
+                <li><strong>Suitability reports</strong> &mdash; COBS 9.4 letters with a reference, generated from the client&rsquo;s own file.</li>
+                <li><strong>Board report</strong> &mdash; the annual attestation across the four Consumer Duty outcomes.</li>
+                <li><strong>FCA evidence export</strong> &mdash; a structured supervisory pack in JSON and CSV.</li>
+                <li><strong>Platform overview and firm hierarchy</strong> &mdash; adviser performance side by side, and rolled up through CEO, MD, VP, Manager and Adviser tiers.</li>
+                <li><strong>Audit log</strong> &mdash; who accessed or changed what, and when, restricted to compliance.</li>
+                <li><strong>Client portal</strong> &mdash; a branded, expiring, read-only view you can send a client.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:2.5rem">What it looks like</h4>
+          <p style="color:var(--muted);font-size:.93rem;max-width:var(--measure)">
+            Demonstration data. There are more screenshots, and detail on every module, in
+            <a href="advisory.html">The Advisory</a>.
+          </p>
+          <div class="shot-grid">
+            <figure class="shot">
+              <a href="assets/img/screens/compliance-dashboard.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/compliance-dashboard.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Consumer Duty MI Dashboard showing total clients, vulnerable clients, goal on-track percentage, average annual charge, review backlog, off-track clients and complaints, with outcomes by risk profile and vulnerability flags by severity.">
+              </a>
+              <figcaption><b>Consumer Duty MI Dashboard.</b> Outcomes across the whole book, with every figure opening the list of clients behind it.</figcaption>
+            </figure>
+            <figure class="shot">
+              <a href="assets/img/screens/firm-hierarchy.webp" target="_blank" rel="noopener">
+                <img src="assets/img/screens/firm-hierarchy.webp" width="1800" height="1140" loading="lazy"
+                     alt="The Firm Hierarchy page showing direct reports, total clients, on-track percentage, vulnerable and complaint totals, above a table of managing directors with tier badges, on-track percentages and alert badges.">
+              </a>
+              <figcaption><b>Firm hierarchy.</b> The same figures rolled up through the reporting line, with the problems on each row named rather than averaged away.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Free ===================== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:center">
+        <div>
+          <p class="eyebrow">Free edition</p>
+          <h2>Start free, at 30 accounts and 1,000 transactions</h2>
+          <p class="lede">
+            The Free edition is the Standard edition with two limits on it. Every feature is the
+            real one &mdash; nothing is a preview, a trial or a reduced version.
+          </p>
+          <p>
+            It holds up to <strong>30 accounts</strong> and <strong>1,000 transactions</strong>.
+            For a household with a few current accounts, a couple of cards and an ISA, that is
+            usually a year or two of records. When you reach either limit, you are told which one
+            and nothing already recorded is removed or hidden. Moving to Standard lifts both
+            limits and keeps everything as it is.
+          </p>
+          <p>
+            There is no time limit and no card needed to begin. Your data is exportable at any
+            point, in CSV, Excel, QIF or OFX, whichever edition you are on.
+          </p>
+        </div>
+        <div class="card">
+          <p class="price">Free</p>
+          <h3 style="margin-top:0">Everything in Standard, capped</h3>
+          <ul>
+            <li>Up to 30 accounts</li>
+            <li>Up to 1,000 transactions</li>
+            <li>Every Standard feature, in full</li>
+            <li>Import from Money, QIF, OFX, CSV and Excel</li>
+            <li>Export whenever you want, in four formats</li>
+            <li>No time limit</li>
+          </ul>
+          <p style="font-size:.92rem;color:var(--muted);margin-bottom:1.2rem">
+            The Pro planning, tax and forecasting tools are not in Free, and neither is the
+            Advisory edition.
+          </p>
+          <a class="btn btn-primary" href="compare.html">See what each edition holds</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Where it runs ===================== -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Where it runs, and who can see it</p>
+        <h2>The data does not have to leave your building</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Run it yourself</h3>
+          <p>
+            The whole system is three containers &mdash; a database, an API and the web app.
+            It runs on a laptop, a network drive at home, a server at the office, or any cloud
+            you already use. There is nothing proprietary in the hosting.
+          </p>
+        </div>
+        <div class="card">
+          <h3>It works offline</h3>
+          <p>
+            Market data, Open Banking and email are optional. With none of them configured the
+            product still works &mdash; prices and exchange rates can be entered or imported by
+            hand, and nothing phones home to make the app usable.
+          </p>
+        </div>
+        <div class="card">
+          <h3>You can see who looked</h3>
+          <p>
+            If your account is linked to an adviser, an <strong>Account Access</strong> page lists
+            who at the firm opened it, when, and in what role. Sharing your plan with an adviser
+            is a separate switch that you control and can turn off.
+          </p>
+        </div>
+      </div>
+      <div class="note note-plain">
+        <p>
+          <strong>Not advice.</strong> The planning, tax and forecasting tools produce projections
+          from assumptions you enter. They are there to help you think, and they are not financial
+          advice, a personal recommendation, or a guarantee. Tax rules change and markets move.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:.8rem">
+          <img src="assets/img/wh-mark.svg" alt="">
+          <span class="brand-text">
+            <span class="brand-name">Wealth<em>Horizon</em></span>
+            <span class="brand-sub">by Muneris</span>
+          </span>
+        </a>
+        <p>Every account, any currency, one horizon.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html#editions">Editions</a></li>
+          <li><a href="compare.html">Free, Standard &amp; Pro</a></li>
+          <li><a href="compare.html#money">Versus Microsoft Money</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For firms</h4>
+        <ul>
+          <li><a href="advisory.html">The Advisory</a></li>
+          <li><a href="advisory.html#consumer-duty">Consumer Duty coverage</a></li>
+          <li><a href="advisory.html#hierarchy">Supervision &amp; hierarchy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Engineering</h4>
+        <ul>
+          <li><a href="how-its-built.html">How it&rsquo;s built</a></li>
+          <li><a href="how-its-built.html#security">Security architecture</a></li>
+          <li><a href="how-its-built.html#assurance">Testing &amp; assurance</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>
+        WealthHorizon is proprietary software. &copy; 2026 Muneris Management Ltd. All rights
+        reserved. Licensing enquiries: <a href="mailto:info@muneris.co.uk">info@muneris.co.uk</a>.
+      </p>
+      <p>
+        Microsoft and Microsoft Money are trademarks of Microsoft Corporation. WealthHorizon is
+        not affiliated with, endorsed by or connected to Microsoft Corporation; references to
+        Microsoft Money are for comparison only.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
