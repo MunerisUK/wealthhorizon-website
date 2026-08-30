@@ -95,17 +95,28 @@ python3 -m http.server 8000
 
 ## Before you push a change
 
-Check the four things that have actually broken here before:
+```sh
+npm ci
+npx playwright install chromium
+npm run check
+```
 
-1. **Horizontal overflow** at 1600, 1400, 1024, 390 and 320px — a grid
-   `minmax(400px, 1fr)` will push the page sideways on a phone unless the
-   minimum is wrapped in `min(400px, 100%)`.
-2. **Contrast** in both colour schemes. Walk the rendered text nodes and
-   compare each against its effective background; the target is 4.5:1, or 3:1
-   for text at 24px, or 18.66px bold.
-3. **Scripting off** — every tab panel must render, the navigation must stay
-   in the page, and the tablist and menu button must not appear.
-4. **Tabs** by mouse, by arrow key and by deep link (`/#pro`).
+That runs everything CI runs, against a copy of the repository served on a free
+port: tag balance, alt text, links, anchors and assets; contrast in light and
+dark against each node's computed background; horizontal overflow at 1600,
+1400, 1024, 390 and 320px; the tabs by click, arrow key and deep link; and the
+whole page with scripting off.
+
+Every check is there because it caught something real — see `CLAUDE.md` for
+which fault each one found. Fix the cause rather than the check.
+
+The dependency is for the checks alone. **The site itself has no build step**:
+what is in this repository is what gets served.
+
+A change is ready to merge when `npm run check` passes locally, the **Checks**
+workflow is green on the pull request, and the **Netlify deploy preview**
+succeeded. Netlify going green only means the files uploaded — look at the
+preview URL before merging.
 
 ## Editing conventions
 

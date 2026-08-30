@@ -60,9 +60,23 @@
       });
     });
 
-    var start = 0;
-    var hash = (location.hash || '').replace('#', '');
-    tabs.forEach(function (t, i) { if (t.getAttribute('aria-controls') === hash) start = i; });
-    select(start, false, false);
+    function indexForHash() {
+      var hash = (location.hash || '').replace('#', '');
+      for (var i = 0; i < tabs.length; i++) {
+        if (tabs[i].getAttribute('aria-controls') === hash) return i;
+      }
+      return -1;
+    }
+
+    // Changing only the fragment does not reload the document, so without this
+    // a link to #pro from the page you are already on would move the scroll
+    // position and leave the wrong panel open.
+    window.addEventListener('hashchange', function () {
+      var i = indexForHash();
+      if (i >= 0) select(i, false, false);
+    });
+
+    var start = indexForHash();
+    select(start >= 0 ? start : 0, false, false);
   });
 })();

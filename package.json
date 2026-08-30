@@ -1,0 +1,14 @@
+{
+  "name": "wealthhorizon-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The WealthHorizon marketing site. Static HTML — the dependency below is for the checks, not for the site.",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}
