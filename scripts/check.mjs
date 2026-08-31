@@ -22,7 +22,13 @@ import { readFile, readdir } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..');
-const PAGES = ['/index.html', '/compare.html', '/advisory.html', '/how-its-built.html'];
+const PAGES = [
+  '/index.html',
+  '/planning.html',
+  '/compare.html',
+  '/advisory.html',
+  '/how-its-built.html',
+];
 const WIDTHS = [1600, 1400, 1024, 390, 320];
 
 const TYPES = {
