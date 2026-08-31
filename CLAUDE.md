@@ -72,7 +72,7 @@ Adding a page means adding it to `PAGES` in `scripts/check.mjs`.
 
 Two registers, and they are deliberate:
 
-- **`index.html`, `compare.html`** — plain English, second person, no sales
+- **`index.html`, `planning.html`, `compare.html`** — plain English, second person, no sales
   language and no superlatives. Say what the product does and what it does not.
   Limits are stated as numbers, never as "up to".
 - **`advisory.html`, `how-its-built.html`** — the register a financial services

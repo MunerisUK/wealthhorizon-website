@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Planning and retirement — WealthHorizon</title>
+<meta name="description" content="Retirement planning in WealthHorizon: a guided planner that asks only the questions that apply to you, an advanced planner where you set every assumption, FIRE, and goals tracked against your actual wealth.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<!-- Set before first paint. Everything the site hides behind a control —
+     the mobile navigation, the inactive tab panels — is only hidden when
+     this class is present, so with JavaScript off the page is whole. -->
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/img/wh-mark.svg" alt="">
+      <span class="brand-text">
+        <span class="brand-name">Wealth<em>Horizon</em></span>
+        <span class="brand-sub">by Muneris</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#editions">Editions</a>
+      <a href="planning.html" aria-current="page">Planning</a>
+      <a href="compare.html">Compare</a>
+      <a href="advisory.html">The Advisory</a>
+      <a href="how-its-built.html">How it&rsquo;s built</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero hero-feature">
+    <div class="wrap">
+      <p class="eyebrow">Planning and retirement</p>
+      <h1>Will there be enough, and when?</h1>
+      <p class="lede">
+        That is the question a register cannot answer. WealthHorizon has two planners: a
+        guided one that asks only the questions that apply to you, and an advanced one where
+        you set every assumption yourself. They share an engine, so an answer you give the
+        first is an input the second already has. Both are in the <strong>Pro</strong> edition.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#guided">The guided planner</a>
+        <a class="btn btn-ghost" href="#advanced">The advanced planner</a>
+        <a class="btn btn-ghost" href="#fire">FIRE</a>
+        <a class="btn btn-ghost" href="#goals">Goals</a>
+      </div>
+      <p class="hero-note">
+        Every screen on this page is the running application with a demonstration household
+        loaded. The figures are that household&rsquo;s, and they are fictitious.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== The two planners ===================== -->
+  <section class="tight">
+    <div class="wrap">
+      <div class="grid grid-2">
+        <div class="card card-accent">
+          <h3>Start guided</h3>
+          <p>
+            You pick the kind of plan you are making, answer questions in your own words, and
+            get a result. It fills in what it can from your accounts before it asks, so you are
+            checking figures rather than looking them up.
+          </p>
+          <p style="margin-bottom:0">
+            Good when you do not yet know what the important assumptions are.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>Or set every assumption</h3>
+          <p>
+            Return rate, inflation, retirement age, the order you spend your pots in, each
+            pension and its commencement age, each income stream and when it stops. Nothing is
+            decided for you and nothing is hidden.
+          </p>
+          <p style="margin-bottom:0">
+            Good when you know exactly what you want to model, and want to see it change.
+          </p>
+        </div>
+      </div>
+      <div class="note">
+        <p>
+          <strong>They are the same plan.</strong> Answer the guided questions and the
+          <em>Advanced Planner</em> button carries your answers across; go the other way and the
+          guided results read from the plan you built by hand. There is no second set of figures
+          to keep in step, which is the usual reason a plan and a spreadsheet stop agreeing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Guided ===================== -->
+  <section id="guided" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The guided planner</p>
+        <h2>Six starting points, and only the questions that apply</h2>
+        <p>
+          Most planning tools open on a blank form and ask for a retirement age. That is the
+          hardest question to answer first. This one starts by asking what kind of plan you are
+          making, and the questions change to suit.
+        </p>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/planning-wizard.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/planning-wizard.webp" width="1800" height="1140" loading="lazy"
+               alt="The Planning page asking what type of planning journey you are on, with six cards: traditional retirement planning, early retirement or FIRE, financial independence while still working, semi-retirement or part-time, business exit or financial freedom, and an adviser-led wealth plan.">
+        </a>
+        <figcaption>
+          <b>Choosing a journey.</b> Traditional retirement, early retirement or FIRE, financial
+          independence while still working, semi-retirement, a business exit, or an adviser-led
+          plan. The choice changes the questions and the language, and you can change it at any
+          point without starting again.
+        </figcaption>
+      </figure>
+
+      <div class="grid grid-2" style="align-items:start">
+        <figure class="shot">
+          <a href="assets/img/screens/planning-factfind.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/planning-factfind.webp" width="1800" height="1140" loading="lazy"
+                 alt="The guided planner showing a rail of sixteen sections — about you, family and dependants, work and income, your retirement plans, spending, what you have, investments, pensions, how much you are putting away, assumptions, goals and legacy, FIRE style, FIRE number, lifestyle ladder, bridge to pension access, robustness — with completed sections ticked, above the first question card asking your age, whether you are planning jointly, your general health and how long the plan should run.">
+          </a>
+          <figcaption>
+            <b>Sixteen sections, and it remembers where you were.</b> The rail ticks the ones you
+            have done and you can jump between them. Nothing is asked twice, and answers save as
+            you type.
+          </figcaption>
+        </figure>
+        <div>
+          <h3>It asks only what applies to you</h3>
+          <p>
+            The questions are conditional. No children, and it never asks about school fees.
+            Children over eighteen, and it asks about university support instead. Say you have no
+            investments and the detailed investment questions do not appear at all.
+          </p>
+          <h3>It fills in what it already knows</h3>
+          <p>
+            Your cash, ISA, general investment account, pensions, crypto and property figures,
+            your state and defined-benefit pensions, your salary and contributions, and your age
+            come from the accounts you already keep. You check and adjust rather than dig out
+            statements &mdash; and because they came from the register, they stay right.
+          </p>
+          <h3>The health and burnout questions are optional</h3>
+          <p>
+            They exist because longevity and care risk change a plan materially, and they are
+            marked as answer-only-if-you-are-comfortable. If you share your plan with an adviser
+            they see those answers too, which is stated before you answer rather than after.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Advanced ===================== -->
+  <section id="advanced">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The advanced planner</p>
+        <h2>Every assumption is yours, and every one is visible</h2>
+        <p>
+          The same engine with the guardrails off. Build as many plans as you like, name them,
+          export them as files, and compare them.
+        </p>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/planner.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/planner.webp" width="1800" height="1140" loading="lazy"
+               alt="The Advanced Planner with tabs for my forecast, what if, pensions, income streams, price forecast, inflation and retirement spending. Controls for plan, target spending a year, from year, outlook and retirement age sit above a year-by-year projection chart.">
+        </a>
+        <figcaption>
+          <b>The forecast.</b> A named plan, a target spend, a starting year, an outlook and a
+          retirement age &mdash; then the projection, year by year, in today&rsquo;s money or
+          future money as you choose.
+        </figcaption>
+      </figure>
+
+      <div class="note">
+        <p>
+          <strong>Tell it what you intend to spend, and the projection changes shape.</strong>
+          With no target it draws a fixed percentage of the pot each year, which illustrates
+          growth and cannot tell you when the money runs out. Enter a target spend and it works
+          out what your guaranteed income &mdash; state pension, defined benefit, earnings &mdash;
+          leaves uncovered, and draws exactly that, grossed up for the tax you will pay on it. It
+          then reports the first year you fall short, when the pension is exhausted, when all
+          liquid assets are, and what is left at the end.
+        </p>
+      </div>
+
+      <div class="shot-grid">
+        <figure class="shot">
+          <a href="assets/img/screens/planner-scenarios.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/planner-scenarios.webp" width="1800" height="1140" loading="lazy"
+                 alt="The what-if tab showing fields for investment return, cost of living increase, retirement age, annual withdrawal, tax-free cash and an offshore pension toggle, above a list of saved scenarios named baseline, bear market, bull run, higher inflation, Jersey relocation and QROPS or NT-code relief, each showing its assumptions.">
+          </a>
+          <figcaption>
+            <b>What if&hellip;</b> Change any assumption and see the effect on the final outcome.
+            Save the ones worth keeping under a name &mdash; <em>Bear Market</em>,
+            <em>Higher Inflation</em>, <em>Jersey Relocation</em> &mdash; and compare them against
+            each other later.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/planner-drawdown.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/planner-drawdown.webp" width="1800" height="1140" loading="lazy"
+                 alt="The wrapper drawdown sequencer showing target annual income, state pension income, horizon and jurisdiction, with results comparing three strategies — tax-optimal, ISA first and pension first — by total tax, total income and shortfall, and a note that the tax-optimal order saves £88,879 over a twenty-five year horizon.">
+          </a>
+          <figcaption>
+            <b>Which pot to spend first.</b> The same money drawn in three different orders, with
+            the lifetime tax of each. In this household the tax-optimal order is
+            &pound;88,879 better over twenty-five years than taking the pension first &mdash; the
+            kind of difference that is invisible until something works it out.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/planner-pensions.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/planner-pensions.webp" width="1800" height="1140" loading="lazy"
+                 alt="The pensions tab listing defined-contribution schemes with their current value, annual contribution, growth rate, commencement age and tax-free lump sum percentage, each linked to the account it is drawn from.">
+          </a>
+          <figcaption>
+            <b>Pensions, each with its own terms.</b> Defined contribution, defined benefit and
+            state pension are held separately. A scheme linked to an account takes its value from
+            that account, so a statement you import moves the plan rather than leaving it behind.
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <a href="assets/img/screens/planner-income.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/planner-income.webp" width="1800" height="1140" loading="lazy"
+                 alt="The income streams tab listing defined-benefit pensions, state pensions, salary and rental income, each with an amount per year, a start year, an end year or for life, and an escalation basis of inflation or a fixed percentage.">
+          </a>
+          <figcaption>
+            <b>Income that is not drawdown.</b> A state pension, a defined-benefit pension, an
+            annuity, salary, rent &mdash; each with a start year and, importantly,
+            <strong>an end year</strong>. A stream with no end runs to the last year of the plan,
+            and that error only ever flatters.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FIRE ===================== -->
+  <section id="fire" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">FIRE</p>
+        <h2>The number, the date, and the gap in the middle</h2>
+        <p>
+          Choose a FIRE-style journey and the planner adds the measures that community actually
+          uses &mdash; and the one that gets skipped, which is how you live between stopping work
+          and reaching pension access age.
+        </p>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/planning-fire.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/planning-fire.webp" width="1800" height="1140" loading="lazy"
+               alt="The results and FIRE tab showing a freedom number of £2,400,000 at a 4% withdrawal rate, FI progress of 126%, years to freedom of zero at a work-optional age of about 56, a savings rate of 51.7% of take-home pay, Coast FIRE reached, a bridge gap of zero with one year to pension access, accessible versus pension assets, essential cover of 100%, a plan resilience score of 90 out of 100, a milestones checklist and an insights panel.">
+        </a>
+        <figcaption>
+          <b>Results &amp; FIRE.</b> Every tile is derived from answers you gave and accounts you
+          keep, and every one says what it is made of underneath. Demonstration household.
+        </figcaption>
+      </figure>
+
+      <ul class="speclist">
+        <li><span class="k">Freedom number</span><span class="v">The capital that makes work optional, at the withdrawal rate you chose rather than a rate the tool picked. Shown as both the figure and the multiple of spending it represents.</span></li>
+        <li><span class="k">FI progress</span><span class="v">What you have against what you need, as a percentage &mdash; and above 100% it keeps counting rather than stopping at &ldquo;done&rdquo;, because how far past the line you are is the interesting part.</span></li>
+        <li><span class="k">Years to freedom</span><span class="v">And the work-optional age that follows from it, on your current savings rate.</span></li>
+        <li><span class="k">Savings rate</span><span class="v">Of take-home pay, counting pension contributions and employer contributions as well as what reaches a savings account &mdash; the three together, because leaving out the pension is how this number gets flattered.</span></li>
+        <li><span class="k">Coast FIRE</span><span class="v">Whether what you already hold will grow into the freedom number without another contribution, and the coast number as it stands today.</span></li>
+        <li><span class="k">Bridge gap</span><span class="v"><strong>The one that gets skipped.</strong> Stop work at 52 and you cannot touch a pension until 57 or 58 &mdash; the classic pension-rich, access-poor position. This states the gap in years and the money it needs, from the accessible side of your balance sheet only.</span></li>
+        <li><span class="k">Essential cover</span><span class="v">How much of your essential spending guaranteed income covers on its own, which is a different and more comforting question than whether the pot is big enough.</span></li>
+        <li><span class="k">Lifestyle ladder</span><span class="v">Lean, Base and Fat budgets side by side, so the number moves with the life rather than being one figure you have to believe.</span></li>
+        <li><span class="k">Plan resilience</span><span class="v">A blended, deliberately approximate read across progress, bridge funding, savings rate and cash buffer. It is a prompt, not a score to optimise, and it says so.</span></li>
+        <li><span class="k">Milestones</span><span class="v">Emergency fund in place, debt-free except the mortgage, a tenth of the way, a quarter &mdash; the markers that make a twenty-year project feel like it has steps.</span></li>
+      </ul>
+
+      <div class="note note-plain">
+        <p>
+          There is a <strong>plain-English / adviser-terms switch</strong> at the top of the page.
+          The same figures, labelled either the way the FIRE community says them or the way a
+          suitability report has to. Neither is a simplification of the other.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Goals ===================== -->
+  <section id="goals">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Goals, and tracking against them</p>
+        <h2>What you are saving for, and whether you are actually on course</h2>
+        <p>
+          A goal is easy to write down and hard to keep honest. These are funded from the money
+          you actually have, in the order the dates fall, and the answer changes when your
+          accounts do.
+        </p>
+      </div>
+
+      <div class="grid grid-2" style="align-items:start">
+        <figure class="shot">
+          <a href="assets/img/screens/planning-goals.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/planning-goals.webp" width="1800" height="1140" loading="lazy"
+                 alt="The goals tab listing four goals — replace the car, a sabbatical year, a Jersey house deposit and grandchildren's university — each with an amount in today's money, a currency, a target year and a priority, above an indicative funding panel showing accessible savings, the amount saved per year, the real growth rate assumed, and a funded percentage bar for each goal.">
+          </a>
+          <figcaption>
+            <b>Goals &amp; funding.</b> An amount in today&rsquo;s money, a year, a priority. The
+            funding status underneath is worked from your accessible savings, growing at your real
+            return, with goals funded in date order and ties broken by priority.
+          </figcaption>
+        </figure>
+        <div>
+          <h3>In today&rsquo;s money, on purpose</h3>
+          <p>
+            You say what the thing costs now. Inflating it to the target year is the tool&rsquo;s
+            job, not yours, and doing it in your head is where these estimates usually go wrong.
+          </p>
+          <h3>Priority decides what gives</h3>
+          <p>
+            Must-have, important, nice-to-have. When there is not enough to go round, a must-have
+            that looks short is flagged rather than quietly funded last, and the nice-to-haves are
+            what the suggestions offer to trim.
+          </p>
+          <h3>It says what it ignores</h3>
+          <p>
+            Tax, currency conversion and borrowing are not modelled here. It is a guide for
+            deciding which goals to prioritise, and it says so on the page rather than in a
+            footnote you have to find.
+          </p>
+        </div>
+      </div>
+
+      <figure class="shot" style="margin-top:2rem">
+        <a href="assets/img/screens/planning-roadmap.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/planning-roadmap.webp" width="1800" height="1140" loading="lazy"
+               alt="The roadmap tab showing where you are today — tracked net worth, accessible savings, locked long-term assets and the amount saved toward goals each year — above an on-course panel reporting four of four goals on track with a funded percentage bar for each, and a projected trajectory chart with the goals marked on the timeline.">
+        </a>
+        <figcaption>
+          <b>The roadmap.</b> Your goals, your plan and your actual tracked wealth in one view.
+          Today&rsquo;s position is split into what you can reach and what is locked in pensions
+          and property &mdash; the distinction that decides whether an early goal is fundable at
+          all &mdash; and the projection runs underneath with the goals marked on it.
+        </figcaption>
+      </figure>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Plan against actual</h3>
+          <p>
+            Capture a snapshot and the roadmap starts a tracking line: where the plan said you
+            would be by now, against where you are. A plan nobody checks against reality is a
+            wish, and this is the check.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Four ways to close a gap</h3>
+          <p>
+            Where a goal is short, the suggestions are quantified rather than encouraging: save
+            this much more each month, delay it by this long, trim it to what is affordable, or
+            reprioritise so the must-haves come first.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Accessible or locked</h3>
+          <p>
+            Every figure separates what you can reach from what you cannot. A deposit needed in
+            three years cannot come out of a pension, and a total that mixes the two answers the
+            wrong question.
+          </p>
+        </div>
+      </div>
+
+      <figure class="shot" style="margin-top:2.5rem">
+        <a href="assets/img/screens/goals-estimator.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/goals-estimator.webp" width="1800" height="1140" loading="lazy"
+               alt="The Goals page showing a what-would-it-take estimator with fields for target amount, amount already saved, monthly contribution, expected annual return and an optional by-when date, answering that the target is reached in about three years and two months, around a stated date.">
+        </a>
+        <figcaption>
+          <b>&ldquo;What would it take?&rdquo;</b> The other direction: name a figure and a
+          monthly amount, and it tells you when you get there. The return is treated as an annual
+          equivalent rate and converted by taking its twelfth root &mdash; dividing by twelve, the
+          common shortcut, pays 12.68% a year on a screen that says 12%.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== Honest limits ===================== -->
+  <section class="band">
+    <div class="wrap-narrow">
+      <p class="eyebrow">What a projection is</p>
+      <h2>None of this is advice, and the page says so where you read it</h2>
+      <p>
+        Everything here is a projection from assumptions you entered. Markets move, tax rules
+        change, and the further out a line goes the less it is worth. A banner says exactly that
+        at the top of the planner rather than in small print at the bottom.
+      </p>
+      <p>
+        Where a figure depends on a judgement rather than arithmetic, the judgement is yours and
+        the tool shows its working. The order you spend your pots in is the clearest example: the
+        conventional sequence is cash, then investments, then ISAs, then pensions &mdash; but where
+        unused pension funds are exposed to inheritance tax and other holdings are not, spending
+        the pension <em>first</em> can be right. WealthHorizon will model either and tell you what
+        each costs. It will not tell you which to pick, and for a cross-border position you should
+        take advice.
+      </p>
+      <p>
+        The Monte Carlo simulation is there for the same reason: a single line implies a precision
+        that does not exist, and a range of outcomes is the more honest picture.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="compare.html">What else is in Pro</a>
+        <a class="btn btn-ghost" href="advisory.html">Planning with an adviser</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:.8rem">
+          <img src="assets/img/wh-mark.svg" alt="">
+          <span class="brand-text">
+            <span class="brand-name">Wealth<em>Horizon</em></span>
+            <span class="brand-sub">by Muneris</span>
+          </span>
+        </a>
+        <p>Every account, any currency, one horizon.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html#editions">Editions</a></li>
+          <li><a href="planning.html">Planning &amp; retirement</a></li>
+          <li><a href="compare.html">Free, Standard &amp; Pro</a></li>
+          <li><a href="compare.html#money">Versus Microsoft Money</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For firms</h4>
+        <ul>
+          <li><a href="advisory.html">The Advisory</a></li>
+          <li><a href="advisory.html#consumer-duty">Consumer Duty coverage</a></li>
+          <li><a href="advisory.html#hierarchy">Supervision &amp; hierarchy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Engineering</h4>
+        <ul>
+          <li><a href="how-its-built.html">How it&rsquo;s built</a></li>
+          <li><a href="how-its-built.html#security">Security architecture</a></li>
+          <li><a href="how-its-built.html#assurance">Testing &amp; assurance</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>
+        WealthHorizon is proprietary software. &copy; 2026 Muneris Management Ltd. All rights
+        reserved. Licensing enquiries: <a href="mailto:info@muneris.co.uk">info@muneris.co.uk</a>.
+      </p>
+      <p>
+        Screenshots show the application populated with demonstration data; names and figures are
+        fictitious. Projections are indicative and are not financial advice.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

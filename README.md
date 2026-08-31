@@ -10,6 +10,7 @@ framework and no package manager: the repository is the deployable artefact.
 | File | Covers |
 |------|--------|
 | `index.html` | Home. Plain-English overview, the three edition tabs (Standard, Pro, Advisory) and the Free edition. |
+| `planning.html` | Planning and retirement in detail: the guided planner, the Advanced Planner, FIRE, and goals and tracking. |
 | `compare.html` | The full Free / Standard / Pro feature comparison, and (`#money`) the comparison with Microsoft Money. |
 | `advisory.html` | The Advisory edition in detail: Consumer Duty coverage, the compliance suite, the advisory desk, supervision and firm hierarchy, controls and separation of duties. |
 | `how-its-built.html` | Engineering standards, the development workflow, the CI gates, security architecture, data protection, accessibility, deployment, licensing and the known limitations. |
@@ -19,7 +20,7 @@ framework and no package manager: the repository is the deployable artefact.
 The two registers on this site are deliberate and should be preserved when
 editing:
 
-- **Consumer pages** (`index.html`, `compare.html`) — plain English, second
+- **Consumer pages** (`index.html`, `planning.html`, `compare.html`) — plain English, second
   person, no sales language, no superlatives. Say what the product does and
   what it does not do. Limits are stated as numbers, not as "up to".
 - **`advisory.html` and `how-its-built.html`** — the register a financial
@@ -54,7 +55,7 @@ one for the other is the mistake to watch for:
 The wordmark follows the same rule: `--wordmark-2` is a darkened cyan on light
 grounds and the brand cyan wherever the ground is the deep slate.
 
-All four pages pass WCAG AA for text contrast in both light and dark; there is
+Every page passes WCAG AA for text contrast in both light and dark; there is
 a checker in the verification notes below.
 
 ## Assets
@@ -122,8 +123,8 @@ preview URL before merging.
 
 - Colours come from the tokens at the top of `site.css`. Do not introduce a
   colour literal in a page.
-- Header and footer are duplicated in each page. If you change one, change all
-  four — there is no template engine, and that is the trade for having no build.
+- Header and footer are duplicated in each page. If you change one, change them
+  all — there is no template engine, and that is the trade for having no build.
 - Every image needs alt text that describes what the screen shows, not what it
   is called. A caption is not a substitute for it.
 - Tables wider than the page go inside `.table-scroll` so they scroll within
