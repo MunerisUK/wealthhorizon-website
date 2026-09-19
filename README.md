@@ -17,8 +17,27 @@ framework and no package manager: the repository is the deployable artefact.
 
 ## Tone
 
-The two registers on this site are deliberate and should be preserved when
-editing:
+**Plain English. This is a standing order and it applies to every page.**
+
+Write the way a person talks. Short sentences. Everyday words. Say the thing
+and stop. If you would not say it to somebody across a desk, rewrite it.
+
+Prose that reads as though a machine wrote it is a defect here. The tells to
+watch for, with the fix:
+
+| Tell | Instead |
+|---|---|
+| Sets of three — "a calculator that asks two questions, a guided planner that asks only what applies, and an advanced one where you set every assumption" | One thing per sentence |
+| The clever inversion — "an answer you give one is an input the next already has" | "They share the same plan" |
+| The rhetorical opener — "that is the question a register cannot answer" | Start with the answer |
+| "Not X, but Y" / "X is not Y; it is Z" | Say what it is |
+| Em-dash asides stacked into one sentence | A full stop |
+| Aphorisms — "a blank is not a nought" | Say the thing plainly |
+| Abstract nouns doing a verb's job — "the requirement to evidence outcomes" | "you have to show what happened" |
+
+The two registers below are still deliberate, and plain English applies to
+both. Plain does not mean casual: `advisory.html` and `how-its-built.html`
+stay precise and impersonal, in short clear sentences.
 
 - **Consumer pages** (`index.html`, `planning.html`, `compare.html`) — plain English, second
   person, no sales language, no superlatives. Say what the product does and
