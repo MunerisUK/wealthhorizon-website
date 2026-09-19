@@ -47,10 +47,10 @@
       <p class="eyebrow">Engineering, security and assurance</p>
       <h1>How WealthHorizon is built</h1>
       <p class="lede">
-        A firm putting client records into a system is entitled to know how that system is made,
-        what it is tested against, and what it does not claim. This page states the standards the
-        build is held to, the controls that are implemented, and &mdash; at the end &mdash; the
-        limitations that are known and deliberate.
+        If you are going to put client records into a system, you should know how it is made, what it is
+        tested against, and what it does not claim to do. This page sets out the standards the
+        build is held to and the security controls that are in place. At the end it lists the
+        limitations we know about.
       </p>
       <div class="btn-row">
         <a class="btn btn-ghost" href="#stack">The stack</a>
@@ -80,10 +80,10 @@
         <p class="eyebrow">1. The stack</p>
         <h2>Current, supported versions &mdash; and a stated reason for anything held back</h2>
         <p>
-          Both halves of the application are written in TypeScript under <code>strict</code>, and
-          compile to ES2022. Dependency updates are taken in verified batches rather than one at a
-          time, because a lockfile that has never been resolved against its siblings has not been
-          tested.
+          Both halves of the application are written in TypeScript under <code>strict</code> and compile
+          to ES2022. Dependency updates are taken in batches and verified together, rather than
+          one at a time. Merging them one by one leaves a lockfile that has never been resolved
+          against its siblings, which means it has never been tested.
         </p>
       </div>
 
@@ -114,22 +114,21 @@
 
       <div class="note note-plain">
         <p>
-          <strong>Taken, and the reason each one waited.</strong> Three major upgrades were held
-          back for a stated engineering reason rather than caution, and each has since been taken
-          on its own: Express 5 changed the type of route parameters and the routing engine, and
-          went in route by route; Vite 8 swapped the bundler, which changes what is emitted, and
-          waited for a build of both projects to become part of the verification; the React plugin
-          was paired with it. Recording why a version is not yet taken is part of the standard,
-          and so is taking it once the reason has been answered.
+          <strong>Taken, and why each one waited.</strong> Three major upgrades were held back, each for a
+          reason we wrote down at the time. All three have since gone in on their own. Express 5
+          changed the type of route parameters and the routing engine, so it went in route by
+          route. Vite 8 swapped the bundler, which changes what is emitted, so it waited until a
+          build of both projects was part of the verification. The React plugin went in with it.
+          Writing down why a version is not yet taken is part of the standard, and so is taking
+          it once the reason no longer holds.
         </p>
         <p>
-          <strong>TypeScript 7 is the one to watch.</strong> It is the native compiler port, and
-          it is a development dependency in name only: the back end builds with
-          <code>tsc</code>, so it emits the JavaScript that runs in production. It was taken on
-          the evidence of a clean type check, a clean emit, both test suites, and the emitted
-          server booting and answering its health check. It is named here because it is the first
-          dependency to suspect if something subtle surfaces, and a firm assessing the platform
-          should know which one that is.
+          <strong>TypeScript 7 is the one to watch.</strong> It is the native compiler port, and it is
+          only a development dependency on paper. The back end builds with <code>tsc</code>, so
+          TypeScript emits the JavaScript that runs in production. We took it on the evidence of
+          a clean type check, a clean emit, both test suites passing, and the emitted server
+          booting and answering its health check. It is named here because it is the first thing
+          to suspect if something odd turns up, and you should know which one that is.
         </p>
       </div>
     </div>
@@ -142,8 +141,9 @@
         <p class="eyebrow">2. How a change is made</p>
         <h2>Specification first, then a failing test, then the smallest change that passes it</h2>
         <p>
-          The development standard for this codebase is written down and applies to every
-          non-trivial change. It optimises for verified behaviour rather than apparent progress.
+          The development standard for this codebase is written down and applies to every change of any
+          size. It is built around proving that something works, rather than looking like
+          progress.
         </p>
       </div>
 
@@ -151,17 +151,18 @@
         <div class="card">
           <h3>1 &middot; Understand and specify</h3>
           <p>
-            The goal is restated, the expected behaviour identified, and the edge cases, failure
-            modes and backwards-compatibility risks named &mdash; against the existing code and
-            tests, not against an assumed architecture.
+            Restate the goal. Say what the expected behaviour is. Name the edge cases, the ways it could
+            fail and anything that might break for existing users. Do that against the code and
+            tests that are actually there, not an architecture you assumed.
           </p>
         </div>
         <div class="card">
           <h3>2 &middot; Test plan, then failing tests</h3>
           <p>
-            A plan covering the happy path, boundaries, error cases, regression risks and any
-            security or data-integrity behaviour. The tests are written and run <em>before</em>
-            the production change, and must fail for the expected reason.
+            A plan covering the normal case, the boundaries, the error cases, what might regress, and
+            anything touching security or data integrity. Write the tests and run them
+            <em>before</em> changing the production code. They have to fail, and for the right
+            reason.
           </p>
         </div>
         <div class="card">
@@ -198,9 +199,9 @@
 
       <div class="note">
         <p>
-          Four rules are absolute: a test is never weakened, skipped or deleted to make a suite
-          pass; coverage is never removed without a stated reason; public behaviour never changes
-          without a test; and no claim is made that tests pass unless they were run.
+          Four rules are absolute. Never weaken, skip or delete a test to make a suite pass. Never remove
+          coverage without saying why. Never change public behaviour without a test. Never say
+          the tests pass unless you ran them.
         </p>
       </div>
     </div>
@@ -229,7 +230,11 @@
         </li>
         <li>
           <span class="k">SQL against the real schema</span>
-          <span class="v">Every migration is applied to a live PostgreSQL 16 instance to build the actual schema, and then every static query in the backend is <code>PREPARE</code>d against it. Preparing validates every table and column reference without executing anything &mdash; so a query referring to a column that does not exist fails the build. This is the class of defect a type checker cannot see, and it is caught before merge rather than in production.</span>
+          <span class="v">Every migration is applied to a live PostgreSQL 16 instance to build the real schema, and then
+          every static query in the backend is <code>PREPARE</code>d against it. Preparing
+          checks every table and column reference without running anything, so a query naming a
+          column that does not exist fails the build. A type checker cannot see that kind of
+          mistake, and this catches it before the merge rather than in production.</span>
         </li>
         <li>
           <span class="k">Front-end test suite</span>
@@ -241,38 +246,45 @@
         </li>
         <li>
           <span class="k">Browser suite</span>
-          <span class="v">The end-to-end suite runs in Chromium on every pull request, not nightly and not on demand. It exercises the application as a person does &mdash; signing in, moving between pages, reading what a screen reader would be given &mdash; and it is where a regression that type checking and unit tests both accept is caught. Mobile and iPad projects are configured against the same specifications.</span>
+          <span class="v">The end-to-end suite runs in Chromium on every pull request. Not nightly, and not when somebody
+          remembers. It drives the application the way a person does: signing in, moving between
+          pages, reading what a screen reader would be given. This is where it catches a
+          regression that the type checker and the unit tests both let through. Mobile and iPad
+          profiles run against the same tests.</span>
         </li>
         <li>
           <span class="k">Dependency audit</span>
-          <span class="v">Both dependency trees are audited on every pull request. A new advisory at or above the configured threshold fails the build, so an unpatched dependency is a merge blocker rather than something discovered at the next review.</span>
+          <span class="v">Both dependency trees are audited on every pull request. A new advisory at or above the set
+          threshold fails the build, so an unpatched dependency stops the merge instead of
+          turning up at the next review.</span>
         </li>
       </ul>
 
       <h3 style="margin-top:2.5rem">What the tests are pointed at</h3>
       <p>
-        Testing favours pure functions with no database dependency, because that is where the
-        arithmetic lives and where a defect is silent. Financial software fails quietly: a wrong
-        answer is still a number. The suites therefore concentrate on the calculations that
-        produce a figure a person will act on &mdash;
+        The testing concentrates on pure functions with no database behind them, because that is where
+        the arithmetic lives. It is also where a bug is hardest to spot: a wrong answer in
+        financial software is still a number, and it looks like any other. So the suites cover
+        the calculations that produce a figure somebody will act on:
       </p>
       <ul class="checks">
         <li>Foreign exchange conversion and the historic rate held per transaction.</li>
         <li>The tax engine, allowances and the capital gains matching rules.</li>
         <li>Long-term projection, drawdown ordering and the Monte Carlo simulation.</li>
         <li>Lot tracking, corporate actions and the account valuation rule.</li>
-        <li>Compound interest in the savings estimator &mdash; where taking a twelfth of a rate rather than its twelfth root pays 12.68% a year on a screen that says 12%.</li>
+        <li>Compound interest in the savings estimator, where dividing a rate by twelve instead of taking
+        its twelfth root pays 12.68% a year on a screen that says 12%.</li>
         <li>Import parsers, balance reconciliation and duplicate detection across every supported file format.</li>
         <li>Backup encryption, round-tripped and verified including the authentication tag.</li>
-        <li>Role visibility &mdash; that an adviser cannot see a client they are not engaged with, and that the audit log refuses every caller but compliance.</li>
+        <li>Role visibility: that an adviser cannot see a client they do not work with, and that the audit
+        log refuses everyone except compliance.</li>
       </ul>
 
       <div class="note note-plain">
         <p>
-          Import readers are additionally verified against real broker and bank files rather than
-          synthetic ones: complete files from Trading&nbsp;212, Saxo, Barclays and QIF sources are
-          imported and reconciled row for row, and a row that cannot be read is reported rather
-          than dropped.
+          The import readers are also tested against real broker and bank files rather than made-up ones.
+          Complete files from Trading&nbsp;212, Saxo, Barclays and QIF sources are imported and
+          checked row for row. A row it cannot read is reported, not quietly dropped.
         </p>
       </div>
     </div>
@@ -285,9 +297,9 @@
         <p class="eyebrow">4. Security architecture</p>
         <h2>The controls, and where each is enforced</h2>
         <p>
-          Authorisation is enforced in two layers: in the application services, where a refusal
-          can be explained, and in the database as constraints and triggers, so that a defect or a
-          direct connection cannot bypass it.
+          Permissions are enforced in two places. In the application, where a refusal can be explained to
+          the person who hit it. And in the database, as constraints and triggers, so a bug or a
+          direct connection cannot get round them.
         </p>
       </div>
 
@@ -307,25 +319,52 @@
             <tr><th scope="row">Address verification</th><td>Single-use, time-limited e-mail verification where outbound mail is configured; auto-verified where it is not, so an offline installation cannot lock out its own operator.</td></tr>
             <tr><th scope="row">Account enumeration</th><td>Password reset and verification resend always answer success, whether or not the address is registered.</td></tr>
             <tr><th scope="row">Reset token handling</th><td>32 random bytes, stored only as a SHA-256 hash, valid for one hour, single use. A weak replacement password is refused before the token is consumed.</td></tr>
-            <tr><th scope="row">Abuse limiting</th><td>Sign-in is limited to ten attempts per account in fifteen minutes; the endpoint checks the limit before it checks the password and answers <code>429</code> with <code>Retry-After</code>. A completed sign-in clears the count, so two mistypes cost nothing; a correct password awaiting its second factor does not, so holding the password alone cannot reset the counter between guesses at the code. Counted per identifier rather than per address, because behind a reverse proxy the only address visible is the proxy&rsquo;s and an address bucket would lock out the whole installation; the identifier is held as a hash, in its own namespace, so filling one bucket cannot fill another and a refusal reveals nothing about whether the account exists. Password-reset requests are limited the same way.</td></tr>
+            <tr><th scope="row">Abuse limiting</th><td>Sign-in is limited to ten attempts per account in fifteen minutes. The endpoint checks the limit
+            before it checks the password, and answers <code>429</code> with
+            <code>Retry-After</code>. A completed sign-in clears the count, so two mistypes cost
+            you nothing. A correct password still waiting on its second factor does not clear
+            it, so somebody holding just the password cannot reset the counter between guesses
+            at the code. The count is per account rather than per address, because behind a
+            reverse proxy the only address the server can see is the proxy&rsquo;s, and counting
+            by address would lock out everyone at once. The account is held as a hash in its own
+            namespace, so filling one bucket cannot fill another, and a refusal tells you
+            nothing about whether the account exists. Password-reset requests are limited the
+            same way.</td></tr>
 
             <tr class="row-group"><th colspan="2" scope="colgroup">Authorisation and isolation</th></tr>
             <tr><th scope="row">Tenant isolation</th><td>Every record carries its tenant; every query is scoped to it. Staff acting on a client supply an explicit client context, which is checked against an active relationship before any data is returned.</td></tr>
             <tr><th scope="row">Role-based access</th><td>Roles and permissions are data, not code branches: standard user, adviser, compliance manager, hierarchy manager, system administrator. Navigation and routes are both filtered, and the API refuses independently of the interface.</td></tr>
             <tr><th scope="row">Administrative invariants</th><td>The system always retains at least one active administrator; the first administrator cannot be deleted, demoted or deactivated. Enforced in the service layer and again by database triggers, each with its own error code.</td></tr>
-            <tr><th scope="row">Deletion safety</th><td>Deleting users is planned across the whole selection rather than row by row, so two administrators cannot each pass a &ldquo;not the last one&rdquo; check and together leave none. Every reference to a user is classified from the live database catalogue, so a table added later cannot reintroduce the defect.</td></tr>
+            <tr><th scope="row">Deletion safety</th><td>Deleting users is worked out across the whole selection rather than one row at a time. Otherwise
+            two administrators could each pass a &ldquo;you are not the last one&rdquo; check
+            and between them leave none. Every reference to a user is found from the live
+            database catalogue, so a table added later cannot bring the problem back.</td></tr>
 
             <tr class="row-group"><th colspan="2" scope="colgroup">Data and integrity</th></tr>
             <tr><th scope="row">Input validation</th><td>zod schemas at the route boundary, with database constraints and enumerated types as the backstop. Validation failures return a structured error, never a stack trace.</td></tr>
-            <tr><th scope="row">Backup encryption</th><td>AES-256-GCM with a random per-bundle salt and initialisation vector, and a key derived with PBKDF2-SHA256 over 100,000 iterations. Authenticated encryption means a wrong passphrase fails the tag check rather than producing plausible rubbish.</td></tr>
+            <tr><th scope="row">Backup encryption</th><td>AES-256-GCM, with a random salt and initialisation vector for each bundle, and a key derived
+            with PBKDF2-SHA256 over 100,000 iterations. Because the encryption is authenticated,
+            a wrong passphrase fails the check outright instead of producing plausible-looking
+            rubbish.</td></tr>
             <tr><th scope="row">Backup lifecycle</th><td>Scheduled daily, weekly or monthly, with a retention count that prunes older snapshots and a log of every run.</td></tr>
             <tr><th scope="row">Audit trail</th><td>Authentication, role grants, client record access, planning access, suitability generation and backups are recorded with actor, action, resource, time and address. Writing an audit entry can never fail a request.</td></tr>
 
             <tr class="row-group"><th colspan="2" scope="colgroup">Outbound and content</th></tr>
-            <tr><th scope="row">Server-side request forgery</th><td>The only outbound fetch of a user-supplied address &mdash; an institution&rsquo;s logo &mdash; passes an allowlist of shapes rather than a blocklist of dangers: HTTP and HTTPS only, ports 80 and 443 only, no embedded credentials, and a public host. Addresses are judged numerically, so obfuscated forms of loopback and private ranges are refused, as are link-local and cloud-metadata addresses in every IPv4-mapped form. A bare name with no dot is refused because that is another container. Every redirect hop is re-checked.</td></tr>
-            <tr><th scope="row">Content type</th><td>The bytes decide the type, never the upstream header. Only known image signatures are stored; SVG is refused because it is a scripting-capable document and an active document served from our own origin is cross-site scripting. Stored images are served with no-sniff, a restrictive content-security policy and a same-site resource policy.</td></tr>
+            <tr><th scope="row">Server-side request forgery</th><td>There is only one place the server fetches an address a user supplied, and that is an
+            institution&rsquo;s logo. It is checked against a list of what is allowed, not a
+            list of what is dangerous: HTTP and HTTPS only, ports 80 and 443 only, no embedded credentials, and a public host. Addresses are judged numerically, so obfuscated forms of loopback and private ranges are refused, as are link-local and cloud-metadata addresses in every IPv4-mapped form. A bare name with no dot is refused because that is another container. Every redirect hop is re-checked.</td></tr>
+            <tr><th scope="row">Content type</th><td>The bytes decide what the file is, not the header it arrived with. Only known image signatures
+            are stored. SVG is refused, because an SVG can carry script, and a file that can run
+            script served from our own address is cross-site scripting. Stored images are served with no-sniff, a restrictive content-security policy and a same-site resource policy.</td></tr>
             <tr><th scope="row">Secrets</th><td>Supplied as environment variables and required at start, so a deployment missing one fails immediately rather than running insecurely. Configuration files are excluded from version control and from the release package; deployment scripts generate strong random values where none is supplied.</td></tr>
-            <tr><th scope="row">Separation of key material</th><td>A signing secret is not an encryption key. Brokerage credentials and Open Banking access and refresh tokens are sealed under a dedicated credential key rather than one derived from the token-signing secret, so rotating the signing secret &mdash; ordinary hygiene, and the first thing anyone does on a suspected leak &mdash; does not destroy the stored bank tokens. Where the credential key is unset the application refuses rather than falling back to a weaker one. A token sealed under the previous key is still readable and is re-sealed the next time it is written.</td></tr>
+            <tr><th scope="row">Separation of key material</th><td>A signing secret is not an encryption key. Brokerage credentials and Open Banking tokens are
+            sealed under their own credential key, not one derived from the token-signing
+            secret. That matters because rotating the signing secret is routine housekeeping,
+            and the first thing anyone does if they suspect a leak. If the two shared a key,
+            rotating it would destroy every stored bank token. Where the credential key is not
+            set, the application refuses to run rather than falling back to a weaker one. A
+            token sealed under the previous key can still be read, and is re-sealed the next
+            time it is written.</td></tr>
             <tr><th scope="row">HTTP security headers</th><td>A fixed header set on every API response, applied before any route can answer, and the same set on the pages the web server serves: <code>Strict-Transport-Security</code>; a content security policy of <code>default-src &#39;none&#39;</code> for the API and <code>default-src &#39;self&#39;</code> with <code>object-src &#39;none&#39;</code>, <code>base-uri &#39;none&#39;</code> and <code>form-action &#39;self&#39;</code> for pages; <code>X-Frame-Options: DENY</code> with <code>frame-ancestors &#39;none&#39;</code>; <code>X-Content-Type-Options: nosniff</code>; <code>Referrer-Policy: no-referrer</code>, because a wealth application&rsquo;s URLs carry account identifiers; a permissions policy denying camera, microphone, geolocation, payment and USB; and <code>Cross-Origin-Resource-Policy: same-site</code>. <code>X-Powered-By</code> is removed.</td></tr>
             <tr><th scope="row">Demonstration data</th><td>Every demonstration account and fixture is behind an explicit flag that defaults to off. A production installation ships with no login accounts at all; the first person to register becomes the first administrator.</td></tr>
           </tbody>
@@ -345,9 +384,8 @@
         <div class="card">
           <h3>Data minimisation and purpose limitation</h3>
           <p>
-            The client-facing access record returns deliberately limited fields &mdash; who, what,
-            when &mdash; and never firm-wide detail. The firm-wide audit trail is a separate,
-            separately restricted view.
+            The record a client sees carries only who, what and when. It never shows firm-wide detail. The
+            firm-wide audit trail is a separate view with its own restrictions.
           </p>
         </div>
         <div class="card">
@@ -361,25 +399,23 @@
         <div class="card">
           <h3>Accountability</h3>
           <p>
-            An activity trail covering access to and change of client records, including access by
-            staff, available to the compliance function and, in its client-scoped form, to the
-            client themselves.
+            An activity trail covering who opened or changed a client record, including staff. Compliance
+            can see all of it. The client can see the part that relates to them.
           </p>
         </div>
         <div class="card">
           <h3>Residency and sovereignty</h3>
           <p>
-            The platform runs self-contained on infrastructure of the firm&rsquo;s choosing.
-            Backups remain inside the database volume. There is no requirement for data to leave
-            the jurisdiction, or the building.
+            The platform runs on whatever infrastructure the firm chooses. Backups stay inside the database
+            volume. Nothing requires the data to leave the country, or the building.
           </p>
         </div>
       </div>
       <div class="note note-plain">
         <p>
-          These are platform capabilities that support compliance. The operating firm remains the
-          data controller and is responsible for its own data protection impact assessment, lawful
-          basis, retention policy and subject access request handling.
+          These are tools that help a firm comply. The firm is still the data controller, and is
+          responsible for its own data protection impact assessment, lawful basis, retention
+          policy and subject access requests.
         </p>
       </div>
     </div>
@@ -422,20 +458,20 @@
       <div class="grid grid-2">
         <div>
           <p>
-            The whole system is a PostgreSQL database, a Node API and an nginx-served single-page
-            application. Because that is all it is, the same artefact runs unchanged on a
-            self-hosted machine, a network-attached appliance, any public cloud, or a managed
-            container platform.
+            The whole system is a PostgreSQL database, a Node API and a single-page application served by
+            nginx. That is all it is, so the same build runs unchanged on your own machine, a
+            network-attached appliance, any public cloud, or a managed container platform.
           </p>
           <p>
-            The database schema is applied by the API on start-up. The runner is idempotent
-            &mdash; applied files are recorded and skipped, and a file that errored is re-attempted
-            next time &mdash; and understands complex SQL, treating a semicolon as a terminator
-            only at the top level so that function bodies and string literals survive intact.
+            The API applies the database schema when it starts. You can run it as many times as you like: it
+            records what it has applied and skips those, and retries anything that errored last
+            time. It also understands complex SQL, treating a semicolon as the end of a
+            statement only at the top level, so function bodies and string literals come through
+            intact.
           </p>
           <p>
-            Every build carries a version stamp committed with the source rather than derived at
-            deploy time, so the number on the screen identifies the exact build running.
+            Every build carries a version stamp committed with the source, rather than worked out at deploy
+            time. The number on the screen tells you exactly which build is running.
           </p>
         </div>
         <div>
@@ -463,20 +499,29 @@
         <p class="eyebrow">8. Known limitations</p>
         <h2>What is not claimed</h2>
         <p>
-          A security position that lists only its strengths is not a security position. The
-          following are known, documented, and stated here because a firm assessing the platform
-          should assess it accurately.
+          A security write-up that lists only the good parts is not worth reading. The following are known
+          and documented, and they are here because you should be able to judge the platform
+          accurately.
         </p>
       </div>
 
       <ul class="speclist">
         <li>
           <span class="k">Trusting a forwarded address</span>
-          <span class="v">Sign-in is now rate limited, per account rather than per address, because <code>trust proxy</code> is not configured and the only address the server can see behind a reverse proxy is the proxy&rsquo;s. A per-address limit therefore remains unavailable, and with it any control that depends on distinguishing one caller from another by address. Configuring the forwarded-address chain is a deployment decision, and it is treated as one rather than assumed.</span>
+          <span class="v">Sign-in is now rate limited, per account rather than per address. That is because <code>trust
+          proxy</code> is not configured, so behind a reverse proxy the only address the server
+          can see is the proxy&rsquo;s. A per-address limit is therefore not available, and
+          neither is anything else that needs to tell one caller from another by address.
+          Setting up the forwarded-address chain is a deployment decision, and we treat it as
+          one rather than assuming it.</span>
         </li>
         <li>
           <span class="k">Account identifiers</span>
-          <span class="v">A sort code or account number entered by a user is stored as entered. Nothing masks or encrypts that field, and it is therefore present in backups, which are themselves encrypted at rest where a passphrase is set. Both the in-application help and the user guide say so and recommend recording only the last few digits. A firm requiring a stronger control here should mask on write or hold the field encrypted; that is a change, not current behaviour.</span>
+          <span class="v">A sort code or account number is stored exactly as the user typed it. Nothing masks or encrypts
+          that field, so it appears in backups, which are themselves encrypted where a
+          passphrase is set. The in-application help and the user guide both say so, and suggest
+          recording only the last few digits. If you need a stronger control, the field would
+          have to be masked on write or held encrypted. That is a change we have not made.</span>
         </li>
         <li>
           <span class="k">Row-level security</span>
@@ -492,11 +537,15 @@
         </li>
         <li>
           <span class="k">Vulnerability scoring</span>
-          <span class="v">The score is a weighted, explainable calculation over recorded signals. It is decision support for prioritisation. It is not a determination that a client is vulnerable, and it does not replace the judgement, the conversation or the record of the response.</span>
+          <span class="v">The score is a weighted calculation over recorded signals, and it lists the factors behind it.
+          It tells you who to look at first. It does not decide that a client is vulnerable, and
+          it does not replace the judgement, the conversation or the record of what was done.</span>
         </li>
         <li>
           <span class="k">Planning outputs</span>
-          <span class="v">Projections, forecasts and estate calculations are indicative and depend entirely on assumptions the user enters. They are not financial advice, a personal recommendation or a guarantee, and they are labelled as such in the product as well as here.</span>
+          <span class="v">Projections, forecasts and estate calculations are indicative and depend entirely on what the
+          user entered. They are not financial advice, a personal recommendation or a guarantee.
+          The product says so too, not just this page.</span>
         </li>
       </ul>
 

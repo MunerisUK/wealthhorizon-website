@@ -70,7 +70,31 @@ Adding a page means adding it to `PAGES` in `scripts/check.mjs`.
 
 ## Writing
 
-Two registers, and they are deliberate:
+### Plain English. This is a standing order.
+
+Write the way a person talks. Short sentences. Everyday words. Say the thing
+and stop.
+
+Do not write prose that reads as though a machine wrote it. The tells:
+
+- **Sets of three.** "A calculator that asks two questions, a guided planner
+  that asks only what applies, and an advanced one where you set every
+  assumption." Say one thing per sentence instead.
+- **The clever inversion.** "They share an engine, so an answer you give one is
+  an input the next already has." Just say they share the same plan.
+- **The rhetorical opener.** "That is the question a register cannot answer."
+  Cut it and start with the answer.
+- **"Not X, but Y"** and **"X is not Y; it is Z."** Say what it is.
+- **Em-dash asides** stacked into a sentence. Use a full stop.
+- **Aphorisms.** "A blank is not a nought." "A wrong number dressed up as a
+  right one." These sound wise and say little.
+- **Abstract nouns doing the work** of a verb: "the requirement to evidence
+  outcomes" instead of "you have to show what happened".
+
+Test: read it aloud. If you would not say it to somebody across a desk, rewrite
+it.
+
+### Two registers, and they are deliberate
 
 - **`index.html`, `planning.html`, `compare.html`** — plain English, second person, no sales
   language and no superlatives. Say what the product does and what it does not.
