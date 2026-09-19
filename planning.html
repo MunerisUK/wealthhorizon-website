@@ -47,13 +47,15 @@
       <p class="eyebrow">Planning and retirement</p>
       <h1>Will there be enough, and when?</h1>
       <p class="lede">
-        That is the question a register cannot answer. WealthHorizon has two planners: a
-        guided one that asks only the questions that apply to you, and an advanced one where
-        you set every assumption yourself. They share an engine, so an answer you give the
-        first is an input the second already has. Both are in the <strong>Pro</strong> edition.
+        That is the question a register cannot answer. WealthHorizon answers it three ways: a
+        calculator that asks two questions, a guided planner that asks only the questions that
+        apply to you, and an advanced one where you set every assumption yourself. They share an
+        engine, so an answer you give one is an input the next already has. All three are in the
+        <strong>Pro</strong> edition.
       </p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="#guided">The guided planner</a>
+        <a class="btn btn-primary" href="#calculator">The pension calculator</a>
+        <a class="btn btn-ghost" href="#guided">The guided planner</a>
         <a class="btn btn-ghost" href="#advanced">The advanced planner</a>
         <a class="btn btn-ghost" href="#fire">FIRE</a>
         <a class="btn btn-ghost" href="#goals">Goals</a>
@@ -68,7 +70,18 @@
   <!-- ===================== The two planners ===================== -->
   <section class="tight">
     <div class="wrap">
-      <div class="grid grid-2">
+      <div class="grid grid-3">
+        <div class="card card-accent">
+          <h3>Two questions</h3>
+          <p>
+            When do you want to stop, and how much of the pot do you want as tax-free cash?
+            It reads the pensions you already hold and answers with what you would have a
+            month. There is nothing to type in.
+          </p>
+          <p style="margin-bottom:0">
+            Good when you want a figure today, not a project.
+          </p>
+        </div>
         <div class="card card-accent">
           <h3>Start guided</h3>
           <p>
@@ -96,9 +109,98 @@
         <p>
           <strong>They are the same plan.</strong> Answer the guided questions and the
           <em>Advanced Planner</em> button carries your answers across; go the other way and the
-          guided results read from the plan you built by hand. There is no second set of figures
-          to keep in step, which is the usual reason a plan and a spreadsheet stop agreeing.
+          guided results read from the plan you built by hand. The calculator reads those same
+          pensions again, and hands you on to the fact-find when two questions stop being
+          enough. There is no second set of figures to keep in step, which is the usual reason a
+          plan and a spreadsheet stop agreeing.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Pension calculator ===================== -->
+  <section id="calculator">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The pension calculator</p>
+        <h2>Two questions, and the pensions you already hold</h2>
+        <p>
+          Most people want one figure before they want a plan: what would I have to live on?
+          <strong>Tax &amp; Planning &rarr; Pension Calculator</strong> asks when you would like
+          to stop work and how much of the pot you want as tax-free cash. Everything else it
+          reads from the pensions on your account.
+        </p>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/pension-calculator.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/pension-calculator.webp" width="1800" height="1140" loading="lazy"
+               alt="The Pension Calculator with a rules selector set to United Kingdom, sliders for stopping work at 67 and taking 25% as tax-free cash, and three figures: ten thousand and ninety pounds a month for life, two hundred and sixty-eight thousand two hundred and seventy-five pounds of tax-free cash held to the allowance, and a pot of two point three million. Below, a year-by-year chart with a guaranteed-income floor, the pot on top, and a dashed line showing the pot running down to age ninety.">
+        </a>
+        <figcaption>
+          <b>Two sliders, and the rest is read from your pensions.</b> The tax-free cash here is
+          decided by the &pound;268,275 ceiling rather than the quarter, and the page says so
+          under the figure. Move either slider and the chart redraws.
+        </figcaption>
+      </figure>
+
+      <div class="grid grid-2" style="align-items:start">
+        <div>
+          <h3>What it answers</h3>
+          <p>
+            The headline is <strong>what you would have a month</strong>: the level amount your
+            pot can pay every year until age 90, on top of any pension already in payment. Where
+            a scheme or the state pension starts later than you stop, you get two figures &mdash;
+            what arrives when you retire, and what arrives once everything is being paid. Beside
+            them are the tax-free cash and the pot, before and after that cash comes out.
+          </p>
+          <p>
+            <strong>Year by year</strong> draws it. The guaranteed income is a floor, the pot
+            sits on top, and a dashed line on the right-hand scale is the pot itself running
+            down. Move either slider and the picture redraws: stop later and the line starts
+            higher and shorter; take more cash and it starts lower. The chart is described in
+            words for a screen reader.
+          </p>
+          <div class="note">
+            <p>
+              <strong>Read the list of what it used.</strong> <em>Where it comes from</em> names
+              every pot and every guaranteed income behind the figure. A pension the page cannot
+              see is a pension missing from the answer, and the commonest omission is the state
+              pension &mdash; for most people the largest guaranteed income they will ever have,
+              and something the page can only know about if it has been recorded in the planner.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3>Tax-free cash has two limits, and both bite</h3>
+          <p>
+            A share of the pot &mdash; a quarter in the UK and Ireland, 30% of an approved scheme
+            in Jersey &mdash; and a cash ceiling on top of it: &pound;268,275 in the UK,
+            &euro;200,000 in Ireland. The ceiling is a <strong>lifetime</strong> allowance across
+            every pension you hold, not one allowance per pension, so four pensions do not get
+            four of them. Where the ceiling rather than the percentage decides your figure, the
+            page says so underneath it.
+          </p>
+          <h3>Before tax and after it</h3>
+          <p>
+            Figures are in today&rsquo;s money. Where the jurisdiction&rsquo;s income tax bands
+            are recorded in your household&rsquo;s currency, the monthly figure is after income
+            tax, worked out on pension income alone &mdash; no earnings, savings interest or
+            dividends. The before-tax figure sits beneath it, because that is what pension
+            statements say. Where the bands cannot be applied, the page says
+            <em>before tax</em> and deducts nothing, rather than showing nought as though it
+            were the tax you owe.
+          </p>
+          <h3>More than one country</h3>
+          <p>
+            Where you have pensions in more than one country, a <strong>Rules</strong> selector
+            shows what each jurisdiction would allow and the slider&rsquo;s top moves with it.
+            It is a comparison, not a choice: which rules apply depends on where the pension is
+            and where you are resident, and a pension spanning two countries is not simply the
+            better of the two.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -240,6 +342,27 @@
             that account, so a statement you import moves the plan rather than leaving it behind.
           </figcaption>
         </figure>
+
+        <div class="note">
+          <p>
+            <strong>How the benefits are taken changes the tax and nothing else.</strong> Each
+            money-purchase pension carries the choice. <em>Tax-free cash, then drawdown</em>
+            takes the quarter once at retirement and taxes everything after it. <em>A series of
+            lump sums</em> leaves the pot uncrystallised and makes a quarter of every withdrawal
+            tax free instead, for as long as the lifetime allowance on tax-free cash lasts. Both
+            routes spend the same ceiling.
+          </p>
+          <p>
+            <strong>Once taxed money has come out, less can go in.</strong> Taking the taxed part
+            of a pension caps what can be paid into any pension afterwards &mdash; the money
+            purchase annual allowance, &pound;10,000 a year in the UK. The plan applies it from
+            the year after the first taxed withdrawal, scales every pot&rsquo;s contributions
+            down to fit, and reports what it could not pay in over the life of the plan.
+            Tax-free cash alone does not trigger it, and neither does a defined-benefit pension
+            coming into payment. A household in Jersey or Ireland is told when the trigger
+            happens but has no cap applied, because those jurisdictions set none.
+          </p>
+        </div>
 
         <figure class="shot">
           <a href="assets/img/screens/planner-income.webp" target="_blank" rel="noopener">
