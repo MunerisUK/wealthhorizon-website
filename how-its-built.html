@@ -94,17 +94,17 @@
             <tr><th scope="col">Layer</th><th scope="col">Technology</th><th scope="col">Version</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Front-end framework</th><td>React</td><td>18.3</td></tr>
-            <tr><th scope="row">Build tool</th><td>Vite</td><td>6</td></tr>
-            <tr><th scope="row">Language</th><td>TypeScript, ESM, <code>strict: true</code></td><td>5.7</td></tr>
-            <tr><th scope="row">Component library</th><td>Fluent UI v9 (Fluent 2), Griffel CSS-in-JS</td><td>9.x</td></tr>
+            <tr><th scope="row">Front-end framework</th><td>React</td><td>19.2</td></tr>
+            <tr><th scope="row">Build tool</th><td>Vite</td><td>8</td></tr>
+            <tr><th scope="row">Language</th><td>TypeScript, ESM, <code>strict: true</code></td><td>7.0</td></tr>
+            <tr><th scope="row">Component library</th><td>Fluent UI v9 (Fluent 2), Griffel CSS-in-JS</td><td>9.74</td></tr>
             <tr><th scope="row">Server runtime</th><td>Node.js (LTS)</td><td>22</td></tr>
-            <tr><th scope="row">Web framework</th><td>Express</td><td>4.21</td></tr>
-            <tr><th scope="row">Request validation</th><td>zod, at every route boundary</td><td>3.24</td></tr>
+            <tr><th scope="row">Web framework</th><td>Express</td><td>5.2</td></tr>
+            <tr><th scope="row">Request validation</th><td>zod, at every route boundary</td><td>4.5</td></tr>
             <tr><th scope="row">Password hashing</th><td>argon2 (argon2id)</td><td>0.41</td></tr>
             <tr><th scope="row">Database</th><td>PostgreSQL</td><td>16</td></tr>
-            <tr><th scope="row">Database driver</th><td><code>node-postgres</code></td><td>8.13</td></tr>
-            <tr><th scope="row">Unit and integration tests</th><td>Vitest (both packages)</td><td>4 / 2</td></tr>
+            <tr><th scope="row">Database driver</th><td><code>node-postgres</code></td><td>8.23</td></tr>
+            <tr><th scope="row">Unit and integration tests</th><td>Vitest (both packages)</td><td>5</td></tr>
             <tr><th scope="row">Component tests</th><td>jsdom + React Testing Library</td><td>&mdash;</td></tr>
             <tr><th scope="row">End-to-end tests</th><td>Playwright, with phone and tablet device profiles</td><td>&mdash;</td></tr>
             <tr><th scope="row">Deployment</th><td>Docker Compose &mdash; database, API, web</td><td>&mdash;</td></tr>
@@ -114,12 +114,22 @@
 
       <div class="note note-plain">
         <p>
-          <strong>Held back deliberately.</strong> Three major upgrades are outstanding, each for a
-          stated engineering reason rather than caution: Express 5 changes the type of route
-          parameters and the routing engine, and needs its own change route by route; Vite 8
-          swaps the bundler, which changes what is emitted and needs a build step added to
-          continuous integration first; and the React plugin upgrade is paired with it. Recording
-          why a version is not taken is part of the standard.
+          <strong>Taken, and the reason each one waited.</strong> Three major upgrades were held
+          back for a stated engineering reason rather than caution, and each has since been taken
+          on its own: Express 5 changed the type of route parameters and the routing engine, and
+          went in route by route; Vite 8 swapped the bundler, which changes what is emitted, and
+          waited for a build of both projects to become part of the verification; the React plugin
+          was paired with it. Recording why a version is not yet taken is part of the standard,
+          and so is taking it once the reason has been answered.
+        </p>
+        <p>
+          <strong>TypeScript 7 is the one to watch.</strong> It is the native compiler port, and
+          it is a development dependency in name only: the back end builds with
+          <code>tsc</code>, so it emits the JavaScript that runs in production. It was taken on
+          the evidence of a clean type check, a clean emit, both test suites, and the emitted
+          server booting and answering its health check. It is named here because it is the first
+          dependency to suspect if something subtle surfaces, and a firm assessing the platform
+          should know which one that is.
         </p>
       </div>
     </div>
@@ -201,7 +211,7 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">3. Testing and assurance</p>
-        <h2>Five gates, every one of which blocks a merge</h2>
+        <h2>Seven gates, every one of which blocks a merge</h2>
         <p>
           Continuous integration runs on every pull request. A change that fails any of the
           following cannot be merged.
@@ -223,11 +233,19 @@
         </li>
         <li>
           <span class="k">Front-end test suite</span>
-          <span class="v">2,693 tests across 224 files &mdash; pure calculation helpers, formatting and responsive logic, and component behaviour under jsdom.</span>
+          <span class="v">3,147 tests across 266 files &mdash; pure calculation helpers, formatting and responsive logic, and component behaviour under jsdom.</span>
         </li>
         <li>
           <span class="k">Back-end test suite</span>
-          <span class="v">3,190 tests across 246 files, run against a migrated and seeded PostgreSQL instance so that the database-backed tests exercise real data rather than a mock.</span>
+          <span class="v">3,644 tests across 294 files, run against a migrated and seeded PostgreSQL instance so that the database-backed tests exercise real data rather than a mock. Every test worker is given its own database, so a suite that writes cannot be made to pass or fail by the order it runs in.</span>
+        </li>
+        <li>
+          <span class="k">Browser suite</span>
+          <span class="v">The end-to-end suite runs in Chromium on every pull request, not nightly and not on demand. It exercises the application as a person does &mdash; signing in, moving between pages, reading what a screen reader would be given &mdash; and it is where a regression that type checking and unit tests both accept is caught. Mobile and iPad projects are configured against the same specifications.</span>
+        </li>
+        <li>
+          <span class="k">Dependency audit</span>
+          <span class="v">Both dependency trees are audited on every pull request. A new advisory at or above the configured threshold fails the build, so an unpatched dependency is a merge blocker rather than something discovered at the next review.</span>
         </li>
       </ul>
 
@@ -289,7 +307,7 @@
             <tr><th scope="row">Address verification</th><td>Single-use, time-limited e-mail verification where outbound mail is configured; auto-verified where it is not, so an offline installation cannot lock out its own operator.</td></tr>
             <tr><th scope="row">Account enumeration</th><td>Password reset and verification resend always answer success, whether or not the address is registered.</td></tr>
             <tr><th scope="row">Reset token handling</th><td>32 random bytes, stored only as a SHA-256 hash, valid for one hour, single use. A weak replacement password is refused before the token is consumed.</td></tr>
-            <tr><th scope="row">Abuse limiting</th><td>Password-reset requests are limited per address, and the address is hashed in the counter so the list of people who forgot a password is not held in the clear in order to count to five.</td></tr>
+            <tr><th scope="row">Abuse limiting</th><td>Sign-in is limited to ten attempts per account in fifteen minutes; the endpoint checks the limit before it checks the password and answers <code>429</code> with <code>Retry-After</code>. A completed sign-in clears the count, so two mistypes cost nothing; a correct password awaiting its second factor does not, so holding the password alone cannot reset the counter between guesses at the code. Counted per identifier rather than per address, because behind a reverse proxy the only address visible is the proxy&rsquo;s and an address bucket would lock out the whole installation; the identifier is held as a hash, in its own namespace, so filling one bucket cannot fill another and a refusal reveals nothing about whether the account exists. Password-reset requests are limited the same way.</td></tr>
 
             <tr class="row-group"><th colspan="2" scope="colgroup">Authorisation and isolation</th></tr>
             <tr><th scope="row">Tenant isolation</th><td>Every record carries its tenant; every query is scoped to it. Staff acting on a client supply an explicit client context, which is checked against an active relationship before any data is returned.</td></tr>
@@ -307,6 +325,8 @@
             <tr><th scope="row">Server-side request forgery</th><td>The only outbound fetch of a user-supplied address &mdash; an institution&rsquo;s logo &mdash; passes an allowlist of shapes rather than a blocklist of dangers: HTTP and HTTPS only, ports 80 and 443 only, no embedded credentials, and a public host. Addresses are judged numerically, so obfuscated forms of loopback and private ranges are refused, as are link-local and cloud-metadata addresses in every IPv4-mapped form. A bare name with no dot is refused because that is another container. Every redirect hop is re-checked.</td></tr>
             <tr><th scope="row">Content type</th><td>The bytes decide the type, never the upstream header. Only known image signatures are stored; SVG is refused because it is a scripting-capable document and an active document served from our own origin is cross-site scripting. Stored images are served with no-sniff, a restrictive content-security policy and a same-site resource policy.</td></tr>
             <tr><th scope="row">Secrets</th><td>Supplied as environment variables and required at start, so a deployment missing one fails immediately rather than running insecurely. Configuration files are excluded from version control and from the release package; deployment scripts generate strong random values where none is supplied.</td></tr>
+            <tr><th scope="row">Separation of key material</th><td>A signing secret is not an encryption key. Brokerage credentials and Open Banking access and refresh tokens are sealed under a dedicated credential key rather than one derived from the token-signing secret, so rotating the signing secret &mdash; ordinary hygiene, and the first thing anyone does on a suspected leak &mdash; does not destroy the stored bank tokens. Where the credential key is unset the application refuses rather than falling back to a weaker one. A token sealed under the previous key is still readable and is re-sealed the next time it is written.</td></tr>
+            <tr><th scope="row">HTTP security headers</th><td>A fixed header set on every API response, applied before any route can answer, and the same set on the pages the web server serves: <code>Strict-Transport-Security</code>; a content security policy of <code>default-src &#39;none&#39;</code> for the API and <code>default-src &#39;self&#39;</code> with <code>object-src &#39;none&#39;</code>, <code>base-uri &#39;none&#39;</code> and <code>form-action &#39;self&#39;</code> for pages; <code>X-Frame-Options: DENY</code> with <code>frame-ancestors &#39;none&#39;</code>; <code>X-Content-Type-Options: nosniff</code>; <code>Referrer-Policy: no-referrer</code>, because a wealth application&rsquo;s URLs carry account identifiers; a permissions policy denying camera, microphone, geolocation, payment and USB; and <code>Cross-Origin-Resource-Policy: same-site</code>. <code>X-Powered-By</code> is removed.</td></tr>
             <tr><th scope="row">Demonstration data</th><td>Every demonstration account and fixture is behind an explicit flag that defaults to off. A production installation ships with no login accounts at all; the first person to register becomes the first administrator.</td></tr>
           </tbody>
         </table>
@@ -451,8 +471,8 @@
 
       <ul class="speclist">
         <li>
-          <span class="k">Sign-in rate limiting</span>
-          <span class="v">Password reset is rate limited; sign-in is not. Behind a reverse proxy the only address the server can see is the proxy&rsquo;s, so a per-address limit collapses to a single shared bucket that would lock out a whole household, and a per-account limit would hand anybody a way to lock a named person out of their own money. This requires a deployment-level decision about trusting a forwarded address, and it is treated as one rather than papered over.</span>
+          <span class="k">Trusting a forwarded address</span>
+          <span class="v">Sign-in is now rate limited, per account rather than per address, because <code>trust proxy</code> is not configured and the only address the server can see behind a reverse proxy is the proxy&rsquo;s. A per-address limit therefore remains unavailable, and with it any control that depends on distinguishing one caller from another by address. Configuring the forwarded-address chain is a deployment decision, and it is treated as one rather than assumed.</span>
         </li>
         <li>
           <span class="k">Account identifiers</span>
