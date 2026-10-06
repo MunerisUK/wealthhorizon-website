@@ -103,10 +103,28 @@ it.
   firm expects: precise, impersonal, explicit about what is claimed and what is
   not.
 
+### If you cannot verify it, do not say it
+
+This is a standing order and it is absolute.
+
 Every factual claim must be traceable to the application source or to `docs/`
-in the `wealthhorizon` repository. Where the product has a known limitation it
-is stated (`how-its-built.html#limits`) rather than omitted — a claim the
-product cannot support is worse here than a gap.
+in the `wealthhorizon` repository. **Claims about anything else — another
+company's product, a price, a market, a statistic — need a primary source you
+have actually read.** A search result summarising a vendor is not a primary
+source, and neither is what you remember about a product.
+
+Where you cannot verify, the answer is to say less, not to hedge. Do not write
+"we believe", "as at October 2026", "our reading of public information" and
+publish it anyway: a dated caveat on an unchecked claim is still an unchecked
+claim. Cut it, or write about something you can show.
+
+`alternatives.html` is the worked example. It compares the *kinds* of product
+on the market, names no competitor and makes no claim about anyone else's
+software, because that could not be verified from here.
+
+Where the product has a known limitation it is stated
+(`how-its-built.html#limits`) rather than omitted — a claim the product cannot
+support is worse here than a gap.
 
 Do not invent figures. There is no pricing on this site because there are no
 prices to state.

@@ -26,6 +26,7 @@ const PAGES = [
   '/index.html',
   '/planning.html',
   '/compare.html',
+  '/alternatives.html',
   '/advisory.html',
   '/how-its-built.html',
 ];
