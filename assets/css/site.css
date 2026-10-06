@@ -448,6 +448,9 @@ figure.shot figcaption b { color: var(--ink-strong); font-weight: 650; }
 }
 .note > :last-child { margin-bottom: 0; }
 .note-plain { border-left-color: var(--brand-slate); background: var(--bg-alt); }
+/* The one note on the site that has to be read before the thing it qualifies:
+   nothing here is financial advice. Heavier rule, same tokens. */
+.note-warn { border-left-width: 6px; }
 
 .speclist { list-style: none; padding: 0; margin: 0; }
 .speclist li { display: flex; gap: .8rem; padding: .8rem 0; border-bottom: 1px solid var(--border); margin: 0; }
