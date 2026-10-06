@@ -50,20 +50,41 @@
         Your accounts tell you what you have now. They do not tell you whether it will last.
         WealthHorizon has three tools for that. The pension calculator asks two questions. The
         guided planner asks more, but only the ones that apply to you. The advanced planner lets
-        you set everything yourself. They all work on the same plan, so you never enter anything
-        twice. All three are in <strong>Pro</strong>.
+        you set everything yourself, and works out the tax and the inheritance tax year by year.
+        They all work on the same plan, so you never enter anything twice. All three are in
+        <strong>Pro</strong>.
       </p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="#calculator">The pension calculator</a>
-        <a class="btn btn-ghost" href="#guided">The guided planner</a>
-        <a class="btn btn-ghost" href="#advanced">The advanced planner</a>
-        <a class="btn btn-ghost" href="#fire">FIRE</a>
-        <a class="btn btn-ghost" href="#goals">Goals</a>
+        <a class="btn btn-primary" href="#calculator">The pension calculator</a> <a class="btn
+        btn-ghost" href="#guided">The guided planner</a> <a class="btn btn-ghost"
+        href="#advanced">The advanced planner</a> <a class="btn btn-ghost" href="#tax">Tax</a>
+        <a class="btn btn-ghost" href="#estate">Inheritance tax</a> <a class="btn btn-ghost"
+        href="#fire">FIRE</a> <a class="btn btn-ghost" href="#goals">Goals</a>
       </div>
       <p class="hero-note">
         Every screen on this page is the running application with a demonstration household
         loaded. The figures are that household&rsquo;s, and they are fictitious.
       </p>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap-narrow">
+      <div class="note note-warn">
+        <p>
+          <strong>None of this is financial advice.</strong> Every figure on this page is a
+          projection worked out from numbers you entered. It is not advice, not a personal
+          recommendation and not a promise. The application says the same thing on the screens
+          themselves: <em>&ldquo;Guidance, not advice. Check with an adviser before
+          acting.&rdquo;</em>
+        </p>
+        <p style="margin-bottom:0">
+          The tax and inheritance tax figures are worked out from published rates and
+          allowances. Rates change, rules change, and your own position may not be the one the
+          rules assume. Before you act on anything here, especially on inheritance tax, gifts or
+          a move between countries, take advice from someone qualified to give it.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -367,6 +388,248 @@
           </figcaption>
         </figure>
       </div>
+
+      <figure class="shot" style="margin-top:2.5rem">
+        <a href="assets/img/screens/planner-whatif.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/planner-whatif.webp" width="1800" height="1140" loading="lazy"
+               alt="The what-if tab headed try a different scenario, with a row of one-click questions: markets return 2% less, take the tax-free cash at once, leave the tax-free cash in, resident in Jersey, spend a tenth less, give ten thousand pounds a year, fill the basic-rate band. Below, every assumption is listed with its current value and where it came from, each with a box to override it.">
+        </a>
+        <figcaption>
+          <b>Every assumption, and where it came from.</b> Each row says whether the value is
+          your entry, a default nobody has touched, or something read from a tax table. The
+          questions along the top are worked out from your own figures, and one click turns any
+          of them into a scenario you can then edit.
+        </figcaption>
+      </figure>
+
+      <h3 style="margin-top:2.5rem">What if&hellip;, in full</h3>
+      <div class="grid grid-3">
+        <div class="card card-accent">
+          <h4>Every assumption, listed</h4>
+          <p style="margin-bottom:0">
+            The tab lists every assumption the plan makes, with where each value came from: an
+            account, a tax table, something you typed, or a default nobody has touched. A
+            scenario can override any of them.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h4>Presets, one click</h4>
+          <p style="margin-bottom:0">
+            Ten questions worked out from your own figures rather than generic ones. Markets
+            return 2% less. Retire two years later, or earlier. Take the tax-free cash at once,
+            or leave it in. Spend a tenth less. Give &pound;10,000 a year. Fill the basic-rate
+            band. Move to Jersey, or back to the UK.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h4>Compared properly</h4>
+          <p style="margin-bottom:0">
+            Put scenarios side by side and it reports the lifetime tax, the first year you fall
+            short, the years cash drops below your minimum, and exactly which assumptions
+            differ between them.
+          </p>
+        </div>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>Monte Carlo runs on the same engine as the forecast.</strong> It used to run on
+          a simpler model, so the middle of the range did not quite match the line you were
+          shown. Now each trial runs the real engine with a return shock per year and per asset
+          class, so the expected case <em>is</em> the forecast.
+        </p>
+      </div>
+
+      <h3 style="margin-top:2.5rem">Plan against what actually happened</h3>
+      <p>
+        Freeze a forecast as a <strong>baseline</strong> and it keeps the date and the closing
+        value of each pot. From then on the <em>Plan vs actual</em> tab reads your end-of-year
+        snapshots and compares them with what the plan said, year by year and pot by pot. A plan
+        you never check against the real figures quietly stops being about you.
+      </p>
+      <p>
+        There is a prompt each January to look at the plan again. It lists which tax tables it is
+        using, which assumptions are still sitting at their defaults, whether the baseline is
+        stale or missing, and whether you have set a target to spend. It asks once a year and
+        goes away when you dismiss it.
+      </p>
+
+      <h3 style="margin-top:2rem">Getting it out, and getting it back in</h3>
+      <ul class="checks">
+        <li><strong>A plan report</strong> &mdash; a workbook with a sheet per section, or a page laid out to print.</li>
+        <li><strong>The whole plan as a file</strong> &mdash; export and import carry everything, including people, pensions and income streams. Import the file you exported and you get the same forecast back.</li>
+        <li><strong>A settings workbook</strong> &mdash; a row per setting to fill in at your own pace, then read back into the same plan.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== Tax in the forecast ===================== -->
+  <section id="tax" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Tax in the forecast</p>
+        <h2>Taxed with the real bands, year by year</h2>
+        <p>
+          Most planning tools tax a projection at one flat rate. That is quick and it is wrong,
+          because the rate you pay depends on how much you draw, and how much you draw depends on
+          the tax. The planner works the tax out properly for each year.
+        </p>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/planner-tax-checks.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/planner-tax-checks.webp" width="1800" height="1140" loading="lazy"
+               alt="The tax checks tab showing a row per check and a column per tax year from 2026/27 onward. Rows for unused basic-rate band, income in the 60% taper zone showing five thousand and eighty-five pounds in 2035/36, and tax-free cash still to take showing two hundred and sixty-eight thousand pounds falling to eighty thousand, each with a plain-English note on what it means and what to consider.">
+        </a>
+        <figcaption>
+          <b>Tax checks, year by year.</b> Each row is one check and each column is one tax year,
+          so you see the year a problem arrives rather than the year it arrived. The note at the
+          top is the application&rsquo;s own: <em>&ldquo;Guidance, not advice. Check with an
+          adviser before acting.&rdquo;</em>
+        </figcaption>
+      </figure>
+
+      <div class="grid grid-2" style="align-items:start">
+        <div>
+          <h3>Income tax, by band</h3>
+          <p>
+            Every year of the forecast is taxed with the real bands and allowances for that year
+            and that country, using the same arithmetic the Tax page runs. When it needs to draw
+            money to leave you with a certain amount after tax, it works backwards to the gross
+            figure rather than estimating a rate. A flat-rate mode is still there if you want a
+            rough answer in a hurry.
+          </p>
+          <h3>Future tax years</h3>
+          <p>
+            Thresholds hold their published value until the year the freeze ends, then rise with
+            your inflation figure. Each row of the forecast carries its tax year as well as the
+            calendar year, so <em>2027/28</em> is labelled as such. The first year is a part
+            year, running from today.
+          </p>
+          <h3>Fill the basic-rate band</h3>
+          <p>
+            You can tell it to draw pension up to the top of the basic-rate band each year, even
+            where you do not need the money, with anything spare going to cash. Whether that is
+            worth doing depends on your position, and the planner will not decide it for you.
+          </p>
+        </div>
+
+        <div>
+          <h3>Capital gains, dividends and couples</h3>
+          <p>
+            Selling from a general investment account has a gain in it, so the forecast charges
+            capital gains tax on the gain share, worked out from that account&rsquo;s own cost
+            base where the purchase records exist. It applies the annual exempt amount and the
+            rates for your band. Dividend tax is charged by band on investments outside an ISA,
+            and left alone inside one.
+          </p>
+          <p>
+            <strong>A couple is two taxpayers.</strong> Every pension, income stream and pot
+            names whose it is. Each person gets their own allowance, their own bands, their own
+            capital gains exemption and their own dividend allowance, and a withdrawal is grossed
+            up at the owner&rsquo;s rate. Where a country has no capital gains tax, as Jersey has
+            none, none is charged.
+          </p>
+          <div class="note">
+            <p>
+              <strong>Tax checks.</strong> A tab that reads the forecast and flags, for every
+              year: unused basic-rate band, income in the 60% taper zone, tax-free cash still to
+              take, spare ISA allowance that cash could fill, a capital gains exemption going
+              unused, cash below the minimum you set, and pension being drawn at the higher rate.
+              The application labels the whole tab <em>&ldquo;Guidance, not advice. Check with an
+              adviser before acting.&rdquo;</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Estate and inheritance tax ===================== -->
+  <section id="estate">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Estate and inheritance tax</p>
+        <h2>What would be owed, for every year of the plan</h2>
+        <p>
+          An estate valuation tells you what would be owed today. That is the easy year. The
+          planner works the estate and the inheritance tax out for every year of the forecast, on
+          the rules as they will stand in that year.
+        </p>
+      </div>
+
+      <figure class="shot">
+        <a href="assets/img/screens/planner-estate.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/planner-estate.webp" width="1800" height="1140" loading="lazy"
+               alt="The estate tab headed inheritance tax if death at the end of each year, with the rules stated above a chart of the estate rising from 2026 to 2066, and a table with a row per year giving the estate, pensions counted, gifts in the last seven years, business relief, nil-rate bands, the taxable amount, tax on gifts, the inheritance tax, beneficiaries tax, what is left to beneficiaries and the share taken in tax.">
+        </a>
+        <figcaption>
+          <b>The bill for every year, not just this one.</b> The rules in force are written above
+          the chart. Pensions count from nothing in 2026 to &pound;863,091 in 2027, because that
+          is the year the rule brings them into the estate. The last column is the share of the
+          estate that goes in tax. Demonstration household; the figures are fictitious.
+        </figcaption>
+      </figure>
+
+      <div class="grid grid-2" style="align-items:start">
+        <div>
+          <h3>What goes into the estate</h3>
+          <p>
+            Cash, ISAs and general investments at the end of the year, plus the home less the
+            mortgage, plus any private company holdings, plus unused pensions from the year the
+            rule brings them in. In the UK that is April 2027, and it is held as a dated rule
+            rather than written into the code, so it moves when the rule moves.
+          </p>
+          <h3>What comes off</h3>
+          <p>
+            Business relief on holdings you have flagged as eligible. The nil-rate band, doubled
+            where a late spouse&rsquo;s band transfers. The residence band, but only where the
+            home passes to direct descendants, capped at what the home is worth, and tapered away
+            by &pound;1 for every &pound;2 the estate is over the threshold.
+          </p>
+          <h3>Where there is no inheritance tax</h3>
+          <p>
+            Jersey has none. The planner still shows the estate year by year and says plainly
+            that nothing is taxed, and why, rather than leaving a blank you have to interpret.
+          </p>
+        </div>
+
+        <div>
+          <h3>Gifts, and the seven years</h3>
+          <p>
+            Put a gift plan in the forecast and it does two things. The money leaves your
+            spending in the year you give it, and it stays in the estate for seven years. Gifts
+            take the nil-rate band before the estate does, oldest first. Tax on anything above
+            the band is tapered by how long ago the gift was: all of it within three years, then
+            80%, 60%, 40% and 20% by the seventh. The annual exemption is applied first.
+          </p>
+          <p>
+            That tax falls on the people who received the gift, not on the estate, so it is
+            reported beside the estate&rsquo;s bill rather than taken off what passes.
+          </p>
+          <h3>Two different taxes, kept apart</h3>
+          <p>
+            A pension inherited after a death at 75 or over carries income tax for whoever
+            receives it, on top of any inheritance tax. That is a different tax on different
+            people, so it is reported next to the inheritance tax rather than added into it.
+          </p>
+          <h3>A private company is its own pot</h3>
+          <p>
+            An unquoted holding cannot be sold on the day you need the money, so the forecast
+            never draws on it. It only grows, at its own rate, and it counts in the estate.
+          </p>
+        </div>
+      </div>
+
+      <div class="note note-warn">
+        <p style="margin-bottom:0">
+          <strong>Inheritance tax is where you should be most careful.</strong> These figures are
+          worked out from the rates and allowances on file, on the assumption that the rules in
+          the forecast year are the rules we have recorded. Gifts, trusts, business relief and
+          anything crossing a border turn on facts the application cannot see. Nothing here is
+          advice. Take proper advice before you act on it.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -530,11 +793,13 @@
   <section class="band">
     <div class="wrap-narrow">
       <p class="eyebrow">What a projection is</p>
-      <h2>None of this is advice</h2>
+      <h2>None of this is financial advice</h2>
       <p>
         Everything here is a projection based on what you entered. Markets move and tax rules change.
-        The further out the line goes, the less it means. There is a banner saying so at the top
-        of the planner, not in small print at the bottom.
+        The further out the line goes, the less it means. The application says so on the screens
+        themselves, not in small print at the bottom: every tax check carries the line
+        <em>&ldquo;Guidance, not advice. Check with an adviser before acting.&rdquo;</em>, and
+        the planner carries a banner saying the same.
       </p>
       <p>
         Some answers come down to judgement rather than arithmetic. The judgement is yours, and the tool
@@ -548,6 +813,16 @@
         The Monte Carlo simulation is there for the same reason. One line looks more precise than it
         really is. A range of outcomes is closer to the truth.
       </p>
+      <p>
+        The tax and inheritance tax figures deserve saying again. They are worked out from
+        published rates and allowances, on the assumption that the rules recorded for a future
+        year are the rules that will apply. Your own position may turn on facts the application
+        cannot see: how a trust is written, whether a holding really qualifies for business
+        relief, where you are resident for tax, what a scheme&rsquo;s own rules say. We are not
+        financial advisers, this is not advice, and you should not act on any of it without
+        talking to someone who is qualified and who knows your circumstances.
+      </p>
+
       <div class="btn-row">
         <a class="btn btn-primary" href="compare.html">What else is in Pro</a>
         <a class="btn btn-ghost" href="advisory.html">Planning with an adviser</a>
