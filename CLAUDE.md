@@ -120,9 +120,11 @@ claim. Cut it, or write about something you can show.
 
 `alternatives.html` is the worked example. It compares the *kinds* of product
 on the market, names no competitor and makes no claim about anyone else's
-software, because that could not be verified from here. Where the product has a known limitation it
-is stated (`how-its-built.html#limits`) rather than omitted — a claim the
-product cannot support is worse here than a gap.
+software, because that could not be verified from here.
+
+Where the product has a known limitation it is stated
+(`how-its-built.html#limits`) rather than omitted — a claim the product cannot
+support is worse here than a gap.
 
 Do not invent figures. There is no pricing on this site because there are no
 prices to state.
