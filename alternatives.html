@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alternatives — WealthHorizon</title>
+<meta name="description" content="How WealthHorizon compares with the other options: personal finance tools like Quicken, Moneydance and the self-hosted ones, and the UK adviser planning and back-office platforms.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<!-- Set before first paint. Everything the site hides behind a control —
+     the mobile navigation, the inactive tab panels — is only hidden when
+     this class is present, so with JavaScript off the page is whole. -->
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/img/wh-mark.svg" alt="">
+      <span class="brand-text">
+        <span class="brand-name">Wealth<em>Horizon</em></span>
+        <span class="brand-sub">by Muneris</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#editions">Editions</a>
+      <a href="planning.html">Planning</a>
+      <a href="compare.html">Compare</a>
+      <a href="alternatives.html" aria-current="page">Alternatives</a>
+      <a href="advisory.html">The Advisory</a>
+      <a href="how-its-built.html">How it&rsquo;s built</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap-narrow">
+      <p class="eyebrow">Alternatives</p>
+      <h1>What else you could use, and where we are behind</h1>
+      <p class="lede">
+        WealthHorizon is not the only way to do any of this. This page sets out the other
+        options honestly, in two groups: the tools a household would weigh up, and the platforms
+        a UK advice firm already runs. The last section is the one to read if you are deciding,
+        because it says where the others are ahead of us.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#personal">Personal finance tools</a>
+        <a class="btn btn-ghost" href="#adviser">Adviser platforms</a>
+        <a class="btn btn-ghost" href="#behind">Where we are behind</a>
+      </div>
+      <p class="hero-note">
+        Everything said here about another company&rsquo;s product is our reading of what that
+        company says publicly, as at <strong>October 2026</strong>. Products change. If we have
+        got something wrong about yours, tell us at
+        <a href="mailto:info@muneris.co.uk">info@muneris.co.uk</a> and we will correct it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== Personal finance ===================== -->
+  <section id="personal" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">For a household</p>
+        <h2>Personal finance tools</h2>
+        <p>
+          Most people arriving here have come from Microsoft Money and want the same thing
+          again. There are three kinds of answer on the market. Desktop software you buy and
+          install. Cloud services you subscribe to. Open-source projects you host yourself. Each
+          trades something away.
+        </p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Personal finance tools, and what each one is. Our reading of public information, October 2026.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">What it is</th>
+              <th scope="col">Where it runs, and who holds the data</th>
+              <th scope="col">Where it works</th>
+              <th scope="col">Long-term planning and tax</th>
+              <th scope="col">How you pay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-group"><th colspan="6" scope="colgroup">Desktop software you install</th></tr>
+            <tr>
+              <th scope="row">Quicken Classic</th>
+              <td>The best-known replacement for Money, and the closest thing to it in day-to-day use. Register, budgets, bills, investments.</td>
+              <td>Installed on your own Windows or Mac machine. The file is yours, though the subscription has to stay current to keep using it.</td>
+              <td><span class="part">United States and Canada.</span> Quicken says it does not sell outside those two countries, and its bank connections do not reach UK institutions.</td>
+              <td>Retirement and lifetime planners, and US tax. Not UK tax, and no inheritance tax.</td>
+              <td>Annual subscription, per tier.</td>
+            </tr>
+            <tr>
+              <th scope="row">Moneydance</th>
+              <td>The closest desktop equivalent to Money still sold and maintained. Register, investments, several currencies.</td>
+              <td>Installed on your own machine, Windows, Mac or Linux. The file is yours and stays yours.</td>
+              <td>Sold worldwide. Bank download support varies by country.</td>
+              <td><span class="no">No.</span> It records and reports; it does not project forward or work out tax.</td>
+              <td>One-off licence, with paid upgrades.</td>
+            </tr>
+            <tr>
+              <th scope="row">Banktivity</th>
+              <td>A well-regarded Mac and iOS personal finance application, with budgeting and investment tracking.</td>
+              <td>Installed on your own Apple devices.</td>
+              <td>Sold worldwide, strongest in the United States. Mac and iOS only.</td>
+              <td><span class="part">Some forecasting.</span> No tax engine.</td>
+              <td>Subscription.</td>
+            </tr>
+            <tr>
+              <th scope="row">Microsoft Money (Sunset)</th>
+              <td>The free unsupported build of the original. Still runs, still does the register well.</td>
+              <td>Your own Windows machine, one <code>.mny</code> file.</td>
+              <td>Anywhere it will install. Online services ended in 2011.</td>
+              <td>A lifetime planner with fixed assumptions. No current tax rules.</td>
+              <td>Free. Withdrawn from sale in 2009 and unsupported since.</td>
+            </tr>
+
+            <tr class="row-group"><th colspan="6" scope="colgroup">Cloud services you subscribe to</th></tr>
+            <tr>
+              <th scope="row">PocketSmith</th>
+              <td>Budgeting and cash-flow forecasting, with a calendar view and a long projection horizon.</td>
+              <td><span class="part">The vendor&rsquo;s servers.</span> Your transactions are held by them.</td>
+              <td>Worldwide, with bank feeds through an aggregator. Handles a long list of currencies.</td>
+              <td><span class="part">Cash-flow forecasting.</span> Not pension drawdown, and no tax engine.</td>
+              <td>Subscription, per tier.</td>
+            </tr>
+            <tr>
+              <th scope="row">Monarch Money</th>
+              <td>A modern, well-made replacement for Quicken on the budgeting and net-worth side.</td>
+              <td><span class="part">The vendor&rsquo;s servers.</span></td>
+              <td><span class="part">United States and Canada.</span></td>
+              <td><span class="no">No.</span> Tracking rather than planning.</td>
+              <td>Subscription.</td>
+            </tr>
+            <tr>
+              <th scope="row">YNAB</th>
+              <td>Envelope budgeting, done thoroughly. A method as much as a product.</td>
+              <td><span class="part">The vendor&rsquo;s servers.</span></td>
+              <td>Worldwide, with bank feeds in some countries.</td>
+              <td><span class="no">No.</span> It is about this month, not the next thirty years.</td>
+              <td>Subscription.</td>
+            </tr>
+
+            <tr class="row-group"><th colspan="6" scope="colgroup">Open source you host yourself</th></tr>
+            <tr>
+              <th scope="row">GnuCash</th>
+              <td>Double-entry accounting for personal and small-business use. Mature, and free.</td>
+              <td><span class="yes">Your own machine.</span> Open source.</td>
+              <td>Worldwide. Several currencies.</td>
+              <td><span class="no">No.</span> It is a ledger, and a good one.</td>
+              <td>Free, open source.</td>
+            </tr>
+            <tr>
+              <th scope="row">Firefly III</th>
+              <td>Self-hosted double-entry personal finance, with a strong rules engine for imports.</td>
+              <td><span class="yes">A server you run.</span> Open source.</td>
+              <td>Worldwide. Several currencies in one instance.</td>
+              <td><span class="no">No.</span></td>
+              <td>Free, open source.</td>
+            </tr>
+            <tr>
+              <th scope="row">Actual Budget</th>
+              <td>Self-hosted envelope budgeting with a fast, modern interface.</td>
+              <td><span class="yes">A server you run.</span> Open source.</td>
+              <td>Worldwide, with bank feeds through third-party services.</td>
+              <td><span class="no">No.</span></td>
+              <td>Free, open source.</td>
+            </tr>
+
+            <tr class="row-group"><th colspan="6" scope="colgroup">This one</th></tr>
+            <tr>
+              <th scope="row">WealthHorizon</th>
+              <td>A register, a portfolio and a long-term plan in one product, with the tax and inheritance tax worked out year by year.</td>
+              <td><span class="yes">Your own hardware, every edition.</span> Three containers on a laptop, a server or your own cloud. We hold nothing.</td>
+              <td>Anywhere. 198 currencies, each entry keeping its own rate and date, and more than one tax jurisdiction in the same household.</td>
+              <td><span class="yes">Yes</span>, in <strong>Pro</strong>. Real tax bands per year, capital gains, dividends, and inheritance tax for every year of the plan. <a href="planning.html">Set out in full here.</a></td>
+              <td>Free edition at 30 accounts, 1,000 transactions and 5&nbsp;MB. No prices published for the paid editions yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note note-plain">
+        <p style="margin-bottom:0">
+          <strong>The honest summary of that table.</strong> If you are in the United States,
+          Quicken does more than we do and has done for thirty years. If you want a ledger and
+          nothing else, Moneydance and GnuCash are good and we are more than you need. If you
+          want somebody else to run it, we are the wrong answer, because we run nothing. Where we
+          are worth a look is the combination: more than one currency, more than one country, and
+          long-term tax and inheritance tax in the same product as the register, on a machine
+          you own.
+        </p>
+      </div>
+
+      <p style="margin-top:1.5rem">
+        There is a separate, longer comparison with
+        <a href="compare.html#money">Microsoft Money</a>, feature by feature, for anyone moving
+        off a <code>.mny</code> file.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== Adviser platforms ===================== -->
+  <section id="adviser">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">For an advice firm</p>
+        <h2>Adviser and planning platforms</h2>
+        <p>
+          A UK advice firm does not buy one system. It buys a back office to hold the clients, a
+          cashflow tool to do the planning, a risk-profiling tool, and increasingly something to
+          produce Consumer Duty management information. Most firms run three or four products and
+          pay to connect them. That is the market the Advisory edition sits in.
+        </p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Platforms a UK advice firm already runs. Our reading of public information, October 2026.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">What it is for</th>
+              <th scope="col">Where it runs</th>
+              <th scope="col">Cashflow planning</th>
+              <th scope="col">Consumer Duty reporting</th>
+              <th scope="col">The client&rsquo;s own records</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-group"><th colspan="6" scope="colgroup">Back office and client records</th></tr>
+            <tr>
+              <th scope="row">Intelliflo Office</th>
+              <td>The most widely used adviser back office and CRM in the UK. Clients, cases, workflow, commission, reporting.</td>
+              <td>Cloud, the vendor&rsquo;s servers.</td>
+              <td><span class="no">Not its job.</span> Firms connect a cashflow tool to it.</td>
+              <td><span class="part">Reporting and MI</span> that a firm configures.</td>
+              <td>A client portal.</td>
+            </tr>
+            <tr>
+              <th scope="row">Iress Xplan</th>
+              <td>A large, configurable adviser platform used by bigger firms and networks.</td>
+              <td>Cloud, the vendor&rsquo;s servers.</td>
+              <td><span class="part">Modules available.</span></td>
+              <td><span class="part">Through configuration and reporting.</span></td>
+              <td>A client portal.</td>
+            </tr>
+            <tr>
+              <th scope="row">Plannr</th>
+              <td>A newer UK back office, built recently and priced per employee.</td>
+              <td>Cloud, the vendor&rsquo;s servers.</td>
+              <td><span class="no">Not its job.</span></td>
+              <td><span class="part">Reporting.</span></td>
+              <td>A client portal, included.</td>
+            </tr>
+            <tr>
+              <th scope="row">Time4Advice Curo</th>
+              <td>An adviser platform built on Salesforce, for firms that want that ecosystem.</td>
+              <td>Cloud, on Salesforce.</td>
+              <td><span class="no">Not its job.</span></td>
+              <td><span class="part">Through configuration.</span></td>
+              <td>A client portal.</td>
+            </tr>
+
+            <tr class="row-group"><th colspan="6" scope="colgroup">Cashflow and planning</th></tr>
+            <tr>
+              <th scope="row">Voyant</th>
+              <td>The long-established UK cashflow modeller. Strong on complex and multi-generational cases.</td>
+              <td>Cloud, the vendor&rsquo;s servers.</td>
+              <td><span class="yes">Yes</span>, and it is the deepest of these. Widely regarded as the benchmark.</td>
+              <td><span class="no">Not its job.</span></td>
+              <td>A client-facing view of the plan.</td>
+            </tr>
+            <tr>
+              <th scope="row">FE CashCalc</th>
+              <td>A cashflow modeller with a gentler learning curve and clean client-facing output. Now part of the Dynamic Planner group.</td>
+              <td>Cloud, the vendor&rsquo;s servers.</td>
+              <td><span class="yes">Yes</span>, gross and net, with side-by-side scenarios.</td>
+              <td><span class="part">Templates and fact-find output.</span></td>
+              <td>A client portal and fact-find.</td>
+            </tr>
+            <tr>
+              <th scope="row">Dynamic Planner</th>
+              <td>Risk profiling first, with cashflow and suitability built around it. Heavily oriented to FCA expectations.</td>
+              <td>Cloud, the vendor&rsquo;s servers.</td>
+              <td><span class="yes">Yes.</span></td>
+              <td><span class="part">Risk and suitability evidence</span> rather than firm-wide outcome MI.</td>
+              <td>A client questionnaire and report.</td>
+            </tr>
+            <tr>
+              <th scope="row">Timeline</th>
+              <td>Retirement income planning built on historical return data, reporting a plan&rsquo;s chance of success.</td>
+              <td>Cloud, the vendor&rsquo;s servers.</td>
+              <td><span class="yes">Yes</span>, with decumulation as the specialism.</td>
+              <td><span class="no">Not its job.</span></td>
+              <td>A client-facing report.</td>
+            </tr>
+
+            <tr class="row-group"><th colspan="6" scope="colgroup">This one</th></tr>
+            <tr>
+              <th scope="row">WealthHorizon Advisory</th>
+              <td>The client book, the planning, and the Consumer Duty evidence in one system, off one set of records.</td>
+              <td><span class="yes">The firm&rsquo;s own infrastructure</span> &mdash; its premises, its private cloud, or a public one. The firm holds the data.</td>
+              <td><span class="yes">Yes</span>, the same engine the client uses, with real tax bands and inheritance tax year by year.</td>
+              <td><span class="yes">Built in.</span> Outcome MI, vulnerable customer register, fair value, charge justification, board report and an FCA evidence export. <a href="advisory.html#consumer-duty">Mapped to the four outcomes here.</a></td>
+              <td><span class="yes">The client&rsquo;s own application</span>, not a read-only portal. They keep their accounts in it, and choose what to share.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note note-plain">
+        <p style="margin-bottom:0">
+          <strong>The honest summary of that table.</strong> Voyant does cashflow modelling better
+          than we do, and has done it for longer. Intelliflo holds more of a firm&rsquo;s working
+          day than we do. If you have those two and they work, we are not a replacement for
+          either. Two things are genuinely different here. The compliance evidence falls out of
+          work already recorded instead of being assembled for a board meeting. And the
+          client&rsquo;s own records are the same records the adviser plans with, so there is
+          nothing to reconcile and no second copy to keep in step.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Where we are behind ===================== -->
+  <section id="behind" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Read this one</p>
+        <h2>Where the others are ahead of us</h2>
+        <p>
+          A comparison page that only lists what we win on is worth nothing. These are the
+          reasons to pick something else, and they are real.
+        </p>
+      </div>
+
+      <ul class="speclist">
+        <li>
+          <span class="k">Bank feeds</span>
+          <span class="v">Quicken, PocketSmith, Monarch and the UK adviser platforms have working production bank connections. Ours runs against a provider&rsquo;s sandbox. Production use needs regulatory permissions and provider onboarding that any account information service needs, and we do not have them yet. If you want your transactions to arrive on their own, today, we are the wrong choice. This is stated on <a href="how-its-built.html#limits">the limitations list</a> too.</span>
+        </li>
+        <li>
+          <span class="k">Platform and provider integrations</span>
+          <span class="v">A UK advice firm expects valuations to arrive from the platforms it uses, and expects its back office to talk to them. The established vendors have spent years building those links. We have none of them. Data comes in by import, which is fine for a household and is work for a firm with hundreds of clients.</span>
+        </li>
+        <li>
+          <span class="k">Track record and the size of the company</span>
+          <span class="v">Quicken has been sold since 1983. Voyant and Intelliflo have been in UK firms for many years and have support desks, training, user groups and a published roadmap. WealthHorizon is new, and Muneris is small. If buying from an established vendor matters to your firm, that is a legitimate reason to buy from one.</span>
+        </li>
+        <li>
+          <span class="k">You have to run it</span>
+          <span class="v">Every edition installs on your own hardware. That is the point of it, and it is also a cost: somebody has to install it, back it up, keep it patched and keep the machine alive. A cloud service takes that away from you. We do not, and will not, because the moment we hold your records the main reason to use this is gone.</span>
+        </li>
+        <li>
+          <span class="k">Depth of cashflow modelling</span>
+          <span class="v">Voyant models cases ours does not reach: complex multi-generational structures, trusts, and the long tail of situations a dedicated planning tool has met over fifteen years. Our planner is detailed about tax and inheritance tax and is honest about what it does not model.</span>
+        </li>
+        <li>
+          <span class="k">Accessibility conformance</span>
+          <span class="v">We build to the WCAG&nbsp;2.2 criteria for keyboard operability, visible focus and target size, and we test them. We have not commissioned an independent accessibility audit and we claim no formal conformance level. A firm with a procurement requirement for one should ask us before assuming.</span>
+        </li>
+        <li>
+          <span class="k">Mobile applications</span>
+          <span class="v">There is no native iPhone or Android application. The web application is built for phones and tablets and reads offline, but it is a web application. Several of the products above have native apps.</span>
+        </li>
+      </ul>
+
+      <div class="note note-warn">
+        <p style="margin-bottom:0">
+          <strong>Nothing on this page is financial advice, and none of it is a recommendation of
+          another company&rsquo;s product.</strong> It is a description of what is on the market,
+          written by us, about our own competitors, so read it with that in mind. The products
+          named belong to their owners and we are not connected to any of them. Check anything
+          that matters with the vendor directly before you decide.
+        </p>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn-primary" href="compare.html">What is in each edition</a>
+        <a class="btn btn-ghost" href="advisory.html">The Advisory edition</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:.8rem">
+          <img src="assets/img/wh-mark.svg" alt="">
+          <span class="brand-text">
+            <span class="brand-name">Wealth<em>Horizon</em></span>
+            <span class="brand-sub">by Muneris</span>
+          </span>
+        </a>
+        <p>Every account, any currency, one horizon.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html#editions">Editions</a></li>
+          <li><a href="planning.html">Planning &amp; retirement</a></li>
+          <li><a href="compare.html">Free, Standard &amp; Pro</a></li>
+          <li><a href="alternatives.html">Alternatives</a></li>
+          <li><a href="compare.html#money">Versus Microsoft Money</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For firms</h4>
+        <ul>
+          <li><a href="advisory.html">The Advisory</a></li>
+          <li><a href="advisory.html#consumer-duty">Consumer Duty coverage</a></li>
+          <li><a href="advisory.html#hierarchy">Supervision &amp; hierarchy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Engineering</h4>
+        <ul>
+          <li><a href="how-its-built.html">How it&rsquo;s built</a></li>
+          <li><a href="how-its-built.html#security">Security architecture</a></li>
+          <li><a href="how-its-built.html#assurance">Testing &amp; assurance</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>
+        WealthHorizon is proprietary software. &copy; 2026 Muneris Management Ltd. All rights
+        reserved. Licensing enquiries: <a href="mailto:info@muneris.co.uk">info@muneris.co.uk</a>.
+      </p>
+      <p>
+        Every other product named on this page is the property of its owner. Quicken is a
+        trademark of Quicken Inc. Microsoft and Microsoft Money are trademarks of Microsoft
+        Corporation. Intelliflo, Iress Xplan, Plannr, Curo, Voyant, FE CashCalc, Dynamic Planner,
+        Timeline, Moneydance, Banktivity, PocketSmith, Monarch Money, YNAB, GnuCash, Firefly III
+        and Actual Budget are the trademarks or names of their respective owners. WealthHorizon
+        is not affiliated with, endorsed by or connected to any of them, and references to them
+        are for comparison only.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

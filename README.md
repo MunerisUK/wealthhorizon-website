@@ -12,6 +12,7 @@ framework and no package manager: the repository is the deployable artefact.
 | `index.html` | Home. Plain-English overview, the three edition tabs (Standard, Pro, Advisory) and the Free edition. |
 | `planning.html` | Planning and retirement in detail: the guided planner, the Advanced Planner, FIRE, and goals and tracking. |
 | `compare.html` | The full Free / Standard / Pro feature comparison, and (`#money`) the comparison with Microsoft Money. |
+| `alternatives.html` | How WealthHorizon compares with the other options: personal finance tools like Quicken and the self-hosted ones, the UK adviser platforms, and where they are ahead of us. |
 | `advisory.html` | The Advisory edition in detail: Consumer Duty coverage, the compliance suite, the advisory desk, supervision and firm hierarchy, controls and separation of duties. |
 | `how-its-built.html` | Engineering standards, the development workflow, the CI gates, security architecture, data protection, accessibility, deployment, licensing and the known limitations. |
 
