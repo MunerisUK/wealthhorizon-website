@@ -156,14 +156,25 @@
       </div>
 
       <div class="note">
-        <p style="margin-bottom:0">
+                <p>
           <strong>It opens the file to see what it is. It does not trust the name.</strong> Banks name their
           files badly. You get OFX files called <code>.qfx</code> and CSV files called
           <code>.txt</code>. Trust the name and you get an error saying the file is corrupt, when
-          there is nothing wrong with it. Run <code>--identify</code> to see what the program
-          makes of a file.
+          there is nothing wrong with it. Run <code>--identify</code> to see what the program makes of a file.
         </p>
       </div>
+
+      <figure class="shot" style="margin-top:2.5rem">
+        <a href="assets/img/screens/exporter-mny.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/exporter-mny.webp" width="1800" height="1379" loading="lazy"
+               alt="Money Exporter with a Microsoft Money file chosen. The status line reads This file is password-protected. Enter the password, above a password box and an Unlock button. The three steps of the window are headed Choose a file, Select accounts and Export.">
+        </a>
+        <figcaption>
+          <b>A password-protected Money file.</b> It works out that the file is encrypted and asks
+          for the password. The file is unlocked in memory and read from there. Your original is
+          never written to.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -178,6 +189,33 @@
           CSV files and PDF statements are not labelled. The program has to guess, and a wrong
           guess changes your figures.
         </p>
+      </div>
+
+            <div class="shot-grid" style="margin-bottom:2.5rem">
+        <figure class="shot">
+          <a href="assets/img/screens/exporter-verified.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/exporter-verified.webp" width="1800" height="1379" loading="lazy"
+                 alt="Money Exporter after reading a bank CSV. A panel headed How this CSV was read lists the columns it matched, Type to Type, Balance to Balance, Payee to Description, Amount to Amount and Date to Date, and says dates are day-first. Below it a panel headed Checked against the source says all 30 transactions reproduce the running balance printed in the file, from 4820.11 to 6400.73.">
+          </a>
+          <figcaption>
+            <b>A statement that could be checked.</b> It says which column it used for what, that it
+            read the dates day-first, and that all 30 rows reproduce the running balance in the
+            file. The amounts, their signs and the row order are all confirmed by the file
+            itself.
+          </figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="assets/img/screens/exporter-unverifiable.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/exporter-unverifiable.webp" width="1800" height="1379" loading="lazy"
+                 alt="The same statement with the balance column removed. The How this CSV was read panel lists four columns and no balance. Below it an amber panel headed Nothing to check against says the file carries no running-balance column, so whether money out is written as a positive or a negative figure cannot be confirmed from the file alone, and suggests comparing one transaction against your statement.">
+          </a>
+          <figcaption>
+            <b>The same statement, with the balance column taken out.</b> Now it says
+            <em>Nothing to check against</em>, in amber, and tells you to compare one transaction
+            against your own statement. This is the difference the page is about. It never calls
+            this one verified.
+          </figcaption>
+        </figure>
       </div>
 
       <div class="grid grid-2" style="align-items:start">
@@ -248,7 +286,7 @@
 
       <div class="grid grid-3">
         <div class="card card-accent">
-          <h3>Look before you export</h3>
+                    <h3>Look before you export</h3>
           <p style="margin-bottom:0">
             List the accounts in a file. Or see exactly what would come out, before anything is written. You
             can export a date range, just the accounts you tick, or one file per account.
@@ -291,6 +329,18 @@
           </p>
         </div>
       </div>
+
+            <figure class="shot" style="margin:2.5rem 0">
+        <a href="assets/img/screens/exporter-preview.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/exporter-preview.webp" width="1574" height="222" loading="lazy"
+               alt="The preview panel, showing one account and thirty transactions with a net of 1580.62 between the 2nd of February and the 3rd of April, then a table row giving the account name, its type of BANK, the transaction count, the net, the closing balance of 6400.73 and the date range.">
+        </a>
+        <figcaption>
+          <b>The preview, before anything is written.</b> What it found, account by account: how
+          many transactions, what they come to, the closing balance and the dates they run
+          between. Nothing has been exported at this point.
+        </figcaption>
+      </figure>
 
       <div class="note note-plain">
         <p style="margin-bottom:0">
