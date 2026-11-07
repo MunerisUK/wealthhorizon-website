@@ -72,10 +72,44 @@ Adding a page means adding it to `PAGES` in `scripts/check.mjs`.
 
 ### Plain English. This is a standing order.
 
-Write the way a person talks. Short sentences. Everyday words. Say the thing
-and stop.
+Write the way a person talks. Short sentences. Everyday words. One idea per
+sentence. Say the thing and stop.
 
-Do not write prose that reads as though a machine wrote it. The tells:
+#### The worked example
+
+This was on the site. It was flagged as machine-written, and it is:
+
+> A `.mny` file says what each field is. A bank CSV says almost nothing, so
+> some of it has to be worked out — which column is the amount, whether
+> `01/02` is January or February, whether money out is a minus. Each guess is
+> tested against the file's own running balance, and it tells you whether it
+> came back verified or not.
+
+Six faults, and they are the six to watch for everywhere:
+
+1. **The matched pair.** "A `.mny` file says… A bank CSV says…" Two sentences
+   built to mirror each other. People do not talk in balanced pairs.
+2. **Things that talk.** Files do not *say* anything. Nor do pages, numbers or
+   reports. Drop the metaphor and name what happens.
+3. **Nobody doing anything.** "has to be worked out", "is tested against". By
+   what? Say "the program guesses" and "it checks".
+4. **The dash and the three.** A list of three hung off an em-dash, with no
+   verb in any of them. Break it out, or make them questions.
+5. **"its own".** "the file's own running balance". The *own* does no work.
+   Cut it. Same for "Money's own headings" and the rest.
+6. **The long tail.** "and it tells you whether it came back verified or not"
+   is eleven words for "it tells you if it worked".
+
+Written plainly:
+
+> Money files are easy to read. Every field is labelled. Bank CSV files are
+> not, so the program has to guess. Which column is the amount? Is `01/02` the
+> 1st of February or the 2nd of January? Does a minus mean money going out?
+>
+> Then it checks. Every file has a running balance. If the guesses are right,
+> the balance adds up. If it does not, the program tells you.
+
+#### The rest of the tells
 
 - **Sets of three.** "A calculator that asks two questions, a guided planner
   that asks only what applies, and an advanced one where you set every
@@ -91,8 +125,13 @@ Do not write prose that reads as though a machine wrote it. The tells:
 - **Abstract nouns doing the work** of a verb: "the requirement to evidence
   outcomes" instead of "you have to show what happened".
 
-Test: read it aloud. If you would not say it to somebody across a desk, rewrite
+#### Two tests before you publish
+
+**Read it aloud.** If you would not say it to somebody across a desk, rewrite
 it.
+
+**Count.** If the average sentence is over about 15 words, or any paragraph has
+no sentence under 10, it is too dense. Cut it up.
 
 ### Two registers, and they are deliberate
 

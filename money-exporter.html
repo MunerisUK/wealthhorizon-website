@@ -49,10 +49,10 @@
       <p class="eyebrow">A separate product</p>
       <h1>Money Exporter</h1>
       <p class="lede">
-        Your financial history is locked inside a file nothing will open. Money Exporter reads
-        it and writes it back out in a format something else can use. Microsoft Money files,
-        bank downloads, spreadsheets and PDF statements go in. Ten formats come out. It runs on
-        your own machine and nothing is uploaded.
+        You have a file nothing will open any more. Money Exporter opens it, and saves your accounts in a
+        format you can use. Put in a Microsoft Money file, a bank download, a spreadsheet or a PDF
+        statement. Get out any of ten formats. It all happens on your computer. Nothing is sent
+        anywhere.
       </p>
       <div class="btn-row">
         <a class="btn btn-primary" href="https://muneris.lemonsqueezy.com/checkout">Buy a licence</a>
@@ -60,10 +60,9 @@
         <a class="btn btn-ghost" href="#checking">How it checks itself</a>
       </div>
       <p class="hero-note">
-        This is a <strong>separate product</strong> from the WealthHorizon application, sold on
-        its own one-off lifetime licence. There is a free trial, and it is limited rather than
-        timed out: 15 days, and up to 3 accounts and 200 transactions in total, so you can prove
-        it reads your file before you pay anything.
+        This is a <strong>separate program</strong>. It is not part of WealthHorizon, and you buy it once.
+        Try it first: 15 days, 3 accounts and 200 transactions. That is enough to find out whether
+        it can read your file.
       </p>
     </div>
   </section>
@@ -75,9 +74,8 @@
         <p class="eyebrow">The matrix</p>
         <h2>Ten formats in, ten formats out</h2>
         <p>
-          Every reader turns a file into one shared model of accounts and transactions, and
-          every writer takes only that model. So anything it reads can be written as anything it
-          writes, and each format stays small enough to test on its own.
+          Anything it reads, it can write as anything else. There is one list of accounts and transactions
+          in the middle. Readers fill that list in. Writers take it out again.
         </p>
       </div>
 
@@ -97,49 +95,49 @@
               <th scope="row">Microsoft Money <code>.mny</code></th>
               <td class="c"><span class="yes">&#10003;</span></td>
               <td class="c"><span class="no">&mdash;</span></td>
-              <td>Including password-protected files. The file is decrypted in memory and parsed; nothing is written back to it.</td>
+              <td>Password-protected files too. It unlocks the file in memory and reads it. It never writes to your original.</td>
             </tr>
             <tr>
               <th scope="row">Access <code>.mdb</code> / <code>.accdb</code></th>
               <td class="c"><span class="yes">&#10003;</span></td>
               <td class="c"><span class="no">&mdash;</span></td>
-              <td>Unencrypted Money and Access databases, including a <code>.mny</code> somebody has already decrypted.</td>
+              <td>Money and Access databases that are not encrypted. That includes a <code>.mny</code> somebody has already unlocked.</td>
             </tr>
             <tr>
               <th scope="row">QIF</th>
               <td class="c"><span class="yes">&#10003;</span></td>
               <td class="c"><span class="yes">&#10003;</span></td>
-              <td>Splits written natively as <code>S</code>/<code>E</code>/<code>$</code> records, and read back. Investment detail as <code>!Type:Invst</code>.</td>
+              <td>Splits are written properly, as <code>S</code>/<code>E</code>/<code>$</code> records, and read back the same way. Investments use <code>!Type:Invst</code>.</td>
             </tr>
             <tr>
               <th scope="row">OFX / QFX / QBO</th>
               <td class="c"><span class="yes">&#10003;</span></td>
               <td class="c"><span class="yes">&#10003;</span></td>
-              <td>Reads the 1.x SGML banks actually serve as well as 2.x XML. Bank, credit card and investment statements, de-duplicated by transaction id.</td>
+              <td>Reads the old SGML version banks still send, and the newer XML one. Bank, credit card and investment statements. Repeats are dropped by transaction id.</td>
             </tr>
             <tr>
               <th scope="row">CSV / TSV / plain text</th>
               <td class="c"><span class="yes">&#10003;</span></td>
               <td class="c"><span class="yes">&#10003;</span></td>
-              <td>Reading is inferred and then checked &mdash; see below. Writing lets you choose the columns and the delimiter.</td>
+              <td>It has to guess how to read these, then checks the guess. See below. When it writes one, you pick the columns and the separator.</td>
             </tr>
             <tr>
               <th scope="row">Excel <code>.xlsx</code> / <code>.xlsm</code></th>
               <td class="c"><span class="yes">&#10003;</span></td>
               <td class="c"><span class="yes">&#10003;</span></td>
-              <td>Cells are read as they are displayed, so a date serial and a figure in brackets both arrive in a form it understands.</td>
+              <td>Cells are read as you see them, so a date serial number and a figure in brackets both come through properly.</td>
             </tr>
             <tr>
               <th scope="row">PDF statement</th>
               <td class="c"><span class="part">Best effort</span></td>
               <td class="c"><span class="yes">&#10003;</span></td>
-              <td>Text-based statements only. A scanned page has no text in it and is refused with the way round. See the warning below.</td>
+              <td>Only statements with real text in them. A scanned page is a picture, so it is refused and told you why. See the warning below.</td>
             </tr>
             <tr>
               <th scope="row">IIF</th>
               <td class="c"><span class="no">&mdash;</span></td>
               <td class="c"><span class="yes">&#10003;</span></td>
-              <td>The tab-delimited interchange format.</td>
+              <td>The tab-separated interchange format.</td>
             </tr>
             <tr>
               <th scope="row">GnuCash</th>
@@ -158,14 +156,25 @@
       </div>
 
       <div class="note">
-        <p style="margin-bottom:0">
-          <strong>It works out what a file is from the bytes, not the name.</strong> Extensions
-          lie constantly here. Banks serve OFX 2 XML named <code>.qfx</code>, Quicken-flavoured
-          OFX named <code>.ofx</code>, and CSV named <code>.txt</code>. Going by the name hands a
-          spreadsheet to a parser expecting something else and reports a corrupt file. Run
-          <code>--identify</code> to see what it thinks a file is before you import it.
+                <p>
+          <strong>It opens the file to see what it is. It does not trust the name.</strong> Banks name their
+          files badly. You get OFX files called <code>.qfx</code> and CSV files called
+          <code>.txt</code>. Trust the name and you get an error saying the file is corrupt, when
+          there is nothing wrong with it. Run <code>--identify</code> to see what the program makes of a file.
         </p>
       </div>
+
+      <figure class="shot" style="margin-top:2.5rem">
+        <a href="assets/img/screens/exporter-mny.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/exporter-mny.webp" width="1800" height="1379" loading="lazy"
+               alt="Money Exporter with a Microsoft Money file chosen. The status line reads This file is password-protected. Enter the password, above a password box and an Unlock button. The three steps of the window are headed Choose a file, Select accounts and Export.">
+        </a>
+        <figcaption>
+          <b>A password-protected Money file.</b> It works out that the file is encrypted and asks
+          for the password. The file is unlocked in memory and read from there. Your original is
+          never written to.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -174,56 +183,82 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">The part that matters</p>
-        <h2>An inferred import is checked, and says which it is</h2>
+        <h2>When it has to guess, it checks the guess</h2>
         <p>
-          A <code>.mny</code> file has a schema and an OFX file has a grammar, so there is
-          nothing to decide. A bank CSV or a PDF statement states almost nothing, and the things
-          it leaves out change the figures.
+          Money files and OFX files are easy. Every field is labelled, so there is nothing to work out. Bank
+          CSV files and PDF statements are not labelled. The program has to guess, and a wrong
+          guess changes your figures.
         </p>
+      </div>
+
+            <div class="shot-grid" style="margin-bottom:2.5rem">
+        <figure class="shot">
+          <a href="assets/img/screens/exporter-verified.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/exporter-verified.webp" width="1800" height="1379" loading="lazy"
+                 alt="Money Exporter after reading a bank CSV. A panel headed How this CSV was read lists the columns it matched, Type to Type, Balance to Balance, Payee to Description, Amount to Amount and Date to Date, and says dates are day-first. Below it a panel headed Checked against the source says all 30 transactions reproduce the running balance printed in the file, from 4820.11 to 6400.73.">
+          </a>
+          <figcaption>
+            <b>A statement that could be checked.</b> It says which column it used for what, that it
+            read the dates day-first, and that all 30 rows reproduce the running balance in the
+            file. The amounts, their signs and the row order are all confirmed by the file
+            itself.
+          </figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="assets/img/screens/exporter-unverifiable.webp" target="_blank" rel="noopener">
+            <img src="assets/img/screens/exporter-unverifiable.webp" width="1800" height="1379" loading="lazy"
+                 alt="The same statement with the balance column removed. The How this CSV was read panel lists four columns and no balance. Below it an amber panel headed Nothing to check against says the file carries no running-balance column, so whether money out is written as a positive or a negative figure cannot be confirmed from the file alone, and suggests comparing one transaction against your statement.">
+          </a>
+          <figcaption>
+            <b>The same statement, with the balance column taken out.</b> Now it says
+            <em>Nothing to check against</em>, in amber, and tells you to compare one transaction
+            against your own statement. This is the difference the page is about. It never calls
+            this one verified.
+          </figcaption>
+        </figure>
       </div>
 
       <div class="grid grid-2" style="align-items:start">
         <div>
-          <h3>What has to be guessed</h3>
+          <h3>What it has to guess</h3>
+          <ul>
+            <li>Which column is the amount?</li>
+            <li>Is <code>01/02</code> the 1st of February, or the 2nd of January?</li>
+            <li>Is money going out a minus, or a plus?</li>
+            <li>Do the rows start with the oldest, or the newest?</li>
+            <li>Does <code>1.234</code> mean one and a bit, or one thousand two hundred and thirty-four?</li>
+          </ul>
           <p>
-            Which column is the amount. Whether <code>01/02</code> is January or February.
-            Whether money out is written as a positive number or a negative one. Whether the
-            rows run oldest first or newest first. Whether <code>1.234</code> means one and a bit
-            or one thousand two hundred and thirty-four.
+            Get the third one wrong and every payment turns into a receipt. Get the last one
+            wrong and every figure is a thousand times too big.
           </p>
+          <h3>How it checks</h3>
           <p>
-            Get the sign convention wrong and the whole ledger inverts. Read a comma decimal as
-            American and every figure is a thousand times too big.
-          </p>
-          <h3>How it settles them</h3>
-          <p>
-            Against a figure the file itself states. A statement with a running balance column
-            has already given the answer: there is only one reading of the amounts and the row
-            order that reproduces that balance, so all four combinations are tried and the one
-            that works wins. Where the file has no header at all, the same test finds the amount
-            column and the balance column outright.
+            Most statements have a running balance down the side. That balance is the answer in the back of
+            the book. The program tries each way of reading the file. Only one way makes the
+            balance add up, and that is the one it keeps. If the file has no headings at all, the
+            same test still finds the amount column.
           </p>
         </div>
 
         <div>
-          <h3>And then it tells you</h3>
+          <h3>What it tells you</h3>
           <p>
-            Every import comes back marked <strong>verified</strong>,
-            <strong>partly verified</strong>, <strong>failed</strong> or
-            <strong>not available</strong>, with the list of what it decided and why.
+            Every import comes back with one of four words: <strong>verified</strong>, <strong>partly
+            verified</strong>, <strong>failed</strong> or <strong>not available</strong>. You also
+            get a list of what it decided, and why.
           </p>
           <p>
-            <em>Not available</em> is deliberately a different answer from <em>verified</em>.
-            The difference between &ldquo;the file confirms this&rdquo; and &ldquo;nothing could
-            confirm this&rdquo; is the whole point. A PDF reading that does not reconcile is
-            reported as failed, not handed over as a clean import.
+            <em>Not available</em> is not the same as <em>verified</em>. It means there was no balance to
+            check against, so nothing could be proved either way. And if a PDF does not add up, it
+            says failed. It does not hand you the file and keep quiet.
           </p>
           <div class="note">
             <p style="margin-bottom:0">
-              <strong>You can override any of it.</strong> Name the columns yourself, force the
-              date order, the decimal separator, the delimiter, the header row or the sheet. Or
-              use <code>--require-reconciled</code> and it will refuse to write anything that
-              did not add up.
+              <strong>You can overrule all of it.</strong> Set the columns yourself. Set the date order, the
+              decimal mark, the separator, the heading row or the sheet. Or use
+              <code>--require-reconciled</code>, and it will refuse to write anything that did not
+              add up.
             </p>
           </div>
         </div>
@@ -231,11 +266,11 @@
 
       <div class="note note-warn">
         <p style="margin-bottom:0">
-          <strong>Check the output before you rely on it.</strong> A reading that reconciles
-          against a running balance is strong evidence, not a guarantee, and a statement with no
-          balance column cannot be checked at all. Open what comes out, compare a few months
-          against the original, and keep the original file. This is a conversion tool, not an
-          accountant, and nothing it produces is financial or tax advice.
+          <strong>Check the output before you trust it.</strong> A balance that adds up is good evidence. It
+          is not a guarantee. And a statement with no balance column cannot be checked at all. So
+          open what comes out. Compare a few months against the original. Keep the original file.
+          This is a conversion tool. It is not an accountant, and nothing it produces is financial
+          or tax advice.
         </p>
       </div>
     </div>
@@ -246,65 +281,73 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">The rest of it</p>
-        <h2>The things you find out you need on the day</h2>
+        <h2>What else it does</h2>
       </div>
 
       <div class="grid grid-3">
         <div class="card card-accent">
-          <h3>See it before you commit</h3>
+                    <h3>Look before you export</h3>
           <p style="margin-bottom:0">
-            List the accounts in a file, or preview exactly what would be exported, before
-            anything is written. Export a date range, or selected accounts, or one file per
-            account into a folder.
+            List the accounts in a file. Or see exactly what would come out, before anything is written. You
+            can export a date range, just the accounts you tick, or one file per account.
           </p>
         </div>
         <div class="card card-accent">
           <h3>A folder you can refresh</h3>
           <p style="margin-bottom:0">
-            Write a fixed-schema data folder for a spreadsheet or a reporting tool, with the
-            query already set up. Re-export over the same folder later and refresh, rather than
-            rebuilding the workbook.
+            Export to a folder your spreadsheet can read, with the query already set up. Next time, export
+            over the same folder and press refresh. You do not have to build the workbook again.
           </p>
         </div>
         <div class="card card-accent">
-          <h3>Dates that survive the trip</h3>
+          <h3>Dates that come out right</h3>
           <p style="margin-bottom:0">
-            Text formats are written to your machine&rsquo;s regional settings, so a UK export is
-            not silently a month out. Force it to ISO, UK or US if you would rather. ISO input is
-            always understood.
+            Dates come out in your computer&rsquo;s own format, so a UK export is not quietly a month out. You
+            can force ISO, UK or US instead. Going in, it always understands ISO.
           </p>
         </div>
         <div class="card card-accent">
           <h3>Splits and investments kept whole</h3>
           <p style="margin-bottom:0">
-            A split transaction stays one transaction with its parts, rather than becoming
-            several and double-counting. Investment rows carry the security, units, price and
-            commission.
+            A split transaction stays as one transaction with its parts. It does not turn into several, and
+            nothing gets counted twice. Investment rows keep the security, the units, the price
+            and the commission.
           </p>
         </div>
         <div class="card card-accent">
-          <h3>When a balance does not match</h3>
+          <h3>When a balance is wrong</h3>
           <p style="margin-bottom:0">
-            There is a diagnose mode that compares every account against the source&rsquo;s own
-            figures and tells you where the difference is. It runs on your machine and uploads
-            nothing.
+            There is a diagnose mode. It compares every account against the figures in your original file, and
+            tells you where the difference is. It runs on your machine.
           </p>
         </div>
         <div class="card card-accent">
           <h3>More than one currency</h3>
           <p style="margin-bottom:0">
-            Conversion uses the exchange rates held in the file itself, rather than today&rsquo;s
-            rates applied to a ten-year-old transaction.
+            It converts using the exchange rates stored in your file. It does not put today&rsquo;s rate on a
+            ten-year-old transaction.
           </p>
         </div>
       </div>
 
+            <figure class="shot" style="margin:2.5rem 0">
+        <a href="assets/img/screens/exporter-preview.webp" target="_blank" rel="noopener">
+          <img src="assets/img/screens/exporter-preview.webp" width="1574" height="222" loading="lazy"
+               alt="The preview panel, showing one account and thirty transactions with a net of 1580.62 between the 2nd of February and the 3rd of April, then a table row giving the account name, its type of BANK, the transaction count, the net, the closing balance of 6400.73 and the date range.">
+        </a>
+        <figcaption>
+          <b>The preview, before anything is written.</b> What it found, account by account: how
+          many transactions, what they come to, the closing balance and the dates they run
+          between. Nothing has been exported at this point.
+        </figcaption>
+      </figure>
+
       <div class="note note-plain">
         <p style="margin-bottom:0">
-          <strong>Account numbers, honestly.</strong> Microsoft Money obscures the account-number
-          field, and this is <em>partly</em> solved. If you tell it one account number you
-          already know, it recovers the rest. Working the obfuscation out from the file alone is
-          still an open problem and we say so rather than implying the field just comes across.
+          <strong>Account numbers: only half solved.</strong> Microsoft Money scrambles the account number
+          field. Give the program one account number you already know, and it works out the rest.
+          Doing it from the file alone is still beyond us. We would rather say so than let you
+          assume the numbers come across.
         </p>
       </div>
     </div>
@@ -317,16 +360,15 @@
         <p class="eyebrow">Trial and licence</p>
         <h2>Try it on your own file first</h2>
         <p>
-          The trial exists to prove the thing that matters: that it can read <em>your</em> file
-          and produce something you can open. It is not a crippled demo and it is not a
-          countdown on a full product.
+          The trial answers one question. Can it read <em>your</em> file and give you something you can
+          open? Every feature works. The only limits are on how much you can put through it.
         </p>
       </div>
 
       <div class="grid grid-3">
         <div class="card">
           <p class="price">Free trial</p>
-          <h3 style="margin-top:0">Prove it reads your file</h3>
+          <h3 style="margin-top:0">See if it reads your file</h3>
           <ul>
             <li>15 days</li>
             <li>Up to 3 accounts in total</li>
@@ -335,7 +377,7 @@
             <li>Every format, so you can check the output opens</li>
           </ul>
           <p style="font-size:.92rem;color:var(--muted);margin-bottom:0">
-            The counts are cumulative across all your exports, not per export.
+            The 3 and the 200 are totals across everything you export, not per export.
           </p>
         </div>
         <div class="card card-accent">
@@ -351,7 +393,7 @@
         </div>
         <div class="card">
           <p class="price">Commercial</p>
-          <h3 style="margin-top:0">For doing it on behalf of others</h3>
+          <h3 style="margin-top:0">For doing it for other people</h3>
           <ul>
             <li>Everything in personal</li>
             <li>Client and third-party migration work</li>
@@ -366,26 +408,24 @@
         <div>
           <h3>How you run it</h3>
           <p>
-            There is a desktop application for <strong>Windows</strong>: pick a file, enter the
-            password if it has one, tick the accounts you want, choose a format, export. There
-            is also a command-line version for anyone who would rather script it or run it on
-            another operating system.
+            There is a <strong>Windows</strong> app. Pick a file. Type the password if it has one. Tick the
+            accounts you want. Choose a format. Export. There is also a command line version, if
+            you would rather script it or run it on another operating system.
           </p>
           <p>
-            A licence key is activated on a machine and can be released again, so moving to a new
-            computer does not mean buying it twice.
+            A licence key is tied to one machine, and you can release it again. Moving to a new computer does
+            not mean buying it twice.
           </p>
         </div>
         <div>
           <h3>Where your data goes</h3>
           <p>
-            Nowhere. The conversion happens on your own machine, the diagnose mode included.
-            Your file is not uploaded to us or to anyone else, which is the same position the
-            rest of WealthHorizon takes.
+            Nowhere. Everything happens on your computer, diagnose mode included. Your file is never sent to
+            us, or to anyone else. The rest of WealthHorizon works the same way.
           </p>
           <p>
-            The only thing that reaches the internet is checking a licence key, and there is
-            offline grace so a dropped connection does not stop you working.
+            The only thing that goes out is a licence check. If your connection drops, you can carry on
+            working.
           </p>
         </div>
       </div>

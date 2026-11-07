@@ -50,8 +50,7 @@
       <h1>How WealthHorizon is built</h1>
       <p class="lede">
         If you are going to put client records into a system, you should know how it is made, what it is
-        tested against, and what it does not claim to do. This page sets out the standards the
-        build is held to and the security controls that are in place. At the end it lists the
+        tested against, and what it does not claim to do. This page sets out the standards the build is held to, and the security controls in place. At the end it lists the
         limitations we know about.
       </p>
       <div class="btn-row">
@@ -82,10 +81,8 @@
         <p class="eyebrow">1. The stack</p>
         <h2>Current, supported versions &mdash; and a stated reason for anything held back</h2>
         <p>
-          Both halves of the application are written in TypeScript under <code>strict</code> and compile
-          to ES2022. Dependency updates are taken in batches and verified together, rather than
-          one at a time. Merging them one by one leaves a lockfile that has never been resolved
-          against its siblings, which means it has never been tested.
+          Both halves of the application are written in TypeScript under <code>strict</code>, and compile to
+          ES2022. Dependency updates are taken in batches and checked together, not one at a time. Merge them one by one and you get a lockfile that has never been resolved against its siblings. That lockfile has never been tested.
         </p>
       </div>
 
@@ -119,8 +116,7 @@
           <strong>Taken, and why each one waited.</strong> Three major upgrades were held back, each for a
           reason we wrote down at the time. All three have since gone in on their own. Express 5
           changed the type of route parameters and the routing engine, so it went in route by
-          route. Vite 8 swapped the bundler, which changes what is emitted, so it waited until a
-          build of both projects was part of the verification. The React plugin went in with it.
+          route. Vite 8 swapped the bundler, and that changes what comes out. So it waited until a build of both projects was part of the verification. The React plugin went in with it.
           Writing down why a version is not yet taken is part of the standard, and so is taking
           it once the reason no longer holds.
         </p>
@@ -129,8 +125,7 @@
           only a development dependency on paper. The back end builds with <code>tsc</code>, so
           TypeScript emits the JavaScript that runs in production. We took it on the evidence of
           a clean type check, a clean emit, both test suites passing, and the emitted server
-          booting and answering its health check. It is named here because it is the first thing
-          to suspect if something odd turns up, and you should know which one that is.
+          booting and answering its health check. It is named here because it is the first thing to suspect if something odd turns up. You should know which one that is.
         </p>
       </div>
     </div>
@@ -143,9 +138,8 @@
         <p class="eyebrow">2. How a change is made</p>
         <h2>Specification first, then a failing test, then the smallest change that passes it</h2>
         <p>
-          The development standard for this codebase is written down and applies to every change of any
-          size. It is built around proving that something works, rather than looking like
-          progress.
+          The development standard for this codebase is written down, and it applies to every change of any
+          size. It is built around proving a thing works, not around looking busy.
         </p>
       </div>
 
@@ -161,9 +155,9 @@
         <div class="card">
           <h3>2 &middot; Test plan, then failing tests</h3>
           <p>
-            A plan covering the normal case, the boundaries, the error cases, what might regress, and
-            anything touching security or data integrity. Write the tests and run them
-            <em>before</em> changing the production code. They have to fail, and for the right
+            A plan covering the normal case, the boundaries and the error cases. What might regress. Anything
+            touching security or data integrity. Write the tests and run them <em>before</em>
+            changing the production code. They have to fail, and for the right
             reason.
           </p>
         </div>
@@ -192,9 +186,7 @@
         <div class="card">
           <h3>6 &middot; Documentation in the same change</h3>
           <p>
-            Documentation is a deliverable, not a follow-up. A change to a page, route, role or
-            feature updates the in-application help, the relevant user guide and the architecture
-            documents in the same change.
+            Documentation is a deliverable, not a follow-up. Change a page, route, role or feature, and the same change updates the in-application help, the relevant user guide and the architecture documents.
           </p>
         </div>
       </div>
@@ -232,11 +224,9 @@
         </li>
         <li>
           <span class="k">SQL against the real schema</span>
-          <span class="v">Every migration is applied to a live PostgreSQL 16 instance to build the real schema, and then
-          every static query in the backend is <code>PREPARE</code>d against it. Preparing
+          <span class="v">Every migration is applied to a live PostgreSQL 16 instance to build the real schema. Then every static query in the backend is <code>PREPARE</code>d against it. Preparing
           checks every table and column reference without running anything, so a query naming a
-          column that does not exist fails the build. A type checker cannot see that kind of
-          mistake, and this catches it before the merge rather than in production.</span>
+          column that does not exist fails the build. A type checker cannot see that kind of mistake. This catches it before the merge, not in production.</span>
         </li>
         <li>
           <span class="k">Front-end test suite</span>
@@ -244,13 +234,12 @@
         </li>
         <li>
           <span class="k">Back-end test suite</span>
-          <span class="v">3,644 tests across 294 files, run against a migrated and seeded PostgreSQL instance so that the database-backed tests exercise real data rather than a mock. Every test worker is given its own database, so a suite that writes cannot be made to pass or fail by the order it runs in.</span>
+          <span class="v">3,644 tests across 294 files. They run against a migrated and seeded PostgreSQL instance, so the database-backed tests work on real data rather than a mock. Every test worker gets its own database. A suite that writes cannot be made to pass or fail by the order it runs in.</span>
         </li>
         <li>
           <span class="k">Browser suite</span>
           <span class="v">The end-to-end suite runs in Chromium on every pull request. Not nightly, and not when somebody
-          remembers. It drives the application the way a person does: signing in, moving between
-          pages, reading what a screen reader would be given. This is where it catches a
+          remembers. It drives the application the way a person does. It signs in, moves between pages, and reads what a screen reader would be given. This is where it catches a
           regression that the type checker and the unit tests both let through. Mobile and iPad
           profiles run against the same tests.</span>
         </li>
@@ -265,8 +254,7 @@
       <h3 style="margin-top:2.5rem">What the tests are pointed at</h3>
       <p>
         The testing concentrates on pure functions with no database behind them, because that is where
-        the arithmetic lives. It is also where a bug is hardest to spot: a wrong answer in
-        financial software is still a number, and it looks like any other. So the suites cover
+        the arithmetic lives. A bug is hardest to spot there too. A wrong answer in financial software is still a number, and it looks like any other. So the suites cover
         the calculations that produce a figure somebody will act on:
       </p>
       <ul class="checks">
@@ -274,8 +262,7 @@
         <li>The tax engine, allowances and the capital gains matching rules.</li>
         <li>Long-term projection, drawdown ordering and the Monte Carlo simulation.</li>
         <li>Lot tracking, corporate actions and the account valuation rule.</li>
-        <li>Compound interest in the savings estimator, where dividing a rate by twelve instead of taking
-        its twelfth root pays 12.68% a year on a screen that says 12%.</li>
+        <li>Compound interest in the savings estimator. Divide a rate by twelve instead of taking its twelfth root, and a screen that says 12% pays 12.68% a year.</li>
         <li>Import parsers, balance reconciliation and duplicate detection across every supported file format.</li>
         <li>Backup encryption, round-tripped and verified including the authentication tag.</li>
         <li>Role visibility: that an adviser cannot see a client they do not work with, and that the audit
@@ -324,18 +311,12 @@
             <tr><th scope="row">Abuse limiting</th><td>Sign-in is limited to ten attempts per account in fifteen minutes. The endpoint checks the limit
             before it checks the password, and answers <code>429</code> with
             <code>Retry-After</code>. A completed sign-in clears the count, so two mistypes cost
-            you nothing. A correct password still waiting on its second factor does not clear
-            it, so somebody holding just the password cannot reset the counter between guesses
-            at the code. The count is per account rather than per address, because behind a
-            reverse proxy the only address the server can see is the proxy&rsquo;s, and counting
-            by address would lock out everyone at once. The account is held as a hash in its own
-            namespace, so filling one bucket cannot fill another, and a refusal tells you
-            nothing about whether the account exists. Password-reset requests are limited the
+            you nothing. A correct password still waiting on its second factor does not clear it. So somebody holding only the password cannot reset the counter between guesses at the code. The count is per account, not per address. Behind a reverse proxy the only address the server can see is the proxy's, so counting by address would lock out everyone at once. The account is held as a hash in its own namespace, so filling one bucket cannot fill another. And a refusal tells you nothing about whether the account exists. Password-reset requests are limited the
             same way.</td></tr>
 
             <tr class="row-group"><th colspan="2" scope="colgroup">Authorisation and isolation</th></tr>
-            <tr><th scope="row">Tenant isolation</th><td>Every record carries its tenant; every query is scoped to it. Staff acting on a client supply an explicit client context, which is checked against an active relationship before any data is returned.</td></tr>
-            <tr><th scope="row">Role-based access</th><td>Roles and permissions are data, not code branches: standard user, adviser, compliance manager, hierarchy manager, system administrator. Navigation and routes are both filtered, and the API refuses independently of the interface.</td></tr>
+            <tr><th scope="row">Tenant isolation</th><td>Every record carries its tenant; every query is scoped to it. Staff acting on a client have to say which client. That is checked against an active relationship before any data comes back.</td></tr>
+            <tr><th scope="row">Role-based access</th><td>Roles and permissions are data, not branches in the code. There are five: standard user, adviser, compliance manager, hierarchy manager and system administrator. Navigation and routes are both filtered, and the API refuses independently of the interface.</td></tr>
             <tr><th scope="row">Administrative invariants</th><td>The system always retains at least one active administrator; the first administrator cannot be deleted, demoted or deactivated. Enforced in the service layer and again by database triggers, each with its own error code.</td></tr>
             <tr><th scope="row">Deletion safety</th><td>Deleting users is worked out across the whole selection rather than one row at a time. Otherwise
             two administrators could each pass a &ldquo;you are not the last one&rdquo; check
@@ -353,8 +334,7 @@
 
             <tr class="row-group"><th colspan="2" scope="colgroup">Outbound and content</th></tr>
             <tr><th scope="row">Server-side request forgery</th><td>There is only one place the server fetches an address a user supplied, and that is an
-            institution&rsquo;s logo. It is checked against a list of what is allowed, not a
-            list of what is dangerous: HTTP and HTTPS only, ports 80 and 443 only, no embedded credentials, and a public host. Addresses are judged numerically, so obfuscated forms of loopback and private ranges are refused, as are link-local and cloud-metadata addresses in every IPv4-mapped form. A bare name with no dot is refused because that is another container. Every redirect hop is re-checked.</td></tr>
+            institution&rsquo;s logo. It is checked against a list of what is allowed, not a list of what is dangerous. HTTP and HTTPS only. Ports 80 and 443 only. No embedded credentials. A public host. Addresses are judged numerically, so obfuscated forms of loopback and private ranges are refused, as are link-local and cloud-metadata addresses in every IPv4-mapped form. A bare name with no dot is refused because that is another container. Every redirect hop is re-checked.</td></tr>
             <tr><th scope="row">Content type</th><td>The bytes decide what the file is, not the header it arrived with. Only known image signatures
             are stored. SVG is refused, because an SVG can carry script, and a file that can run
             script served from our own address is cross-site scripting. Stored images are served with no-sniff, a restrictive content-security policy and a same-site resource policy.</td></tr>
@@ -387,7 +367,7 @@
           <h3>Data minimisation and purpose limitation</h3>
           <p>
             The record a client sees carries only who, what and when. It never shows firm-wide detail. The
-            firm-wide audit trail is a separate view with its own restrictions.
+            firm-wide audit trail is a separate view, with its own restrictions.
           </p>
         </div>
         <div class="card">
@@ -431,7 +411,7 @@
         <h2>Requirements enforced globally, not decided per screen</h2>
       </div>
       <ul class="speclist">
-        <li><span class="k">Target size</span><span class="v">Interactive elements meet a 44&times;44&nbsp;pixel minimum on touch devices, applied by a global rule rather than left to each component. A form control counts as one target, not several.</span></li>
+        <li><span class="k">Target size</span><span class="v">Interactive elements meet a 44&times;44&nbsp;pixel minimum on touch devices. A global rule applies it, so it is not left to each component. A form control counts as one target, not several.</span></li>
         <li><span class="k">Visible focus</span><span class="v">Every custom interactive element shows a focus ring on keyboard focus. Removing an outline without providing an equivalent is not permitted.</span></li>
         <li><span class="k">Keyboard operability</span><span class="v">Anything that behaves as a button is operable by keyboard: a tab stop, and Enter and Space firing the same handler. This covers clickable table rows, cards, collapsible headers and metric tiles.</span></li>
         <li><span class="k">Semantics</span><span class="v">Navigation marks the current page, collapsible groups announce their state, and icon-only controls carry an accessible label.</span></li>
@@ -467,9 +447,7 @@
           <p>
             The API applies the database schema when it starts. You can run it as many times as you like: it
             records what it has applied and skips those, and retries anything that errored last
-            time. It also understands complex SQL, treating a semicolon as the end of a
-            statement only at the top level, so function bodies and string literals come through
-            intact.
+            time. It also understands complex SQL. A semicolon only ends a statement at the top level, so function bodies and string literals come through intact.
           </p>
           <p>
             Every build carries a version stamp committed with the source, rather than worked out at deploy
@@ -550,9 +528,7 @@
           year in question. They are not financial advice, not a personal recommendation and not
           a guarantee. The product says so on the screens themselves, not only on this page:
           every tax check carries the line &ldquo;Guidance, not advice. Check with an adviser
-          before acting.&rdquo; Inheritance tax in particular turns on facts the application
-          cannot see, such as how a trust is written, whether a holding really qualifies for
-          business relief, and where someone is resident for tax.</span>
+          before acting.&rdquo; Inheritance tax in particular turns on things the application cannot see. How a trust is written. Whether a holding really qualifies for business relief. Where someone is resident for tax.</span>
         </li>
       </ul>
 
