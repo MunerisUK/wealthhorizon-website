@@ -204,8 +204,8 @@ async function browserChecks(base) {
 
   console.log('\nTabs, and the page without scripting');
   // In tablist order. The home page shows four editions, so the booleans below
-  // are read as Free, Standard, Pro, Advisory.
-  const PANELS = ['free', 'standard', 'pro', 'advisory'];
+  // are read as Money Exporter, Standard, Pro, Advisory.
+  const PANELS = ['exporter', 'standard', 'pro', 'advisory'];
   {
     const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
     const page = await ctx.newPage();
@@ -213,7 +213,7 @@ async function browserChecks(base) {
 
     await page.goto(base + '/index.html', { waitUntil: 'networkidle' });
     let v = await visible();
-    if (String(v) !== 'true,false,false,false') fail(`tabs on load: expected only Free, got ${v}`); else pass('tabs: one panel on load');
+    if (String(v) !== 'true,false,false,false') fail(`tabs on load: expected only Money Exporter, got ${v}`); else pass('tabs: one panel on load');
 
     // Every tab in the list has a panel. The hero promises four editions and
     // links here, so a tab missing from the list is a broken promise.

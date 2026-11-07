@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WealthHorizon — every account, any currency, one horizon</title>
-<meta name="description" content="WealthHorizon keeps track of your accounts, investments and plans in one place. Four editions: Free, Standard, Pro and Advisory.">
+<meta name="description" content="WealthHorizon keeps track of your accounts, investments and plans in one place. Four editions: Money Exporter, Standard, Pro and Advisory.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,11 +59,12 @@
         <a class="btn btn-ghost" href="compare.html#money">Compare with Microsoft Money</a>
       </div>
       <p class="hero-note">
-        There are four editions, and you install all of them on your own hardware. <strong>Free</strong>
-        holds 30 accounts, 1,000 transactions and 5&nbsp;MB. <strong>Standard</strong>,
-        <strong>Pro</strong> and <strong>Advisory</strong> have no limit but the size of your
-        disk. Pro adds long-term planning, tax and forecasting. Advisory is for regulated firms
-        looking after client books.
+        There are four editions, and you install all of them on your own hardware.
+        <strong>Standard</strong> does what Microsoft Money did. <strong>Pro</strong> adds
+        long-term planning, tax and forecasting. <strong>Advisory</strong> is for regulated firms
+        looking after client books. <strong>Money&nbsp;Exporter</strong> is a program on its own:
+        it reads a Money file and writes it out in ten formats, and you do not need the rest to
+        use it.
       </p>
     </div>
   </section>
@@ -144,65 +145,68 @@
         <p class="eyebrow">Editions</p>
         <h2>The four editions</h2>
         <p>
-          Free is Standard with three limits on it. Standard does what Microsoft Money did. Pro adds
-          planning, tax and forecasting, which Money never did. Advisory is a different product
-          altogether, for regulated firms, and it has its own section:
-          <a href="advisory.html">The Advisory</a>.
+          Standard does what Microsoft Money did. Pro adds planning, tax and forecasting, which Money
+          never did. Advisory is a different product altogether, for regulated firms, and it has
+          its own section: <a href="advisory.html">The Advisory</a>. Money Exporter is the
+          converter, and it stands on its own:
+          <a href="money-exporter.html">Money Exporter</a>.
         </p>
       </div>
 
       <div class="tabs" data-tabs>
         <div class="tablist" role="tablist" aria-label="Editions">
-          <button type="button" role="tab" id="tab-free" aria-controls="free" aria-selected="true">Free</button>
+          <button type="button" role="tab" id="tab-exporter" aria-controls="exporter" aria-selected="true">Money Exporter</button>
           <button type="button" role="tab" id="tab-standard" aria-controls="standard" aria-selected="false" tabindex="-1">Standard</button>
           <button type="button" role="tab" id="tab-pro" aria-controls="pro" aria-selected="false" tabindex="-1">Pro</button>
           <button type="button" role="tab" id="tab-advisory" aria-controls="advisory" aria-selected="false" tabindex="-1">Advisory</button>
         </div>
 
-        <!-- ---------- Free ---------- -->
-        <div class="tabpanel" id="free" role="tabpanel" aria-labelledby="tab-free" tabindex="0">
+        <!-- ---------- Money Exporter ---------- -->
+        <div class="tabpanel" id="exporter" role="tabpanel" aria-labelledby="tab-exporter" tabindex="0">
           <div class="grid grid-2" style="align-items:start">
             <div>
-              <h3>Free &mdash; Standard, with three limits on it</h3>
+              <h3>Money Exporter &mdash; get the data out, and stop there if you want</h3>
               <p class="lede">
-                Free is where to start. Every feature in it is the real one. Nothing is a preview or a
-                trial.
+                Money Exporter is a program of its own. It reads your old file and writes it out in a
+                format something else can open. You do not need the rest of WealthHorizon to use it.
               </p>
               <p>
-                It holds <strong>30 accounts</strong>, <strong>1,000 transactions</strong> and
-                <strong>5&nbsp;MB</strong> of storage. The 5&nbsp;MB covers your records and any
-                documents you file against an account, added together. When you reach one of the
-                three, it tells you which. Nothing you have already recorded is removed or hidden.
+                It reads <code>.mny</code> files, password-protected ones included, as well as Access,
+                QIF, OFX, QFX, QBO, CSV, Excel and text-based PDF statements. It writes CSV, Excel,
+                QIF, OFX, QFX, QBO, IIF, GnuCash, YNAB and a PDF statement. It works out the format
+                from the bytes in the file rather than the name on the end of it.
               </p>
               <p>
-                You install Free yourself, the same as the rest. It is the same three containers and the
-                same install, and your data sits on your own machine from the first day. There is
-                no time limit and no card to enter.
+                A <code>.mny</code> file says what each field is. A bank CSV says almost nothing, so some
+                of it has to be worked out &mdash; which column is the amount, whether
+                <code>01/02</code> is January or February, whether money out is a minus. Each guess
+                is tested against the file&rsquo;s own running balance, and it tells you whether it
+                came back verified or not.
               </p>
               <div class="note">
                 <p>
-                  <strong>What Free does not include.</strong> The Pro planning, tax and forecasting tools,
-                  and the Advisory edition. Moving to Standard lifts all three limits and leaves
-                  everything else as it is.
+                  <strong>It is a Windows program and a command line tool, and it runs on your machine.</strong>
+                  Nothing is uploaded. There is a trial, then a one-off licence that does not
+                  expire.
                 </p>
               </div>
               <div class="btn-row">
-                <a class="btn btn-primary" href="#free-edition">What the three limits mean</a>
-                <a class="btn btn-ghost" href="compare.html">Full feature comparison</a>
+                <a class="btn btn-primary" href="money-exporter.html">What it reads and writes</a>
+                <a class="btn btn-ghost" href="https://muneris.lemonsqueezy.com/checkout">Buy a licence</a>
               </div>
             </div>
 
             <div>
-              <h4>In Free</h4>
+              <h4>In Money Exporter</h4>
               <ul class="checks">
-                <li><strong>Every Standard feature</strong>, in full &mdash; the register, repeating payments, investments, reports and backups.</li>
-                <li><strong>30 accounts</strong>, of any kind.</li>
-                <li><strong>1,000 transactions</strong> across all of them.</li>
-                <li><strong>5&nbsp;MB</strong> for your records and attached files together.</li>
-                <li><strong>Installed on your own hardware</strong>, the same way as Standard, Pro and Advisory.</li>
-                <li><strong>Imports</strong> from Money, QIF, OFX, CSV and Excel.</li>
-                <li><strong>Exports</strong> to CSV, Excel, QIF and OFX, whenever you want.</li>
-                <li><strong>No time limit</strong>, and no card to enter.</li>
+                <li><strong>Ten formats in</strong> &mdash; Money, Access, QIF, OFX, QFX, QBO, CSV, Excel and PDF statements.</li>
+                <li><strong>Ten formats out</strong> &mdash; CSV, Excel, QIF, OFX, QFX, QBO, IIF, GnuCash, YNAB and a PDF statement.</li>
+                <li><strong>Password-protected Money files</strong>, given the password.</li>
+                <li><strong>Every guess checked</strong> against the running balance in the file, and the result said out loud.</li>
+                <li><strong>A preview</strong> of what it found before anything is written.</li>
+                <li><strong>Splits and investments kept whole</strong>, not flattened into one line.</li>
+                <li><strong>Date ranges and a file per account</strong>, if that is what you need.</li>
+                <li><strong>Nothing uploaded.</strong> It runs on your own machine.</li>
               </ul>
             </div>
           </div>
@@ -446,7 +450,7 @@
               </ul>
               <div class="btn-row">
                 <a class="btn btn-primary" href="planning.html">Planning and retirement, in detail</a>
-                <a class="btn btn-ghost" href="compare.html">Free, Standard and Pro side by side</a>
+                <a class="btn btn-ghost" href="compare.html">Standard, Pro and Advisory side by side</a>
               </div>
             </div>
           </div>
@@ -577,62 +581,60 @@
     </div>
   </section>
 
-  <!-- ===================== Free ===================== -->
-  <section class="band" id="free-edition">
+  <!-- ===================== Money Exporter ===================== -->
+  <section class="band" id="exporter-edition">
     <div class="wrap">
       <div class="grid grid-2" style="align-items:center">
         <div>
-          <p class="eyebrow">Free edition</p>
-          <h2>Start free, at 30 accounts, 1,000 transactions and 5&nbsp;MB</h2>
+          <p class="eyebrow">Money Exporter</p>
+          <h2>A Money file you cannot open any more</h2>
           <p class="lede">
-            Free is the Standard edition with three limits on it. Every feature is the real one. Nothing is
-            a preview, a trial or a cut-down version.
+            Money Exporter reads it and writes it out in a format something else can open. It is a
+            separate program with its own licence, and you can use it without adopting
+            WealthHorizon at all.
           </p>
           <p>
-            It holds <strong>30 accounts</strong>, <strong>1,000 transactions</strong> and
-            <strong>5&nbsp;MB</strong> of storage. For a household with a few current accounts,
-            a couple of cards and an ISA, that is usually a year or two of records. When you
-            reach one of the three, it tells you which. Nothing you have already recorded is
-            removed or hidden. Moving to Standard lifts all three and leaves everything else as
-            it is.
+            Microsoft stopped selling Money in 2009. The file is still on the disk and the figures are
+            still in it, but there is less and less that will open it. Money Exporter reads
+            <code>.mny</code> files, password-protected ones included, along with Access, QIF, OFX,
+            QFX, QBO, CSV, Excel and text-based PDF statements.
           </p>
           <p>
-            The <strong>5&nbsp;MB covers your records and any documents you file against an account, added
-            together</strong>. If you do not attach documents you will hit the transaction limit
-            first. If you do, you will hit the storage limit first, because a few scanned
-            statements take up more room than a year of entries.
+            It writes <strong>CSV, Excel, QIF, OFX, QFX, QBO, IIF, GnuCash, YNAB and a PDF
+            statement</strong>. Splits stay split. Investments keep their lots and prices. You see
+            what it found, account by account, before anything is written.
           </p>
           <p>
-            <strong>You install Free yourself, the same as the rest.</strong> It is the same three
-            containers and the same install, and your data sits on your own machine from the
-            first day. We do not run it for you, and we never hold your records.
+            <strong>Where it has to guess, it says so.</strong> A bank CSV does not state which column is
+            the amount, or whether <code>01/02</code> is January or February. Each guess is tested
+            against the running balance in the file, and the answer comes back verified, partly
+            verified, failed, or not available &mdash; and &ldquo;not available&rdquo; is never
+            dressed up as verified.
           </p>
           <p>
-            <strong>The only difference is the three numbers.</strong> Standard, Pro and Advisory install in
-            exactly the same way, and have no limit but the disk you give them.
-          </p>
-          <p>
-            There is no time limit and no card to enter. You can export your data at any point, in CSV,
-            Excel, QIF or OFX, whichever edition you are on.
+            It is a Windows program with a command line tool beside it, and it runs on your own
+            machine. Nothing is uploaded.
           </p>
         </div>
         <div class="card">
-          <p class="price">Free</p>
-          <h3 style="margin-top:0">Everything in Standard, capped</h3>
+          <p class="price">One&nbsp;off</p>
+          <h3 style="margin-top:0">A licence that does not expire</h3>
           <ul>
-            <li>Up to 30 accounts</li>
-            <li>Up to 1,000 transactions</li>
-            <li>5&nbsp;MB of records and attached files</li>
-            <li>Every Standard feature, in full</li>
-            <li>Installed on your own hardware</li>
-            <li>Import from Money, QIF, OFX, CSV and Excel</li>
-            <li>Export whenever you want, in four formats</li>
-            <li>No time limit</li>
+            <li>Ten formats in, ten formats out</li>
+            <li>Password-protected Money files</li>
+            <li>Every guess checked against the file&rsquo;s own balance</li>
+            <li>A preview before anything is written</li>
+            <li>Splits and investments kept whole</li>
+            <li>Windows app and a command line tool</li>
+            <li>Runs on your machine, nothing uploaded</li>
+            <li>A trial first, then one payment</li>
           </ul>
           <p style="font-size:.92rem;color:var(--muted);margin-bottom:1.2rem">
-            Free does not include the Pro planning, tax and forecasting tools, or the Advisory edition.
+            Money Exporter is a converter. It does not keep your accounts for you &mdash; that is what
+            Standard, Pro and Advisory are for.
           </p>
-          <a class="btn btn-primary" href="compare.html">See what each edition holds</a>
+          <a class="btn btn-primary" href="https://muneris.lemonsqueezy.com/checkout">Buy a licence</a>
+          <p style="margin:.9rem 0 0"><a href="money-exporter.html">What it reads and writes, in full</a></p>
         </div>
       </div>
     </div>
@@ -649,7 +651,7 @@
         <div class="card">
           <h3>You run it</h3>
           <p>
-            You install every edition on your own hardware, Free included. The whole system is three
+            You install every edition on your own hardware. The whole system is three
             containers: a database, an API and the web app. It will run on a laptop, a network
             drive at home, a server at the office, or any cloud you already use. There is
             nothing special about the hosting.
@@ -710,7 +712,7 @@
         <ul>
           <li><a href="index.html#editions">Editions</a></li>
           <li><a href="planning.html">Planning &amp; retirement</a></li>
-          <li><a href="compare.html">Free, Standard &amp; Pro</a></li>
+          <li><a href="compare.html">Standard, Pro &amp; Advisory</a></li>
           <li><a href="money-exporter.html">Money Exporter</a></li>
           <li><a href="alternatives.html">Alternatives</a></li>
           <li><a href="compare.html#money">Versus Microsoft Money</a></li>

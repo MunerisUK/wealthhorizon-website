@@ -103,6 +103,24 @@ it.
   firm expects: precise, impersonal, explicit about what is claimed and what is
   not.
 
+### The product line
+
+There are four things to sell, and no others:
+
+| | |
+|---|---|
+| **Standard** | What Microsoft Money did. |
+| **Pro** | Standard, plus planning, tax and forecasting. |
+| **Advisory** | Pro, plus the supervision and compliance tools, for regulated firms. |
+| **Money Exporter** | A separate converter, with its own one-off licence, sold at `https://muneris.lemonsqueezy.com/checkout`. |
+
+**There is no free edition.** A "Free" tier with 30 accounts, 1,000 transactions
+and 5 MB was written onto this site and had to be taken off again. Nothing in
+the application implements it: `backend/src/services/licensing.ts` has three
+editions (`HOUSEHOLD`, `ADVISER`, `FIRM`), a 30-day trial and then read-only.
+Do not invent a tier, a limit or a price. If a number is not in the source, it
+does not go on the page.
+
 ### If you cannot verify it, do not say it
 
 This is a standing order and it is absolute.
