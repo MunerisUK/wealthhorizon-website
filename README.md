@@ -9,9 +9,9 @@ framework and no package manager: the repository is the deployable artefact.
 
 | File | Covers |
 |------|--------|
-| `index.html` | Home. Plain-English overview, the three edition tabs (Standard, Pro, Advisory) and the Free edition. |
+| `index.html` | Home. Plain-English overview and the four edition tabs: Money Exporter, Standard, Pro, Advisory. |
 | `planning.html` | Planning and retirement in detail: the guided planner, the Advanced Planner, FIRE, and goals and tracking. |
-| `compare.html` | The full Free / Standard / Pro feature comparison, and (`#money`) the comparison with Microsoft Money. |
+| `compare.html` | The full Standard / Pro feature comparison, and (`#money`) the comparison with Microsoft Money. |
 | `money-exporter.html` | Wealth Horizon Money Exporter: the standalone converter. What it reads and writes, how it checks an inferred import, the trial limits and the licence. Links to the Lemon Squeezy checkout. |
 | `alternatives.html` | Where WealthHorizon fits among the kinds of product on the market, what it does not do, and the questions worth asking any vendor. Names no competitor and makes no claim about anyone else's software. |
 | `advisory.html` | The Advisory edition in detail: Consumer Duty coverage, the compliance suite, the advisory desk, supervision and firm hierarchy, controls and separation of duties. |
