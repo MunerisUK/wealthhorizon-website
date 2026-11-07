@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Money Exporter — WealthHorizon</title>
+<meta name="description" content="Wealth Horizon Money Exporter reads Microsoft Money files, bank downloads, spreadsheets and PDF statements, and writes ten formats back out. It runs on your own machine and checks its own work.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<!-- Set before first paint. Everything the site hides behind a control —
+     the mobile navigation, the inactive tab panels — is only hidden when
+     this class is present, so with JavaScript off the page is whole. -->
+<script>document.documentElement.className += " js";</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/img/wh-mark.svg" alt="">
+      <span class="brand-text">
+        <span class="brand-name">Wealth<em>Horizon</em></span>
+        <span class="brand-sub">by Muneris</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="index.html#editions">Editions</a>
+      <a href="planning.html">Planning</a>
+      <a href="compare.html">Compare</a>
+      <a href="money-exporter.html" aria-current="page">Money Exporter</a>
+      <a href="alternatives.html">Alternatives</a>
+      <a href="advisory.html">The Advisory</a>
+      <a href="how-its-built.html">How it&rsquo;s built</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero hero-feature">
+    <div class="wrap">
+      <p class="eyebrow">A separate product</p>
+      <h1>Money Exporter</h1>
+      <p class="lede">
+        Your financial history is locked inside a file nothing will open. Money Exporter reads
+        it and writes it back out in a format something else can use. Microsoft Money files,
+        bank downloads, spreadsheets and PDF statements go in. Ten formats come out. It runs on
+        your own machine and nothing is uploaded.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://muneris.lemonsqueezy.com/checkout">Buy a licence</a>
+        <a class="btn btn-ghost" href="#formats">What it reads and writes</a>
+        <a class="btn btn-ghost" href="#checking">How it checks itself</a>
+      </div>
+      <p class="hero-note">
+        This is a <strong>separate product</strong> from the WealthHorizon application, sold on
+        its own one-off lifetime licence. There is a free trial, and it is limited rather than
+        timed out: 15 days, and up to 3 accounts and 200 transactions in total, so you can prove
+        it reads your file before you pay anything.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== What it reads and writes ===================== -->
+  <section id="formats" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The matrix</p>
+        <h2>Ten formats in, ten formats out</h2>
+        <p>
+          Every reader turns a file into one shared model of accounts and transactions, and
+          every writer takes only that model. So anything it reads can be written as anything it
+          writes, and each format stays small enough to test on its own.
+        </p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>What Money Exporter reads, and what it writes.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Format</th>
+              <th scope="col">Read</th>
+              <th scope="col">Write</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Microsoft Money <code>.mny</code></th>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td class="c"><span class="no">&mdash;</span></td>
+              <td>Including password-protected files. The file is decrypted in memory and parsed; nothing is written back to it.</td>
+            </tr>
+            <tr>
+              <th scope="row">Access <code>.mdb</code> / <code>.accdb</code></th>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td class="c"><span class="no">&mdash;</span></td>
+              <td>Unencrypted Money and Access databases, including a <code>.mny</code> somebody has already decrypted.</td>
+            </tr>
+            <tr>
+              <th scope="row">QIF</th>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td>Splits written natively as <code>S</code>/<code>E</code>/<code>$</code> records, and read back. Investment detail as <code>!Type:Invst</code>.</td>
+            </tr>
+            <tr>
+              <th scope="row">OFX / QFX / QBO</th>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td>Reads the 1.x SGML banks actually serve as well as 2.x XML. Bank, credit card and investment statements, de-duplicated by transaction id.</td>
+            </tr>
+            <tr>
+              <th scope="row">CSV / TSV / plain text</th>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td>Reading is inferred and then checked &mdash; see below. Writing lets you choose the columns and the delimiter.</td>
+            </tr>
+            <tr>
+              <th scope="row">Excel <code>.xlsx</code> / <code>.xlsm</code></th>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td>Cells are read as they are displayed, so a date serial and a figure in brackets both arrive in a form it understands.</td>
+            </tr>
+            <tr>
+              <th scope="row">PDF statement</th>
+              <td class="c"><span class="part">Best effort</span></td>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td>Text-based statements only. A scanned page has no text in it and is refused with the way round. See the warning below.</td>
+            </tr>
+            <tr>
+              <th scope="row">IIF</th>
+              <td class="c"><span class="no">&mdash;</span></td>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td>The tab-delimited interchange format.</td>
+            </tr>
+            <tr>
+              <th scope="row">GnuCash</th>
+              <td class="c"><span class="no">&mdash;</span></td>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row">YNAB</th>
+              <td class="c"><span class="no">&mdash;</span></td>
+              <td class="c"><span class="yes">&#10003;</span></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <p style="margin-bottom:0">
+          <strong>It works out what a file is from the bytes, not the name.</strong> Extensions
+          lie constantly here. Banks serve OFX 2 XML named <code>.qfx</code>, Quicken-flavoured
+          OFX named <code>.ofx</code>, and CSV named <code>.txt</code>. Going by the name hands a
+          spreadsheet to a parser expecting something else and reports a corrupt file. Run
+          <code>--identify</code> to see what it thinks a file is before you import it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== How it checks itself ===================== -->
+  <section id="checking">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The part that matters</p>
+        <h2>An inferred import is checked, and says which it is</h2>
+        <p>
+          A <code>.mny</code> file has a schema and an OFX file has a grammar, so there is
+          nothing to decide. A bank CSV or a PDF statement states almost nothing, and the things
+          it leaves out change the figures.
+        </p>
+      </div>
+
+      <div class="grid grid-2" style="align-items:start">
+        <div>
+          <h3>What has to be guessed</h3>
+          <p>
+            Which column is the amount. Whether <code>01/02</code> is January or February.
+            Whether money out is written as a positive number or a negative one. Whether the
+            rows run oldest first or newest first. Whether <code>1.234</code> means one and a bit
+            or one thousand two hundred and thirty-four.
+          </p>
+          <p>
+            Get the sign convention wrong and the whole ledger inverts. Read a comma decimal as
+            American and every figure is a thousand times too big.
+          </p>
+          <h3>How it settles them</h3>
+          <p>
+            Against a figure the file itself states. A statement with a running balance column
+            has already given the answer: there is only one reading of the amounts and the row
+            order that reproduces that balance, so all four combinations are tried and the one
+            that works wins. Where the file has no header at all, the same test finds the amount
+            column and the balance column outright.
+          </p>
+        </div>
+
+        <div>
+          <h3>And then it tells you</h3>
+          <p>
+            Every import comes back marked <strong>verified</strong>,
+            <strong>partly verified</strong>, <strong>failed</strong> or
+            <strong>not available</strong>, with the list of what it decided and why.
+          </p>
+          <p>
+            <em>Not available</em> is deliberately a different answer from <em>verified</em>.
+            The difference between &ldquo;the file confirms this&rdquo; and &ldquo;nothing could
+            confirm this&rdquo; is the whole point. A PDF reading that does not reconcile is
+            reported as failed, not handed over as a clean import.
+          </p>
+          <div class="note">
+            <p style="margin-bottom:0">
+              <strong>You can override any of it.</strong> Name the columns yourself, force the
+              date order, the decimal separator, the delimiter, the header row or the sheet. Or
+              use <code>--require-reconciled</code> and it will refuse to write anything that
+              did not add up.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="note note-warn">
+        <p style="margin-bottom:0">
+          <strong>Check the output before you rely on it.</strong> A reading that reconciles
+          against a running balance is strong evidence, not a guarantee, and a statement with no
+          balance column cannot be checked at all. Open what comes out, compare a few months
+          against the original, and keep the original file. This is a conversion tool, not an
+          accountant, and nothing it produces is financial or tax advice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Beyond converting ===================== -->
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The rest of it</p>
+        <h2>The things you find out you need on the day</h2>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card card-accent">
+          <h3>See it before you commit</h3>
+          <p style="margin-bottom:0">
+            List the accounts in a file, or preview exactly what would be exported, before
+            anything is written. Export a date range, or selected accounts, or one file per
+            account into a folder.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>A folder you can refresh</h3>
+          <p style="margin-bottom:0">
+            Write a fixed-schema data folder for a spreadsheet or a reporting tool, with the
+            query already set up. Re-export over the same folder later and refresh, rather than
+            rebuilding the workbook.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>Dates that survive the trip</h3>
+          <p style="margin-bottom:0">
+            Text formats are written to your machine&rsquo;s regional settings, so a UK export is
+            not silently a month out. Force it to ISO, UK or US if you would rather. ISO input is
+            always understood.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>Splits and investments kept whole</h3>
+          <p style="margin-bottom:0">
+            A split transaction stays one transaction with its parts, rather than becoming
+            several and double-counting. Investment rows carry the security, units, price and
+            commission.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>When a balance does not match</h3>
+          <p style="margin-bottom:0">
+            There is a diagnose mode that compares every account against the source&rsquo;s own
+            figures and tells you where the difference is. It runs on your machine and uploads
+            nothing.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>More than one currency</h3>
+          <p style="margin-bottom:0">
+            Conversion uses the exchange rates held in the file itself, rather than today&rsquo;s
+            rates applied to a ten-year-old transaction.
+          </p>
+        </div>
+      </div>
+
+      <div class="note note-plain">
+        <p style="margin-bottom:0">
+          <strong>Account numbers, honestly.</strong> Microsoft Money obscures the account-number
+          field, and this is <em>partly</em> solved. If you tell it one account number you
+          already know, it recovers the rest. Working the obfuscation out from the file alone is
+          still an open problem and we say so rather than implying the field just comes across.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Getting it ===================== -->
+  <section id="buy">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Trial and licence</p>
+        <h2>Try it on your own file first</h2>
+        <p>
+          The trial exists to prove the thing that matters: that it can read <em>your</em> file
+          and produce something you can open. It is not a crippled demo and it is not a
+          countdown on a full product.
+        </p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <p class="price">Free trial</p>
+          <h3 style="margin-top:0">Prove it reads your file</h3>
+          <ul>
+            <li>15 days</li>
+            <li>Up to 3 accounts in total</li>
+            <li>Up to 200 transactions in total</li>
+            <li>The full preview workflow</li>
+            <li>Every format, so you can check the output opens</li>
+          </ul>
+          <p style="font-size:.92rem;color:var(--muted);margin-bottom:0">
+            The counts are cumulative across all your exports, not per export.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <p class="price">Personal</p>
+          <h3 style="margin-top:0">A one-off lifetime licence</h3>
+          <ul>
+            <li>No limit on accounts or transactions</li>
+            <li>Every format, in and out</li>
+            <li>Your own files</li>
+            <li>No subscription</li>
+          </ul>
+          <a class="btn btn-primary" href="https://muneris.lemonsqueezy.com/checkout">See the price and buy</a>
+        </div>
+        <div class="card">
+          <p class="price">Commercial</p>
+          <h3 style="margin-top:0">For doing it on behalf of others</h3>
+          <ul>
+            <li>Everything in personal</li>
+            <li>Client and third-party migration work</li>
+            <li>For advisers, accountants, bookkeepers and IT support</li>
+            <li>Also a one-off lifetime licence</li>
+          </ul>
+          <a class="btn btn-primary" href="https://muneris.lemonsqueezy.com/checkout">See the price and buy</a>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:2rem;align-items:start">
+        <div>
+          <h3>How you run it</h3>
+          <p>
+            There is a desktop application for <strong>Windows</strong>: pick a file, enter the
+            password if it has one, tick the accounts you want, choose a format, export. There
+            is also a command-line version for anyone who would rather script it or run it on
+            another operating system.
+          </p>
+          <p>
+            A licence key is activated on a machine and can be released again, so moving to a new
+            computer does not mean buying it twice.
+          </p>
+        </div>
+        <div>
+          <h3>Where your data goes</h3>
+          <p>
+            Nowhere. The conversion happens on your own machine, the diagnose mode included.
+            Your file is not uploaded to us or to anyone else, which is the same position the
+            rest of WealthHorizon takes.
+          </p>
+          <p>
+            The only thing that reaches the internet is checking a licence key, and there is
+            offline grace so a dropped connection does not stop you working.
+          </p>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://muneris.lemonsqueezy.com/checkout">Buy a licence</a>
+        <a class="btn btn-ghost" href="compare.html#money">Moving off Microsoft Money altogether</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:.8rem">
+          <img src="assets/img/wh-mark.svg" alt="">
+          <span class="brand-text">
+            <span class="brand-name">Wealth<em>Horizon</em></span>
+            <span class="brand-sub">by Muneris</span>
+          </span>
+        </a>
+        <p>Every account, any currency, one horizon.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="index.html#editions">Editions</a></li>
+          <li><a href="planning.html">Planning &amp; retirement</a></li>
+          <li><a href="compare.html">Free, Standard &amp; Pro</a></li>
+          <li><a href="money-exporter.html">Money Exporter</a></li>
+          <li><a href="alternatives.html">Alternatives</a></li>
+          <li><a href="compare.html#money">Versus Microsoft Money</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For firms</h4>
+        <ul>
+          <li><a href="advisory.html">The Advisory</a></li>
+          <li><a href="advisory.html#consumer-duty">Consumer Duty coverage</a></li>
+          <li><a href="advisory.html#hierarchy">Supervision &amp; hierarchy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Engineering</h4>
+        <ul>
+          <li><a href="how-its-built.html">How it&rsquo;s built</a></li>
+          <li><a href="how-its-built.html#security">Security architecture</a></li>
+          <li><a href="how-its-built.html#assurance">Testing &amp; assurance</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>
+        Wealth Horizon Money Exporter is proprietary software. &copy; 2026 Muneris Management
+        Ltd. All rights reserved. Licensing enquiries:
+        <a href="mailto:info@muneris.co.uk">info@muneris.co.uk</a>.
+      </p>
+      <p>
+        Microsoft, Microsoft Money, Access and Excel are trademarks of Microsoft Corporation.
+        The other format names on this page &mdash; QIF, OFX, QFX, QBO, IIF, GnuCash and YNAB
+        &mdash; belong to their respective owners and are used here only to say which file
+        formats this software reads and writes. Muneris Management Ltd is not affiliated with,
+        endorsed by or connected to any of them.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
