@@ -26,6 +26,8 @@ const PAGES = [
   '/index.html',
   '/planning.html',
   '/compare.html',
+  '/money-exporter.html',
+  '/alternatives.html',
   '/advisory.html',
   '/how-its-built.html',
 ];
@@ -201,39 +203,47 @@ async function browserChecks(base) {
   }
 
   console.log('\nTabs, and the page without scripting');
+  // In tablist order. The home page shows four editions, so the booleans below
+  // are read as Free, Standard, Pro, Advisory.
+  const PANELS = ['free', 'standard', 'pro', 'advisory'];
   {
     const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
     const page = await ctx.newPage();
-    const visible = () => Promise.all(['standard', 'pro', 'advisory'].map((id) => page.locator('#' + id).isVisible()));
+    const visible = () => Promise.all(PANELS.map((id) => page.locator('#' + id).isVisible()));
 
     await page.goto(base + '/index.html', { waitUntil: 'networkidle' });
     let v = await visible();
-    if (String(v) !== 'true,false,false') fail(`tabs on load: expected only Standard, got ${v}`); else pass('tabs: one panel on load');
+    if (String(v) !== 'true,false,false,false') fail(`tabs on load: expected only Free, got ${v}`); else pass('tabs: one panel on load');
+
+    // Every tab in the list has a panel. The hero promises four editions and
+    // links here, so a tab missing from the list is a broken promise.
+    const tabCount = await page.locator('.tablist [role="tab"]').count();
+    if (tabCount !== PANELS.length) fail(`tabs: ${tabCount} tabs for ${PANELS.length} panels`); else pass(`tabs: ${tabCount} tabs, ${tabCount} panels`);
 
     await page.getByRole('tab', { name: 'Pro' }).click();
     await page.waitForTimeout(200);
     v = await visible();
-    if (String(v) !== 'false,true,false') fail(`tab click: got ${v}`); else pass('tabs: click');
+    if (String(v) !== 'false,false,true,false') fail(`tab click: got ${v}`); else pass('tabs: click');
 
     await page.keyboard.press('ArrowRight');
     await page.waitForTimeout(200);
     v = await visible();
-    if (String(v) !== 'false,false,true') fail(`arrow key: got ${v}`); else pass('tabs: arrow key');
+    if (String(v) !== 'false,false,false,true') fail(`arrow key: got ${v}`); else pass('tabs: arrow key');
 
     // Two ways in, and they behave differently: arriving fresh runs the script,
     // while changing the fragment on a loaded page does not reload it.
     await page.goto(base + '/index.html#pro', { waitUntil: 'networkidle' });
     await page.waitForTimeout(200);
     v = await visible();
-    if (String(v) !== 'false,true,false') fail(`deep link #pro on the loaded page: got ${v}`); else pass('tabs: deep link, same document');
+    if (String(v) !== 'false,false,true,false') fail(`deep link #pro on the loaded page: got ${v}`); else pass('tabs: deep link, same document');
     await ctx.close();
 
     const fresh = await browser.newContext({ viewport: { width: 1400, height: 900 } });
     const freshPage = await fresh.newPage();
     await freshPage.goto(base + '/index.html#advisory', { waitUntil: 'networkidle' });
     await freshPage.waitForTimeout(200);
-    const fv = await Promise.all(['standard', 'pro', 'advisory'].map((id) => freshPage.locator('#' + id).isVisible()));
-    if (String(fv) !== 'false,false,true') fail(`deep link #advisory on a cold load: got ${fv}`); else pass('tabs: deep link, cold load');
+    const fv = await Promise.all(PANELS.map((id) => freshPage.locator('#' + id).isVisible()));
+    if (String(fv) !== 'false,false,false,true') fail(`deep link #advisory on a cold load: got ${fv}`); else pass('tabs: deep link, cold load');
     await fresh.close();
   }
   {
@@ -242,7 +252,7 @@ async function browserChecks(base) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
     const page = await ctx.newPage();
     await page.goto(base + '/index.html', { waitUntil: 'networkidle' });
-    const panels = await Promise.all(['standard', 'pro', 'advisory'].map((id) => page.locator('#' + id).isVisible()));
+    const panels = await Promise.all(PANELS.map((id) => page.locator('#' + id).isVisible()));
     if (panels.some((p) => !p)) fail(`no-script: a tab panel is hidden (${panels})`); else pass('no-script: every panel renders');
     if (!await page.locator('#site-nav').isVisible()) fail('no-script: navigation is hidden with no way to open it'); else pass('no-script: navigation present');
     if (await page.locator('.nav-toggle').isVisible()) fail('no-script: menu button shown but inert'); else pass('no-script: no inert menu button');
