@@ -151,7 +151,7 @@ There are four things to sell, and no others:
 | **Standard** | What Microsoft Money did. |
 | **Pro** | Standard, plus planning, tax and forecasting. |
 | **Advisory** | Pro, plus the supervision and compliance tools, for regulated firms. |
-| **Money Exporter** | A separate converter, with its own one-off licence, sold at `https://muneris.lemonsqueezy.com/checkout`. |
+| **Money Exporter** | A separate converter, with its own one-off licence, sold at `https://muneris.lemonsqueezy.com/`. |
 
 **There is no free edition.** A "Free" tier with 30 accounts, 1,000 transactions
 and 5 MB was written onto this site and had to be taken off again. Nothing in
