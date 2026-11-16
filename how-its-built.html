@@ -106,7 +106,10 @@
             <tr><th scope="row">Unit and integration tests</th><td>Vitest (both packages)</td><td>5</td></tr>
             <tr><th scope="row">Component tests</th><td>jsdom + React Testing Library</td><td>&mdash;</td></tr>
             <tr><th scope="row">End-to-end tests</th><td>Playwright, with phone and tablet device profiles</td><td>&mdash;</td></tr>
-            <tr><th scope="row">Deployment</th><td>Docker Compose &mdash; database, API, web</td><td>&mdash;</td></tr>
+            <tr><th scope="row">Deployment</th><td>Docker Compose &mdash; database, API,
+            web</td><td>&mdash;</td></tr> <tr><th scope="row">Deployment, Windows</th><td>One
+            installer: the same three tiers as a Windows service, no Docker. Node 24.22.2,
+            PostgreSQL 16.15.0 and WinSW 2.12.0, each pinned by SHA-256.</td><td>&mdash;</td></tr>
           </tbody>
         </table>
       </div>
@@ -435,7 +438,7 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">7. Deployment and ownership</p>
-        <h2>Three containers, no vendor lock-in</h2>
+        <h2>Three tiers, two ways to run them, no vendor lock-in</h2>
       </div>
       <div class="grid grid-2">
         <div>
@@ -449,10 +452,31 @@
             records what it has applied and skips those, and retries anything that errored last
             time. It also understands complex SQL. A semicolon only ends a statement at the top level, so function bodies and string literals come through intact.
           </p>
-          <p>
+                    <p>
             Every build carries a version stamp committed with the source, rather than worked out at deploy
             time. The number on the screen tells you exactly which build is running.
           </p>
+
+          <h3>On Windows, without Docker</h3>
+          <p>
+            A single installer puts the same three tiers on a Windows&nbsp;10 or 11 PC and runs
+            them as one Windows service. It needs no Docker, no WSL and no command line. Node,
+            PostgreSQL and the service wrapper are downloaded during the build and
+            <strong>pinned by SHA-256</strong>, and a mismatch is refused.
+          </p>
+          <p>
+            It is built from the same distribution and the same hardening steps as the public
+            Docker images, and the build fails if any hardening step left comments, declarations
+            or the engine readme behind. The workflow then installs it on a Windows runner, signs
+            up, checks the licence lock, upgrades it and uninstalls it. That runs on every build.
+          </p>
+          <ul class="checks">
+            <li><strong>The API and PostgreSQL listen on <code>127.0.0.1</code> only.</strong> Nothing else on the network can reach either of them.</li>
+            <li><strong>The web app is reachable from other devices only through a firewall rule the user opts into.</strong> That rule covers networks Windows treats as private, and no others.</li>
+            <li><strong>The data folder is restricted to SYSTEM and Administrators by SID.</strong> It holds the database, the documents and the generated secrets.</li>
+            <li><strong>The secrets are generated per install</strong> and never leave it.</li>
+            <li><strong>The web server serves the same security headers as nginx</strong>, read from the same <code>nginx.conf</code>, and refuses any path outside the application folder.</li>
+          </ul>
         </div>
         <div>
           <h3>Licensing and provenance</h3>
@@ -486,6 +510,15 @@
       </div>
 
       <ul class="speclist">
+                <li>
+          <span class="k">The Windows installer is not code-signed</span>
+          <span class="v">Windows SmartScreen will say &ldquo;Windows protected your PC&rdquo; the first time
+          somebody runs it, and they have to choose <em>More info</em> and then <em>Run
+          anyway</em>. That is exactly the prompt people are told to pay attention to, so we
+          state it here rather than let it come as a surprise. Signing it is a prerequisite for
+          general release. Everything the installer downloads is already pinned by SHA-256, so
+          this is about the installer&rsquo;s own signature, not about what it fetches.</span>
+        </li>
         <li>
           <span class="k">Trusting a forwarded address</span>
           <span class="v">Sign-in is now rate limited, per account rather than per address. That is because <code>trust

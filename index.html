@@ -59,8 +59,8 @@
         <a class="btn btn-ghost" href="compare.html#money">Compare with Microsoft Money</a>
       </div>
       <p class="hero-note">
-        There are four editions. You install all of them on your own hardware. <strong>Standard</strong>
-        does what Microsoft Money did. <strong>Pro</strong> adds planning, tax and forecasting.
+        There are four editions, and you install all of them on your own hardware. On Windows that is one
+        installer and no command line. <strong>Standard</strong> does what Microsoft Money did. <strong>Pro</strong> adds planning, tax and forecasting.
         <strong>Advisory</strong> is for regulated firms looking after client books.
         <strong>Money&nbsp;Exporter</strong> is a program on its own. It reads a Money file and
         writes it out in ten formats. You do not need the rest to use it.
@@ -632,9 +632,10 @@
         <div class="card">
           <h3>You run it</h3>
           <p>
-            You install every edition on your own hardware. The whole system is three containers: a database,
-            an API and the web app. It will run on a laptop, a network drive at home, a server at
-            the office, or any cloud you already use. There is nothing special about the hosting.
+            You install every edition on your own hardware. On Windows 10 or 11 that is one installer and
+            nothing else to set up. Everywhere else it is three containers: a database, an API and
+            the web app. Those run on a laptop, a network drive at home, a server at the office,
+            or any cloud you already use.
           </p>
           <p>
             The only thing we run is a demonstration account, so you can look round before you install
@@ -657,7 +658,28 @@
             control it, and you can turn it off.
           </p>
         </div>
+            </div>
+
+      <div class="note">
+        <p>
+          <strong>On Windows there is an installer, and that is the whole job.</strong> One
+          <code>.exe</code> for Windows&nbsp;10 and 11. It puts Node, PostgreSQL and
+          WealthHorizon on the PC and runs them as a Windows service, so the app starts with the
+          machine. There is <strong>no Docker, no WSL and no command line</strong>. The
+          passwords it needs are made up for you.
+        </p>
+        <p>
+          Your data goes in <code>C:\ProgramData\WealthHorizon</code>, which only
+          administrators can open. Uninstalling leaves it there. To update, run the newer
+          installer over the top.
+        </p>
+        <p style="margin-bottom:0">
+          Everything stays on the PC unless you say otherwise. There is a tick box on the way in
+          that lets other devices at home open it, so you can use it from a phone or a tablet.
+          Leave it unticked and nothing but that PC can reach it.
+        </p>
       </div>
+
       <div class="note note-plain">
         <p>
           <strong>None of this is financial advice.</strong> The planning, tax and inheritance tax tools
