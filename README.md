@@ -12,10 +12,10 @@ framework and no package manager: the repository is the deployable artefact.
 | `index.html` | Home. Plain-English overview and the four edition tabs: Money Exporter, Standard, Pro, Advisory. |
 | `planning.html` | Planning and retirement in detail: the guided planner, the Advanced Planner, FIRE, and goals and tracking. |
 | `compare.html` | The full Standard / Pro feature comparison, and (`#money`) the comparison with Microsoft Money. |
-| `money-exporter.html` | Wealth Horizon Money Exporter: the standalone converter. What it reads and writes, how it checks an inferred import, the trial limits and the licence. Links to the Lemon Squeezy checkout. |
+| `money-exporter.html` | Wealth Horizon Money Exporter: the standalone converter. What it reads and writes, how it checks an inferred import, the trial limits and the licence, with screenshots from the application. Says plainly that a WealthHorizon owner does not need it, because the same engine is built in as Tools → Data Transformation. Links to the Lemon Squeezy store. |
 | `alternatives.html` | Where WealthHorizon fits among the kinds of product on the market, what it does not do, and the questions worth asking any vendor. Names no competitor and makes no claim about anyone else's software. |
 | `advisory.html` | The Advisory edition in detail: Consumer Duty coverage, the compliance suite, the advisory desk, supervision and firm hierarchy, controls and separation of duties. |
-| `how-its-built.html` | Engineering standards, the development workflow, the CI gates, security architecture, data protection, accessibility, deployment, licensing and the known limitations. |
+| `how-its-built.html` | Engineering standards, the development workflow, the thirteen CI gates, security architecture, data protection, the STRIDE threat model and governance pack, accessibility, deployment, licensing and the known limitations. |
 
 ## Tone
 
