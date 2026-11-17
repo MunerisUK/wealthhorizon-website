@@ -155,7 +155,10 @@
             <tr><th scope="row">Multiple jurisdictions in one picture</th><td class="c"><span class="yes">&#10003;</span></td><td class="c"><span class="yes">&#10003;</span></td></tr>
 
             <tr class="row-group"><th colspan="3" scope="colgroup">Bringing data in and taking it out</th></tr>
-            <tr><th scope="row">Import a Microsoft Money file<span class="cell-note"><code>.mny</code>, <code>.mdb</code>/<code>.accdb</code>, and Money&rsquo;s own export workbook.</span></th><td class="c"><span class="yes">&#10003;</span></td><td class="c"><span class="yes">&#10003;</span></td></tr>
+            <tr><th scope="row">Import a Microsoft Money file<span class="cell-note"><code>.mny</code>,
+            <code>.mdb</code>/<code>.accdb</code>, and Money&rsquo;s own export workbook. The
+            sample file that ships with Money Plus Home &amp; Business reads in full: 28 accounts,
+            2,039 transactions, 17 holdings.</span></th><td class="c"><span class="yes">&#10003;</span></td><td class="c"><span class="yes">&#10003;</span></td></tr>
             <tr><th scope="row">Import QIF and OFX</th><td class="c"><span class="yes">&#10003;</span></td><td class="c"><span class="yes">&#10003;</span></td></tr>
             <tr><th scope="row">Import any CSV or spreadsheet, with the columns mapped by you</th><td class="c"><span class="yes">&#10003;</span></td><td class="c"><span class="yes">&#10003;</span></td></tr>
             <tr><th scope="row">Broker and bank formats recognised automatically<span class="cell-note">Trading&nbsp;212, Saxo, Barclays and others.</span></th><td class="c"><span class="yes">&#10003;</span></td><td class="c"><span class="yes">&#10003;</span></td></tr>
@@ -511,9 +514,11 @@
             <tr>
               <th scope="row">Reading a Money file</th>
               <td>&mdash;</td>
-              <td><span class="yes">Yes</span> &mdash; <code>.mny</code>, <code>.mdb</code>/<code>.accdb</code>, and Money&rsquo;s
-              own export workbook. It shows you the balances it worked out so you can check them
-              before anything is saved.</td>
+              <td><span class="yes">Yes</span> &mdash; <code>.mny</code>, <code>.mdb</code>/<code>.accdb</code>,
+              and Money&rsquo;s own export workbook. It shows you the balances it worked out so
+              you can check them before anything is saved. Home &amp; Business files bring their
+              receivables across as an asset and their sales tax as a loan, rather than dropping
+              both into savings.</td>
             </tr>
             <tr>
               <th scope="row">QIF and OFX</th>
@@ -553,8 +558,9 @@
           <strong>If you only want the data out, there is a tool for that.</strong> <a
           href="money-exporter.html">Money Exporter</a> is a separate program. It reads a
           <code>.mny</code> file, password-protected ones included, and saves it as CSV, Excel,
-          QIF, OFX, QFX, QBO, IIF, GnuCash, YNAB or a PDF statement. It runs on your own machine.
-          There is a free trial, and you never have to touch the rest of WealthHorizon.
+          QIF, OFX, QFX, QBO, IIF, GnuCash, YNAB or a PDF statement. It runs on your own machine,
+          and there is a free trial. <strong>If you buy WealthHorizon you do not need it</strong>:
+          the same engine is built in as Tools &rarr; Data Transformation.
         </p>
       </div>
 
