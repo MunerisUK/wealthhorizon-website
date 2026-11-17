@@ -558,7 +558,11 @@
           <p>
             The whole system is a PostgreSQL database, a Node API and a single-page application served by
             nginx. That is all it is, so the same build runs unchanged on your own machine, a
-            network-attached appliance, any public cloud, or a managed container platform.
+            network-attached appliance, any public cloud, or a managed container platform. The
+            images are published for <strong>linux/amd64 and linux/arm64</strong>, which is what
+            makes an ARM NAS as good a host as an x86 server. The compose file uses host
+            networking, because a QNAP's Container Station virtual switch does not take kindly to
+            the alternative.
           </p>
           <p>
             The API applies the database schema when it starts. You can run it as many times as you like: it

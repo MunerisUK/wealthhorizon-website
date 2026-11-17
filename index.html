@@ -59,8 +59,9 @@
         <a class="btn btn-ghost" href="compare.html#money">Compare with Microsoft Money</a>
       </div>
       <p class="hero-note">
-        There are four editions, and you install all of them on your own hardware. On Windows that is one
-        installer and no command line. <strong>Standard</strong> does what Microsoft Money did. <strong>Pro</strong> adds planning, tax and forecasting.
+        There are four editions, and you install all of them on your own hardware. Take the Windows
+        installer, or run the Docker images on a NAS or a server. <strong>Standard</strong> does
+        what Microsoft Money did. <strong>Pro</strong> adds planning, tax and forecasting.
         <strong>Advisory</strong> is for regulated firms looking after client books.
         <strong>Money&nbsp;Exporter</strong> is a program on its own. It reads a Money file and
         writes it out in ten formats. You do not need the rest to use it.
@@ -637,10 +638,9 @@
         <div class="card">
           <h3>You run it</h3>
           <p>
-            You install every edition on your own hardware. On Windows 10 or 11 that is one installer and
-            nothing else to set up. Everywhere else it is three containers: a database, an API and
-            the web app. Those run on a laptop, a network drive at home, a server at the office,
-            or any cloud you already use.
+            You install every edition on your own hardware, and there are two ways to do it. Take the Windows
+            installer, or take the Docker images. Neither is the lesser option, and you are not
+            stuck with the one you pick.
           </p>
           <p>
             The only thing we run is a demonstration account, so you can look round before you install
@@ -665,27 +665,55 @@
         </div>
             </div>
 
-      <div class="note">
-        <p>
-          <strong>On Windows there is an installer, and that is the whole job.</strong> One
-          <code>.exe</code> for Windows&nbsp;10 and 11. It puts Node, PostgreSQL and
-          WealthHorizon on the PC and runs them as a Windows service, so the app starts with the
-          machine. There is <strong>no Docker, no WSL and no command line</strong>. The
-          passwords it needs are made up for you.
-        </p>
-        <p>
-          Your data goes in <code>C:\ProgramData\WealthHorizon</code>, which only
-          administrators can open. Uninstalling leaves it there. To update, run the newer
-          installer over the top.
-        </p>
+      <div class="grid grid-2" style="margin-bottom:1.6rem">
+        <div class="card card-accent">
+          <h3>The Windows installer</h3>
+          <p>
+            One <code>.exe</code> for Windows&nbsp;10 and 11. It puts Node, PostgreSQL and
+            WealthHorizon on the PC and runs them as a Windows service, so the app starts with
+            the machine. <strong>No Docker, no WSL and no command line.</strong> The passwords it
+            needs are made up for you.
+          </p>
+          <p>
+            Your data goes in <code>C:\ProgramData\WealthHorizon</code>, which only
+            administrators can open. Uninstalling leaves it there. To update, run the newer
+            installer over the top.
+          </p>
+          <p style="margin-bottom:0">
+            There is a tick box on the way in that lets other devices at home open it, so you can
+            use it from a phone or a tablet. Leave it unticked and nothing but that PC can reach
+            it.
+          </p>
+        </div>
+        <div class="card card-accent">
+          <h3>Or Docker, anywhere you like</h3>
+          <p>
+            Three containers: a database, an API and the web app. If a machine runs Docker
+            Compose, it runs WealthHorizon. A <strong>NAS</strong> from QNAP, Synology or Unraid.
+            A mini PC under the stairs. A server at the office. Any cloud you already pay for.
+          </p>
+          <p>
+            The images are built for <strong>both amd64 and arm64</strong>, so an ARM NAS is as
+            good a home as an x86 one. We run it on a QNAP ourselves, and there is an operations
+            menu written for that box.
+          </p>
+          <p style="margin-bottom:0">
+            Nothing about the hosting is special, and nothing is tied to us. The same build runs
+            unchanged wherever you put it.
+          </p>
+        </div>
+      </div>
+
+      <div class="note note-plain">
         <p style="margin-bottom:0">
-          Everything stays on the PC unless you say otherwise. There is a tick box on the way in
-          that lets other devices at home open it, so you can use it from a phone or a tablet.
-          Leave it unticked and nothing but that PC can reach it.
+          <strong>You are not stuck with the one you choose.</strong> Both routes run the same
+          build and keep your records in the same PostgreSQL database, and every edition can
+          export the lot whenever you want. Start on the Windows PC and move it to the NAS later
+          if that suits you better.
         </p>
       </div>
 
-            <div class="note">
+      <div class="note">
         <p>
           <strong>If the licence lapses, your data is still yours.</strong> An instance without a
           current key goes <strong>read-only</strong>. Every page still reads. Every export and
