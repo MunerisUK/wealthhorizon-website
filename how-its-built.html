@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How WealthHorizon is built — engineering, security and assurance</title>
-<meta name="description" content="The engineering standards WealthHorizon is built to: the stack and versions, the specification-first development workflow, the continuous integration gates, the security architecture, accessibility, data protection posture and deployment model.">
+<meta name="description" content="The engineering standards WealthHorizon is built to: the stack and versions, the specification-first development workflow, the thirteen continuous integration gates, the security architecture, the STRIDE threat model and governance pack, accessibility, data protection posture and deployment model.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,6 +57,7 @@
         <a class="btn btn-ghost" href="#stack">The stack</a>
         <a class="btn btn-ghost" href="#assurance">Testing &amp; assurance</a>
         <a class="btn btn-ghost" href="#security">Security</a>
+        <a class="btn btn-ghost" href="#governance">Threat model</a>
         <a class="btn btn-ghost" href="#limits">Known limitations</a>
       </div>
     </div>
@@ -209,7 +210,7 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">3. Testing and assurance</p>
-        <h2>Seven gates, every one of which blocks a merge</h2>
+        <h2>Thirteen gates, every one of which blocks a merge</h2>
         <p>
           Continuous integration runs on every pull request. A change that fails any of the
           following cannot be merged.
@@ -233,11 +234,11 @@
         </li>
         <li>
           <span class="k">Front-end test suite</span>
-          <span class="v">3,147 tests across 266 files &mdash; pure calculation helpers, formatting and responsive logic, and component behaviour under jsdom.</span>
+          <span class="v">3,753 tests across 328 files &mdash; pure calculation helpers, formatting and responsive logic, and component behaviour under jsdom.</span>
         </li>
         <li>
           <span class="k">Back-end test suite</span>
-          <span class="v">3,644 tests across 294 files. They run against a migrated and seeded PostgreSQL instance, so the database-backed tests work on real data rather than a mock. Every test worker gets its own database. A suite that writes cannot be made to pass or fail by the order it runs in.</span>
+          <span class="v">5,080 tests across 444 files. They run against a migrated and seeded PostgreSQL instance, so the database-backed tests work on real data rather than a mock. Every test worker gets its own database. A suite that writes cannot be made to pass or fail by the order it runs in.</span>
         </li>
         <li>
           <span class="k">Browser suite</span>
@@ -249,8 +250,39 @@
         <li>
           <span class="k">Dependency audit</span>
           <span class="v">Both dependency trees are audited on every pull request. A new advisory at or above the set
-          threshold fails the build, so an unpatched dependency stops the merge instead of
+                    threshold fails the build, so an unpatched dependency stops the merge instead of
           turning up at the next review.</span>
+        </li>
+        <li>
+          <span class="k">Static analysis</span>
+          <span class="v">semgrep runs over the tree on every pull request. Its findings are uploaded as code scanning results, rather than left in a log for somebody to read.</span>
+        </li>
+        <li>
+          <span class="k">Secret scan</span>
+          <span class="v">gitleaks reads the whole history, not just the diff. A key committed and later removed is
+          still a leaked key, and the history is what an attacker clones.</span>
+        </li>
+        <li>
+          <span class="k">Dependencies, infrastructure and secrets in the tree</span>
+          <span class="v">trivy scans the working tree for vulnerable dependencies, infrastructure-as-code problems
+          and secrets.</span>
+        </li>
+        <li>
+          <span class="k">Both container images</span>
+          <span class="v">trivy builds the backend and frontend images on every pull request and scans each one. A
+          clean dependency tree and a vulnerable base image are different questions, and this
+          asks the second.</span>
+        </li>
+        <li>
+          <span class="k">Dependency review</span>
+          <span class="v">Anything a pull request adds to either dependency tree is reviewed before it lands, so a
+          new package arrives as a decision rather than as a line in a lock file.</span>
+        </li>
+        <li>
+          <span class="k">A model-assisted review against the threat model</span>
+          <span class="v">Every pull request is read against the STRIDE threat model below. It does not replace the
+          other gates and it does not get the last word; it is there to catch the class of
+          mistake that passes a type check and a test suite and still hands something away.</span>
         </li>
       </ul>
 
@@ -333,7 +365,26 @@
             a wrong passphrase fails the check outright instead of producing plausible-looking
             rubbish.</td></tr>
             <tr><th scope="row">Backup lifecycle</th><td>Scheduled daily, weekly or monthly, with a retention count that prunes older snapshots and a log of every run.</td></tr>
-            <tr><th scope="row">Audit trail</th><td>Authentication, role grants, client record access, planning access, suitability generation and backups are recorded with actor, action, resource, time and address. Writing an audit entry can never fail a request.</td></tr>
+            <tr><th scope="row">Audit trail</th><td>Authentication, role grants, client record access,
+            planning access, suitability generation and backups are recorded with actor, action,
+            resource, time and address. Writing an audit entry can never fail a request. The trail
+            is <strong>append-only and hash-chained</strong>, and <code>audit_verify</code> checks
+            the chain. A deleted user stays named in it. The address recorded is the
+            caller&rsquo;s, not the proxy&rsquo;s.</td></tr> <tr><th scope="row">What listens on
+            the network</th><td>PostgreSQL and the API listen on the machine itself. Only port
+            8082 faces the network, and <code>CORS_ORIGIN</code> is empty by default, which means
+            no cross-origin access at all until somebody sets it. The backend refuses to start in
+            production with a <code>JWT_SECRET</code> under 32 characters; the installers generate
+            96.</td></tr> <tr><th scope="row">Backups that leave the machine</th><td>A scheduled backup that e-mails a copy, or writes one to a folder, needs a passphrase of twelve characters or more. Every copy it makes is encrypted. A backup folder must sit
+            inside <code>WH_BACKUP_ROOT</code>. The administrator&rsquo;s bundle carries no
+            password hashes and never writes one.</td></tr> <tr><th scope="row">Restoring a
+            bundle</th><td>Every key in an uploaded bundle is checked against the table&rsquo;s real columns, and quoted. A hostile key in a payee is dropped, not run. Every
+            restored row is stamped with the restoring household whatever the file says, and a row
+            whose parent belongs to another household is left out.</td></tr> <tr><th
+            scope="row">Supply chain</th><td>Every workflow action is pinned to a commit. Releases
+            carry <code>SHA256SUMS</code> and build provenance. The dependency audit fails at
+            moderate. The brand font is bundled, so a browser rendering the application never
+            contacts Google.</td></tr>
 
             <tr class="row-group"><th colspan="2" scope="colgroup">Outbound and content</th></tr>
             <tr><th scope="row">Server-side request forgery</th><td>There is only one place the server fetches an address a user supplied, and that is an
@@ -406,11 +457,73 @@
     </div>
   </section>
 
+    <!-- ===================== Threat model and governance ===================== -->
+  <section id="governance" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">6. The threat model, and what was found</p>
+        <h2>Somebody went looking, and wrote down what they found</h2>
+        <p>
+          A security section that lists controls is a list of good intentions. These are the
+          documents that test them, and they are kept with the code rather than in a drawer.
+        </p>
+      </div>
+
+      <ul class="speclist">
+        <li>
+          <span class="k">A STRIDE threat model</span>
+          <span class="v">Spoofing, tampering, repudiation, information disclosure, denial of service, elevation
+          of privilege, worked through for this application rather than in the abstract. Every
+          pull request is now read against it.</span>
+        </li>
+        <li>
+          <span class="k">A security review, with the findings ranked and traced to file and line</span>
+          <span class="v">Not &ldquo;we reviewed it&rdquo;. Each finding names the file and the line it is in.
+          The high and medium ones are closed. Two are worth saying out loud, because a test suite does not catch that kind. A backup bundle could carry SQL in a key. And three permission gates compared a raw path while Express matched a lower-cased one, so <code>/API/BACKUP/…</code> went straight through. Both are fixed. Both now have tests.</span>
+        </li>
+        <li>
+          <span class="k">An information-governance pack</span>
+          <span class="v">A draft data protection impact assessment, a record of processing and a data-flow map.
+          Gap assessments against UK&nbsp;GDPR, the Data Security and Protection Toolkit, DTAC,
+          DCB0129 and Cyber Essentials Plus. These are assessments of where the product stands,
+          not certifications &mdash; nothing here has been audited by anyone outside the
+          company.</span>
+        </li>
+        <li>
+          <span class="k">A table of what the policies claim against what the code does</span>
+          <span class="v">The point of it is to find the rows where the two disagree, which is the usual way a
+          policy document becomes fiction.</span>
+        </li>
+        <li>
+          <span class="k">A hostile read of the pack itself</span>
+          <span class="v">Somebody was asked to argue against the documents rather than approve them, and that
+          argument is kept with them.</span>
+        </li>
+        <li>
+          <span class="k">A penetration test brief, a secrets inventory and a breach procedure</span>
+          <span class="v">The brief sets the scope, the ranked targets and the rules of engagement for an independent test. It also lists what is already known and accepted. The inventory names
+          every secret, what an exposure of it would reach and how to rotate it. The procedure
+          covers the first hour, containment, the 72-hour Article&nbsp;33 deadline and who has
+          to be told.</span>
+        </li>
+      </ul>
+
+      <div class="note note-warn">
+        <p style="margin-bottom:0">
+          <strong>No independent test has been carried out.</strong> The brief exists and the
+          review was done in house. A firm whose procurement needs a third-party penetration
+          test or a certification should ask before assuming, and should read
+          <a href="#limits">what is not claimed</a> below.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== Accessibility ===================== -->
   <section id="accessibility">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">6. Accessibility and devices</p>
+        <p class="eyebrow">7. Accessibility and devices</p>
         <h2>Requirements enforced globally, not decided per screen</h2>
       </div>
       <ul class="speclist">
@@ -437,7 +550,7 @@
   <section class="band" id="deployment">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">7. Deployment and ownership</p>
+        <p class="eyebrow">8. Deployment and ownership</p>
         <h2>Three tiers, two ways to run them, no vendor lock-in</h2>
       </div>
       <div class="grid grid-2">
@@ -500,7 +613,7 @@
   <section id="limits">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">8. Known limitations</p>
+        <p class="eyebrow">9. Known limitations</p>
         <h2>What is not claimed</h2>
         <p>
           A security write-up that lists only the good parts is not worth reading. The following are known
