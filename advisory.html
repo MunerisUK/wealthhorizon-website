@@ -555,6 +555,12 @@
         <li><span class="k">Adviser scope</span><span class="v">An adviser sees the clients they are engaged with and no others. Which of a client&rsquo;s accounts they may see is granted per account, not per relationship.</span></li>
         <li><span class="k">Compliance scope</span><span class="v">A compliance manager has firm-wide visibility of the compliance suite and is the only role that may open the audit log. Every other caller is refused.</span></li>
         <li><span class="k">Management scope</span><span class="v">A manager in the reporting hierarchy sees their own subtree, derived from the reporting chain rather than assigned by hand.</span></li>
+                <li><span class="k">A system administrator cannot read client files</span><span class="v">Running the platform and seeing the clients are separate jobs, and the platform now treats
+        them that way. A System Administrator can no longer open client overviews or plans. A
+        compliance manager sees only advised households, and their planning only where the
+        client has shared it.</span></li>
+        <li><span class="k">A child member of a household is read-only</span><span class="v">Family invitations work only for the address they were sent to, so an invitation that is
+        forwarded does not let somebody else in.</span></li>
         <li><span class="k">Administrative floor</span><span class="v">The platform will not let itself be left without an active system administrator, and the first
         administrator cannot be deleted, demoted or deactivated. Both rules are enforced twice.
         Once in the application, so the message tells you what went wrong. Once in the database,
@@ -574,8 +580,16 @@
         audit trail: the invitation, the acceptance, the code being set, each sign-in and how it
         was allowed, wrong codes, requests, decisions and withdrawal. The nominee&rsquo;s screen
         says whose accounts they are reading and that the visit is recorded.</span></li>
-        <li><span class="k">Assurance documentation</span><span class="v">Three documents are kept alongside the code and are available on request through the technical
-        enquiry below. A penetration test brief. It sets the scope, the ranked targets and the rules of engagement for an independent test, and lists the findings already known and accepted. A secrets inventory, naming every secret, what an exposure of it would reach,
+                <li><span class="k">The audit trail cannot be edited, and that is now checkable</span><span class="v">It is append-only and hash-chained, and a command verifies the chain. A deleted user stays
+        named in it, so a record does not become anonymous when somebody leaves. The address
+        recorded is the caller's, not the proxy's. Reads and changes of vulnerability flags, the
+        FCA evidence export, settings changes, document downloads and client searches are all
+        recorded.</span></li>
+        <li><span class="k">A household's data can be handed over, or erased</span><span class="v">There is a <em>Download my data</em> action on Account Access, and a System Administrator
+        can erase a household outright, with a dry run first. Both matter for a subject access
+        request and for the right to erasure, and the firm remains the controller for
+        both.</span></li>
+        <li><span class="k">Assurance documentation</span><span class="v">The documents below are kept alongside the code and are available on request through the technical enquiry at the end of this page. There is also a security review with its findings ranked and traced to file and line, a STRIDE threat model, and an information-governance pack: a draft data protection impact assessment, a record of processing, a data-flow map, and gap assessments against UK&nbsp;GDPR, the Data Security and Protection Toolkit, DTAC, DCB0129 and Cyber Essentials Plus. Those are assessments of where the product stands. They are not certifications, and no independent penetration test has been carried out. A penetration test brief. It sets the scope, the ranked targets and the rules of engagement for an independent test, and lists the findings already known and accepted. A secrets inventory, naming every secret, what an exposure of it would reach,
         and how to rotate it. A breach and incident response procedure. It covers the first hour, how to contain an incident in this application, the 72-hour Article 33 deadline, and who has to be told.</span></li>
         <li><span class="k">One valuation, asserted</span><span class="v">Every screen that shows a figure for an account works it out with the same function. That covers the accounts list, net worth, allocation, the planner and the snapshot breakdown. A test checks they all agree on the same data. Without it, two screens can quote different totals for the same client. Both add up. And nobody can tell which one a suitability report was written from.</span></li>
         <li><span class="k">Authentication</span><span class="v">Passwords are hashed with argon2id under a stated complexity policy. Sessions use short-lived
