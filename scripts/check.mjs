@@ -271,6 +271,44 @@ async function browserChecks(base) {
       await lctx.close();
     }
 
+    // What the reader picked outlives the visit, and outranks the locale.
+    {
+      const mctx = await browser.newContext({ viewport: { width: 1400, height: 900 }, locale: 'en-US' });
+      const mpage = await mctx.newPage();
+      await mpage.goto(base + '/planning.html', { waitUntil: 'networkidle' });
+      await mpage.waitForTimeout(200);
+      const before = await mpage.locator('#jurisdictions [role="tab"][aria-selected="true"]').innerText();
+
+      await mpage.getByRole('tab', { name: 'United Kingdom' }).click();
+      await mpage.waitForTimeout(200);
+
+      // Come back with no fragment at all: the pick must survive the reload.
+      await mpage.goto(base + '/planning.html', { waitUntil: 'networkidle' });
+      await mpage.waitForTimeout(200);
+      const after = await mpage.locator('#jurisdictions [role="tab"][aria-selected="true"]').innerText();
+      if (before !== 'United States') fail(`remembered pick: expected a US locale to start on the US, got ${before}`);
+      else if (after !== 'United Kingdom') fail(`remembered pick: picked the UK in a US locale, came back to ${after}`);
+      else pass('jurisdictions: a pick outlives the visit and beats the locale');
+
+      // A fragment is still a deliberate request and outranks the memory.
+      await mpage.goto(base + '/planning.html#us', { waitUntil: 'networkidle' });
+      await mpage.waitForTimeout(200);
+      const linked = await mpage.locator('#jurisdictions [role="tab"][aria-selected="true"]').innerText();
+      if (linked !== 'United States') fail(`a link must beat the remembered pick, got ${linked}`);
+      else pass('jurisdictions: a link beats the remembered pick');
+
+      // The editions tabset is not named, so it must remember nothing.
+      await mpage.goto(base + '/index.html', { waitUntil: 'networkidle' });
+      await mpage.getByRole('tab', { name: 'Pro' }).click();
+      await mpage.waitForTimeout(200);
+      await mpage.goto(base + '/index.html', { waitUntil: 'networkidle' });
+      await mpage.waitForTimeout(200);
+      const ed = await mpage.locator('#editions [role="tab"][aria-selected="true"]').innerText();
+      if (ed !== 'Money Exporter') fail(`an unnamed tabset must not remember, got ${ed}`);
+      else pass('tabs: an unnamed tabset remembers nothing');
+      await mctx.close();
+    }
+
     // A link to a tab is a deliberate request and must beat the locale.
     {
       const hctx = await browser.newContext({ viewport: { width: 1400, height: 900 }, locale: 'en-US' });
