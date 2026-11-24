@@ -207,7 +207,8 @@ async function browserChecks(base) {
   // are read as Money Exporter, Standard, Pro, Advisory.
   const PANELS = ['exporter', 'standard', 'pro', 'advisory'];
   {
-    const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
+    // The editions tabset claims no regions, so a locale must not move it.
+    const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 }, locale: 'en-US' });
     const page = await ctx.newPage();
     const visible = () => Promise.all(PANELS.map((id) => page.locator('#' + id).isVisible()));
 
@@ -251,14 +252,42 @@ async function browserChecks(base) {
   // so it is checked the same way the editions are.
   const JUR = ['uk', 'us', 'global'];
   {
-    const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
+    // The tabset opens on the reader's own country, so the default is a
+    // function of the locale and has to be checked per locale. Opening the
+    // wrong country first tells somebody the product is not for them.
+    for (const [locale, want, label] of [
+      ['en-GB', 'true,false,false', 'United Kingdom'],
+      ['en-US', 'false,true,false', 'United States'],
+      ['de-DE', 'false,false,true', 'Elsewhere, for a region with no tab'],
+      ['en-IE', 'false,false,true', 'Elsewhere, for Ireland'],
+    ]) {
+      const lctx = await browser.newContext({ viewport: { width: 1400, height: 900 }, locale });
+      const lpage = await lctx.newPage();
+      await lpage.goto(base + '/planning.html', { waitUntil: 'networkidle' });
+      await lpage.waitForTimeout(200);
+      const lv = await Promise.all(JUR.map((id) => lpage.locator('#' + id).isVisible()));
+      if (String(lv) !== want) fail(`jurisdictions in ${locale}: expected ${label}, got ${lv}`);
+      else pass(`jurisdictions: ${locale} opens ${label}`);
+      await lctx.close();
+    }
+
+    // A link to a tab is a deliberate request and must beat the locale.
+    {
+      const hctx = await browser.newContext({ viewport: { width: 1400, height: 900 }, locale: 'en-US' });
+      const hpage = await hctx.newPage();
+      await hpage.goto(base + '/planning.html#uk', { waitUntil: 'networkidle' });
+      await hpage.waitForTimeout(200);
+      const hv = await Promise.all(JUR.map((id) => hpage.locator('#' + id).isVisible()));
+      if (String(hv) !== 'true,false,false') fail(`#uk in a US locale: the link must win, got ${hv}`);
+      else pass('jurisdictions: a link beats the locale');
+      await hctx.close();
+    }
+
+    const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 }, locale: 'en-GB' });
     const page = await ctx.newPage();
     const visible = () => Promise.all(JUR.map((id) => page.locator('#' + id).isVisible()));
 
     await page.goto(base + '/planning.html', { waitUntil: 'networkidle' });
-    let v = await visible();
-    if (String(v) !== 'true,false,false') fail(`jurisdiction tabs on load: expected only the UK, got ${v}`);
-    else pass('jurisdictions: one panel on load');
 
     const n = await page.locator('#jurisdictions .tablist [role="tab"]').count();
     if (n !== JUR.length) fail(`jurisdictions: ${n} tabs for ${JUR.length} panels`);
@@ -266,7 +295,7 @@ async function browserChecks(base) {
 
     await page.getByRole('tab', { name: 'United States' }).click();
     await page.waitForTimeout(200);
-    v = await visible();
+    let v = await visible();
     if (String(v) !== 'false,true,false') fail(`jurisdiction click: got ${v}`); else pass('jurisdictions: click');
 
     await page.keyboard.press('ArrowRight');
