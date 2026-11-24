@@ -151,7 +151,24 @@ There are four things to sell, and no others:
 | **Standard** | What Microsoft Money did. |
 | **Pro** | Standard, plus planning, tax and forecasting. |
 | **Advisory** | Pro, plus the supervision and compliance tools, for regulated firms. |
-| **Money Exporter** | A separate converter, with its own one-off licence, sold at `https://muneris.lemonsqueezy.com/`. |
+| **Money Exporter** | A separate converter with its own one-off licence. **In beta testing and not on sale.** |
+
+**Money Exporter is not on sale yet.** Every buy button on the site goes to
+`beta.html`, which says beta testing is in progress, and the buttons read
+"When it goes on sale" rather than "Buy a licence". Do not restore a checkout
+link without being told to.
+
+**Do not put the Lemon Squeezy store back.** Lemon Squeezy is being retired:
+its licensing goes first, in March 2027, and the application has already moved
+on. `backend/src/services/licensing.ts` accepts Muneris-signed `MUN1` keys,
+checked offline against public keys built into the image, with renewals from
+the licence server in `WH_DIST_LICENCE_SERVER_URL`. For the dates and the plan,
+read `docs/architecture/licensing-after-lemon-squeezy.md` in the
+`wealthhorizon` repository rather than repeating a date from here.
+
+Where Money Exporter will be sold has not been decided. Until somebody says
+what replaces it, the site names no store and no price. That is a decision,
+not an omission.
 
 **There is no free edition.** A "Free" tier with 30 accounts, 1,000 transactions
 and 5 MB was written onto this site and had to be taken off again. Nothing in
