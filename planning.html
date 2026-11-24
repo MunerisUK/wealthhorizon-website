@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Planning and retirement — WealthHorizon</title>
-<meta name="description" content="Retirement planning in WealthHorizon: a guided planner that asks only the questions that apply to you, an advanced planner where you set every assumption, FIRE, and goals tracked against your actual wealth.">
+<meta name="description" content="Retirement planning in WealthHorizon: a guided planner that asks only the questions that apply to you, an advanced planner where you set every assumption, FIRE, and goals tracked against your actual wealth. UK, US, Ireland and Jersey tax rules, with the source behind every figure.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,14 +50,15 @@
       <h1>Will there be enough, and when?</h1>
       <p class="lede">
         Your accounts tell you what you have now. They do not tell you whether it will last. WealthHorizon
-        has three tools for that. The pension calculator asks two questions. The guided planner
+        has three tools for that, and they work to <a href="#jurisdictions">UK or US rules</a>. The pension calculator asks two questions. The guided planner
         asks more, but only the ones that apply to you. The advanced planner lets you set
         everything yourself, and works out the tax and inheritance tax year by year. All three
         work on the same plan, so you never type anything in twice. All three are in
         <strong>Pro</strong>.
       </p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="#calculator">The pension calculator</a> <a class="btn
+        <a class="btn btn-primary" href="#jurisdictions">UK, US or elsewhere</a> <a class="btn btn-ghost"
+        href="#calculator">The pension calculator</a> <a class="btn
         btn-ghost" href="#guided">The guided planner</a> <a class="btn btn-ghost"
         href="#advanced">The advanced planner</a> <a class="btn btn-ghost" href="#tax">Tax</a>
         <a class="btn btn-ghost" href="#estate">Inheritance tax</a> <a class="btn btn-ghost"
@@ -133,6 +134,236 @@
           results read from that instead. The calculator uses the same pensions, with a button to
           move up to the full fact-find. You only ever type something in once.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Where you are taxed ===================== -->
+  <section id="jurisdictions" class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Where you are taxed</p>
+        <h2>The rules follow your household, not ours</h2>
+        <p>
+          A plan is only as good as the tax it applies. Pick your country below to see what
+          WealthHorizon knows about it, and what it does not. Every figure here is a number the
+          application holds as dated reference data, with its source. The markers lead to
+          <a href="#sources">the sources</a>.
+        </p>
+      </div>
+
+      <div class="tabs" data-tabs>
+        <div class="tablist" role="tablist" aria-label="Where you are taxed">
+          <button type="button" role="tab" id="tab-uk" aria-controls="uk" aria-selected="true">United Kingdom</button>
+          <button type="button" role="tab" id="tab-us" aria-controls="us" aria-selected="false" tabindex="-1">United States</button>
+          <button type="button" role="tab" id="tab-global" aria-controls="global" aria-selected="false" tabindex="-1">Elsewhere</button>
+        </div>
+
+        <!-- ---------- United Kingdom ---------- -->
+        <div class="tabpanel" id="uk" role="tabpanel" aria-labelledby="tab-uk" tabindex="0">
+          <div class="grid grid-2" style="align-items:start">
+            <div>
+              <h3>United Kingdom</h3>
+              <p class="lede">
+                The UK is the jurisdiction the planner was built around, and it is the most
+                complete.
+              </p>
+              <h4>Accounts it knows</h4>
+              <p>
+                ISA, Junior ISA, Lifetime ISA, SIPP, general investment account, defined benefit
+                and defined contribution pensions, and the state pension. Each account carries
+                its own wrapper, so the forecast knows what is taxed and what is not.
+              </p>
+              <h4>Income tax</h4>
+              <p>
+                The real bands and allowances for each year, not one flat rate. The personal
+                allowance tapers away above the threshold, which is what produces the 60% zone
+                the Tax checks tab flags. Thresholds hold their published value through the
+                freeze, then rise with your inflation figure.
+              </p>
+              <h4>Pensions</h4>
+              <p>
+                Tax-free cash is a quarter of the pot, capped at
+                <strong>&pound;268,275</strong><sup class="ref"><a href="#src-1" id="ref-1">1</a></sup>
+                across every pension you hold, not one cap per pension. Take the taxed part and
+                what you can pay in afterwards is capped at
+                <strong>&pound;10,000 a year</strong><sup class="ref"><a href="#src-2" id="ref-2">2</a></sup>.
+                Tax-free cash on its own does not trigger that.
+              </p>
+            </div>
+            <div>
+              <h4>Capital gains and dividends</h4>
+              <p>
+                Capital gains tax on what you sell to live on, using the annual exempt amount and
+                the rates for your band. FIFO, or the full matching rules: same day, then the
+                next 30 days, then the pool. Dividend tax by band outside an ISA, and none
+                inside one.
+              </p>
+              <h4>Inheritance tax</h4>
+              <p>
+                Worked out for every year of the forecast. The nil-rate band, doubled where a
+                late spouse&rsquo;s transfers. The residence band where the home passes to direct
+                descendants, capped at what the home is worth and tapered away above the
+                threshold. Business relief on holdings you flag. Unused pensions from the year
+                the rule brings them in, April 2027, held as a dated rule rather than written
+                into the code.
+              </p>
+              <h4>Gifts</h4>
+              <p>
+                A gift plan against the seven-year rule. Tax above the band tapers by how long ago the gift was.
+                It falls on the people who received the gift, not on the estate, so it is reported
+                beside the estate&rsquo;s bill rather than taken off what passes.
+              </p>
+              <div class="note">
+                <p style="margin-bottom:0">
+                  <strong>Also in the UK edition.</strong> National Insurance thresholds, the
+                  savings allowance, and the dividend allowance, each held per year with its
+                  source.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- United States ---------- -->
+        <div class="tabpanel" id="us" role="tabpanel" aria-labelledby="tab-us" tabindex="0">
+          <div class="grid grid-2" style="align-items:start">
+            <div>
+              <h3>United States</h3>
+              <p class="lede">
+                A US household gets its own account types, its own tax return lines and its own
+                retirement rules. The application speaks American: Checking rather than Current,
+                dollars, mm/dd/yy dates, and no ISA reminders.
+              </p>
+              <h4>Accounts it knows</h4>
+              <p>
+                401(k), 403(b), Traditional IRA, Roth IRA, HSA, 529 and ordinary taxable
+                brokerage accounts. Each is drawn under its own rules rather than treated as one
+                pot.
+              </p>
+              <h4>Retirement income</h4>
+              <p>
+                <strong>Social Security</strong> in the plan. <strong>Required minimum
+                distributions</strong>, taken when they fall due. <strong>IRMAA</strong>, the
+                Medicare income surcharge, which catches people who did not know it existed.
+              </p>
+              <h4>Roth conversions</h4>
+              <p>
+                Convert Traditional money to Roth each year: up to the top of a federal bracket
+                you choose, under an IRMAA tier, or a fixed amount. The conversion comes after
+                the year&rsquo;s spending is drawn. The drawdown optimiser will compare
+                converting against not converting.
+              </p>
+            </div>
+            <div>
+              <h4>Capital gains</h4>
+              <p>
+                Short-term kept apart from long-term, the way Schedule D has them, with the
+                <strong>$3,000</strong> limit on a net loss and the rest carried forward. Form
+                8949 marks a wash sale with the amount. There is a tax-loss harvesting
+                suggestion, and a 1099 check. Retirement accounts are left out of all of it,
+                because they are not taxed that way.
+              </p>
+              <h4>Federal and state</h4>
+              <p>
+                The standard deduction compared against itemising, with state tax withheld
+                counting as a SALT deduction. <strong>All fifty states and the District of Columbia.</strong> Each has its own deduction, brackets, Social Security rule and retirement exclusion, with a note of what it leaves out. Moving state mid-year is a date you set, and that year is split.
+              </p>
+              <h4>Estate</h4>
+              <p>
+                The federal estate tax plays the part inheritance tax plays for a UK household.
+                The exemption is <strong>$15,000,000</strong> a person from
+                2026<sup class="ref"><a href="#src-3" id="ref-3">3</a></sup>, indexed after, and a
+                surviving spouse may use a late spouse&rsquo;s unused part. Above it the rate is
+                <strong>40%</strong>. The <strong>step-up in basis</strong> is applied, so gains
+                held at death are not charged. Qualified charitable distributions are modelled,
+                up to <strong>$111,000</strong> a person a year.
+              </p>
+              <div class="note">
+                <p style="margin-bottom:0">
+                  <strong>A dozen states charge estate tax too.</strong> The Estate tab adds a column where yours
+                  does. Oregon from $1m, Massachusetts from $2m, Washington and Minnesota from
+                  $3m, Illinois from $4m, New York from $7.35m. Illinois&rsquo;s whole-estate
+                  cliff and New York&rsquo;s 105% cliff are worked the way those states work them.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note note-plain" style="margin-top:1.6rem">
+            <p style="margin-bottom:0">
+              <strong>Getting your data in.</strong> Imports from Quicken, Monarch, YNAB and Bank
+              of America&rsquo;s My Financial Picture, with US date order and US PDF statements.
+              Bank and broker connections through <strong>SimpleFIN</strong>. More than a hundred
+              US institutions are in the catalogue with their logos.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- Elsewhere ---------- -->
+        <div class="tabpanel" id="global" role="tabpanel" aria-labelledby="tab-global" tabindex="0">
+          <div class="grid grid-2" style="align-items:start">
+            <div>
+              <h3>Elsewhere</h3>
+              <p class="lede">
+                Two more jurisdictions have full tax tables. Everywhere else, the tracking works
+                and the tax does not, and the application says which it is rather than guessing.
+              </p>
+              <h4>Ireland</h4>
+              <p>
+                Income tax bands and allowances. A retirement lump sum of a quarter of the fund,
+                capped at <strong>&euro;200,000</strong><sup class="ref"><a href="#src-4" id="ref-4">4</a></sup>
+                across every pension. Capital gains with the annual exempt amount. <strong>Deemed
+                disposal</strong>, the charge that falls every eighth year, worked out per
+                holding.
+              </p>
+              <h4>Jersey</h4>
+              <p>
+                Income tax with the married allowance. A tax-free lump sum of
+                <strong>30% of an approved scheme</strong><sup class="ref"><a href="#src-5" id="ref-5">5</a></sup>.
+                <strong>No inheritance tax</strong>, and the planner says so plainly for each
+                year rather than leaving a blank for you to read something into. No capital gains
+                tax either, so none is charged. Long-term care contribution thresholds are held
+                as data.
+              </p>
+            </div>
+            <div>
+              <h4>Anywhere else</h4>
+              <p>
+                The accounts, the register, investments, net worth and the reports all work
+                wherever you are. <strong>198 currencies.</strong> Every entry keeps the rate, the date and the source it was converted at, so last year&rsquo;s figures do not move when today&rsquo;s rate does.
+              </p>
+              <p>
+                What you do not get is a tax table. The forecast offers a single flat rate for a
+                rough answer, or no tax at all. It will not invent bands for a country it has no
+                rules for. Where a figure cannot be worked out it says so instead of showing you
+                a number.
+              </p>
+              <h4>A household in more than one country</h4>
+              <p>
+                Each person carries their own residency and citizenship, and each account its own
+                country and currency. A couple taxed in two places is taxed as two people. Which
+                rules apply is not a choice you get to make, and the application will not pretend
+                otherwise.
+              </p>
+              <div class="note note-warn">
+                <p style="margin-bottom:0">
+                  <strong>A pension or an estate that crosses a border needs a specialist.</strong>
+                  The application says so on the screen, and so do we. Treaties, domicile and a
+                  scheme&rsquo;s own rules turn on facts it cannot see.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note note-plain" style="margin-top:1.6rem">
+            <p style="margin-bottom:0">
+              <strong>You can add a jurisdiction yourself.</strong> Tax profiles are data, not
+              code. A household can hold its own profile with its own bands and allowances
+              alongside the ones that ship, and the ones that ship are kept current by releases.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -824,6 +1055,62 @@
       <div class="btn-row">
         <a class="btn btn-primary" href="compare.html">What else is in Pro</a>
         <a class="btn btn-ghost" href="advisory.html">Planning with an adviser</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Sources ===================== -->
+  <section id="sources" class="band">
+    <div class="wrap-narrow">
+      <div class="section-head">
+        <p class="eyebrow">Sources</p>
+        <h2>Where the figures come from</h2>
+        <p>
+          Every rate and allowance is held in WealthHorizon as dated reference data, with the
+          authority recorded against it. It is not written into the code. That is why a figure
+          can be corrected when a rule changes without a new release, and why these are the
+          sources rather than our word for it.
+        </p>
+      </div>
+
+      <ol class="sources">
+        <li id="src-1">
+          <strong>UK tax-free cash: a quarter of the pot, capped at &pound;268,275.</strong>
+          GOV.UK, <a href="https://www.gov.uk/tax-on-pension">Tax on your private pension</a>.
+          Held for 2025 and 2026. <a href="#ref-1">Back</a>
+        </li>
+        <li id="src-2">
+          <strong>UK money purchase annual allowance: &pound;10,000 a year.</strong>
+          GOV.UK, <a href="https://www.gov.uk/guidance/pension-schemes-money-purchase-annual-allowance">Money purchase annual allowance</a>.
+          Held for 2023 onward. <a href="#ref-2">Back</a>
+        </li>
+        <li id="src-3">
+          <strong>US federal estate and gift tax exemption: $15,000,000 a person.</strong>
+          From 2026 under Public Law 119-21, indexed after it, with portability for a surviving
+          spouse. The rate above it is 40%, the annual gift exclusion $19,000 a donee and the
+          qualified charitable distribution limit $111,000 a person.
+          <a href="#ref-3">Back</a>
+        </li>
+        <li id="src-4">
+          <strong>Ireland: a retirement lump sum of a quarter, capped at &euro;200,000.</strong>
+          <a href="https://www.revenue.ie">Revenue</a>. Held for 2025 and 2026.
+          <a href="#ref-4">Back</a>
+        </li>
+        <li id="src-5">
+          <strong>Jersey: a tax-free lump sum of 30% of an approved scheme.</strong>
+          <a href="https://www.gov.je">Revenue Jersey</a>. Held for 2025 and 2026.
+          <a href="#ref-5">Back</a>
+        </li>
+      </ol>
+
+      <div class="note note-warn">
+        <p style="margin-bottom:0">
+          <strong>Check the figure before you rely on it.</strong> These are the values the
+          application holds, on the dates it holds them for. Rates change, and a rule announced
+          after a release will not be in it until the data is updated. Nothing here is tax
+          advice. If a number matters to a decision, check it against the authority yourself,
+          and take advice.
+        </p>
       </div>
     </div>
   </section>

@@ -246,6 +246,52 @@ async function browserChecks(base) {
     if (String(fv) !== 'false,false,false,true') fail(`deep link #advisory on a cold load: got ${fv}`); else pass('tabs: deep link, cold load');
     await fresh.close();
   }
+  // The planning page carries a second tabset, for the jurisdiction a household
+  // is taxed in. A reader who lands on the wrong one is told the wrong rules,
+  // so it is checked the same way the editions are.
+  const JUR = ['uk', 'us', 'global'];
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
+    const page = await ctx.newPage();
+    const visible = () => Promise.all(JUR.map((id) => page.locator('#' + id).isVisible()));
+
+    await page.goto(base + '/planning.html', { waitUntil: 'networkidle' });
+    let v = await visible();
+    if (String(v) !== 'true,false,false') fail(`jurisdiction tabs on load: expected only the UK, got ${v}`);
+    else pass('jurisdictions: one panel on load');
+
+    const n = await page.locator('#jurisdictions .tablist [role="tab"]').count();
+    if (n !== JUR.length) fail(`jurisdictions: ${n} tabs for ${JUR.length} panels`);
+    else pass(`jurisdictions: ${n} tabs, ${n} panels`);
+
+    await page.getByRole('tab', { name: 'United States' }).click();
+    await page.waitForTimeout(200);
+    v = await visible();
+    if (String(v) !== 'false,true,false') fail(`jurisdiction click: got ${v}`); else pass('jurisdictions: click');
+
+    await page.keyboard.press('ArrowRight');
+    await page.waitForTimeout(200);
+    v = await visible();
+    if (String(v) !== 'false,false,true') fail(`jurisdiction arrow key: got ${v}`); else pass('jurisdictions: arrow key');
+    await ctx.close();
+
+    // Every reference marker must land on a source, and every source lead back.
+    const rctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
+    const rp = await rctx.newPage();
+    await rp.goto(base + '/planning.html', { waitUntil: 'networkidle' });
+    const refs = await rp.$$eval('sup.ref a', (as) => as.map((a) => a.getAttribute('href')));
+    const backs = await rp.$$eval('ol.sources a[href^="#ref-"]', (as) => as.map((a) => a.getAttribute('href')));
+    if (!refs.length) fail('references: no markers found on the planning page');
+    else {
+      const missing = await rp.evaluate(
+        (hs) => hs.filter((h) => !document.querySelector(h)),
+        refs.concat(backs),
+      );
+      if (missing.length) fail(`references: ${missing.length} marker(s) point nowhere: ${missing.join(', ')}`);
+      else pass(`references: ${refs.length} markers and ${backs.length} back-links all resolve`);
+    }
+    await rctx.close();
+  }
   {
     // With scripting off the page must be whole: every panel rendered, the
     // navigation still in the page, and no control that cannot do anything.
@@ -257,6 +303,13 @@ async function browserChecks(base) {
     if (!await page.locator('#site-nav').isVisible()) fail('no-script: navigation is hidden with no way to open it'); else pass('no-script: navigation present');
     if (await page.locator('.nav-toggle').isVisible()) fail('no-script: menu button shown but inert'); else pass('no-script: no inert menu button');
     if (await page.locator('.tablist').isVisible()) fail('no-script: tablist shown but inert'); else pass('no-script: no inert tablist');
+
+    // The planning page's jurisdiction panels must all render with no script,
+    // or a reader without JavaScript loses two thirds of the tax detail.
+    await page.goto(base + '/planning.html', { waitUntil: 'networkidle' });
+    const jp = await Promise.all(JUR.map((id) => page.locator('#' + id).isVisible()));
+    if (jp.some((x) => !x)) fail(`no-script: a jurisdiction panel is hidden (${jp})`);
+    else pass('no-script: every jurisdiction panel renders');
     const over = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (over > 0) fail(`no-script: overflows by ${over}px`);
     await ctx.close();
