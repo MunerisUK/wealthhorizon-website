@@ -487,3 +487,24 @@ figure.shot figcaption b { color: var(--ink-strong); font-weight: 650; }
 .footer-legal { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, .16); font-size: .86rem; color: var(--on-deep-3); }
 .footer-legal p { margin-bottom: .5rem; max-width: var(--measure); }
 .footer-legal a { color: var(--accent-on-deep); }
+
+/* ---------------------------------------------------------------------------
+   14. References
+   A figure on the page carries a marker; the marker leads to the Sources list
+   at the foot, and each source leads back. The marker has to be reachable by
+   keyboard and big enough to hit on a phone, which a bare <sup> is not.
+--------------------------------------------------------------------------- */
+sup.ref { font-size: .7em; line-height: 0; vertical-align: super; }
+sup.ref a {
+  display: inline-block; min-width: 1.4em; padding: 0 .15em;
+  text-align: center; text-decoration: none; font-weight: 700;
+  color: var(--accent-ink);
+}
+sup.ref a:hover, sup.ref a:focus-visible { text-decoration: underline; }
+
+ol.sources { padding-left: 1.3rem; margin: 0 0 2rem; }
+ol.sources li { margin-bottom: 1.1rem; line-height: 1.6; }
+ol.sources li:target {
+  background: var(--bg-alt); border-radius: var(--radius);
+  box-shadow: 0 0 0 .5rem var(--bg-alt);
+}
