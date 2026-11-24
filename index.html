@@ -264,7 +264,7 @@
               </div>
               <div class="btn-row">
                 <a class="btn btn-primary" href="money-exporter.html">What it reads and writes</a>
-                <a class="btn btn-ghost" href="https://muneris.lemonsqueezy.com/">Buy a licence</a>
+                <a class="btn btn-ghost" href="beta.html">When it goes on sale</a>
               </div>
             </div>
 
@@ -718,9 +718,10 @@
           </ul>
           <p style="font-size:.92rem;color:var(--muted);margin-bottom:1.2rem">
             Money Exporter is a converter. It does not keep your accounts for you. That is what Standard, Pro
-            and Advisory are for.
+            and Advisory are for. It is <a href="beta.html">in beta testing and not on sale
+            yet</a>.
           </p>
-          <a class="btn btn-primary" href="https://muneris.lemonsqueezy.com/">Buy a licence</a>
+          <a class="btn btn-primary" href="beta.html">When it goes on sale</a>
           <p style="margin:.9rem 0 0"><a href="money-exporter.html">What it reads and writes, in full</a></p>
         </div>
       </div>
@@ -803,6 +804,30 @@
             unchanged wherever you put it.
           </p>
         </div>
+      </div>
+
+      <div class="note">
+        <p>
+          <strong>You can reach your own install from anywhere, on a phone as well as a laptop.</strong>
+          It is a web application, so there is no separate app to get hold of. On a phone or a
+          tablet you can add it to the home screen and it opens like one, full screen. What you
+          have already looked at stays readable with no signal.
+        </p>
+        <p>
+          Out of the box it answers only on the machine it runs on, or on your own network if you ticked the
+          box. Reaching it from outside is something <strong>you</strong> set up, and it needs
+          doing properly. Put a reverse proxy with a real certificate in front of it. Or use a
+          private tunnel or a VPN, so it is never on the open internet at all. Turn two-factor
+          sign-in on either way.
+        </p>
+        <p style="margin-bottom:0">
+          <strong>Do not simply forward a port to it.</strong> The application is served over plain HTTP and
+          expects something in front to handle TLS. Over plain HTTP it sends passwords and your
+          household's figures in the clear. If that sentence was not familiar, keep it to your own
+          network until somebody who does this can set it up. <a
+          href="how-its-built.html#deployment">How it is built</a> spells out what the front has
+          to do.
+        </p>
       </div>
 
       <div class="note note-plain">

@@ -581,6 +581,33 @@
             time. The number on the screen tells you exactly which build is running.
           </p>
 
+                    <h3>Reaching it from outside the house</h3>
+          <p>
+            The application runs in a browser, so a phone, a tablet and a laptop all get the same thing with
+            nothing to install. It carries a web manifest, so a phone can add it to the home
+            screen and open it full screen. What has already been read stays readable with no
+            signal.
+          </p>
+          <p>
+            <strong>What ships is closed.</strong> PostgreSQL and the API answer on
+            <code>127.0.0.1</code> only. The web app answers on port 8082. The Windows installer
+            adds a firewall rule for the local network only, and only if the person installing
+            ticks it. <code>CORS_ORIGIN</code> is empty, so no other origin's scripts can call
+            the API at all.
+          </p>
+          <p>
+            <strong>Reaching it from the internet is the deployment's job, and it is a real
+            job.</strong> nginx here serves plain HTTP and sends <code>Strict-Transport-Security</code>, which a browser only honours over HTTPS. TLS is terminated in front of it, by a reverse proxy with a certificate or by a tunnel. Reached over plain HTTP from anywhere but the machine itself, an installation sends passwords and household data in the clear. The TLS front is part of the install, not an option.
+          </p>
+          <div class="note note-warn">
+            <p style="margin-bottom:0">
+              <strong>Port-forwarding 8082 to the internet is the wrong answer.</strong> It puts
+              a financial record on the open web over plain HTTP. The two right answers are a
+              reverse proxy that terminates TLS and holds a real certificate, or a private
+              tunnel or VPN so the application is never publicly reachable. Turn on two-factor sign-in either way. Sign-in is rate limited per account, session tokens are short-lived and refresh tokens are held only as a hash. None of that substitutes for the front.
+            </p>
+          </div>
+
           <h3>On Windows, without Docker</h3>
           <p>
             A single installer puts the same three tiers on a Windows&nbsp;10 or 11 PC and runs

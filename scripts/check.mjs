@@ -27,6 +27,7 @@ const PAGES = [
   '/planning.html',
   '/compare.html',
   '/money-exporter.html',
+  '/beta.html',
   '/alternatives.html',
   '/advisory.html',
   '/how-its-built.html',
