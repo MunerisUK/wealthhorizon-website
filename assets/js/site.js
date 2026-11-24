@@ -45,7 +45,34 @@
       if (writeHash) {
         var id = tabs[index].getAttribute('aria-controls');
         if (id && history.replaceState) history.replaceState(null, '', '#' + id);
+        remember(id);
       }
+    }
+
+    /* A tabset that names itself (data-tabs="jurisdictions") remembers what
+       the reader picked, so somebody in the US who wants the UK rules is
+       asked once rather than every visit. A deliberate pick only: a locale
+       guess is not a choice, and neither is following a link, or a link
+       shared once would stick for good. Storage is per browser and can throw
+       where a private window has it switched off, so it is wrapped and the
+       tabs work without it. */
+    var memory = root.getAttribute('data-tabs') || '';
+    var KEY = memory ? 'wh.tab.' + memory : null;
+
+    function remember(id) {
+      if (!KEY || !id) return;
+      try { localStorage.setItem(KEY, id); } catch (e) { /* nothing to do */ }
+    }
+
+    function indexRemembered() {
+      if (!KEY) return -1;
+      var id;
+      try { id = localStorage.getItem(KEY); } catch (e) { return -1; }
+      if (!id) return -1;
+      for (var i = 0; i < tabs.length; i++) {
+        if (tabs[i].getAttribute('aria-controls') === id) return i;
+      }
+      return -1;   // a tab that no longer exists is not a choice
     }
 
     tabs.forEach(function (tab, i) {
@@ -117,6 +144,7 @@
     }
 
     var start = indexForHash();
+    if (start < 0) start = indexRemembered();
     if (start < 0) start = indexForRegion();
     select(start >= 0 ? start : 0, false, false);
   });
