@@ -76,7 +76,48 @@
       if (i >= 0) select(i, false, false);
     });
 
+    /* Where a tabset says which regions each tab is for, open the one that
+       fits the reader. The tax rules that apply to somebody in Ohio are not
+       the ones that apply in Kent, and opening the wrong country first tells
+       them the product is not for them.
+
+       A tab claims regions with data-regions="GB", and one tab may claim "*"
+       as the catch-all for a region nobody else claims. The address bar still
+       wins: a link to #uk is a deliberate request and is honoured whatever
+       the browser says. An unreadable locale falls through to the first tab,
+       never to a guess. */
+    function regionOfReader() {
+      try {
+        var tags = navigator.languages && navigator.languages.length
+          ? navigator.languages : [navigator.language];
+        for (var i = 0; i < tags.length; i++) {
+          var m = /^[A-Za-z]{2,3}[-_]([A-Za-z]{2})\b/.exec(tags[i] || '');
+          if (m) return m[1].toUpperCase();
+        }
+        // No region in the language tag ("en"), so fall back to the time zone.
+        var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        if (/^Europe\/London$/.test(tz)) return 'GB';
+        if (/^America\/(New_York|Chicago|Denver|Los_Angeles|Phoenix|Anchorage|Detroit|Indiana|Kentucky|North_Dakota|Boise|Juneau|Sitka|Nome|Adak|Menominee)/.test(tz)) return 'US';
+      } catch (e) { /* a browser that will not say is the same as not knowing */ }
+      return null;
+    }
+
+    function indexForRegion() {
+      var claimed = false, fallback = -1;
+      for (var i = 0; i < tabs.length; i++) if (tabs[i].hasAttribute('data-regions')) claimed = true;
+      if (!claimed) return -1;
+      var region = regionOfReader();
+      if (!region) return -1;
+      for (var j = 0; j < tabs.length; j++) {
+        var list = (tabs[j].getAttribute('data-regions') || '').toUpperCase().split(/[,\s]+/);
+        if (list.indexOf(region) >= 0) return j;
+        if (list.indexOf('*') >= 0) fallback = j;
+      }
+      return fallback;
+    }
+
     var start = indexForHash();
+    if (start < 0) start = indexForRegion();
     select(start >= 0 ? start : 0, false, false);
   });
 })();
