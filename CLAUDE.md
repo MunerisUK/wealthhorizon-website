@@ -144,14 +144,26 @@ no sentence under 10, it is too dense. Cut it up.
 
 ### The product line
 
-There are four things to sell, and no others:
+There are five things to sell, and no others:
 
 | | |
 |---|---|
-| **Standard** | What Microsoft Money did. |
-| **Pro** | Standard, plus planning, tax and forecasting. |
-| **Advisory** | Pro, plus the supervision and compliance tools, for regulated firms. |
+| **Standard** | What Microsoft Money did, plus the planning, forecasting and tax work. Four people who sign in. |
+| **Pro** | Standard, plus four things and nothing else: AI assistance, bank and broker feeds, the plan report, and more than three scenarios a plan. Eight people. |
+| **Advisory** | Pro, plus the supervision and compliance tools, for regulated firms. 2 named staff seats, 50 client households. |
+| **Firm** | Advisory with more room: 10 named staff seats, 250 client households. **No feature differs from Advisory.** |
 | **Money Exporter** | A separate converter with its own one-off licence. **In beta testing and not on sale.** |
+
+**Pro is not "planning and tax".** It was described that way, and that was wrong:
+`backend/src/services/licensing.ts` gates exactly four things (`ProFeature`), and
+the planner, the tax work, the forecast, the estate tools, the Risk Pyramid and
+Growth & income are all in Standard. Do not move a feature into Pro without a
+`proFeatureOfPath` entry to point at.
+
+**Counting people.** Children under sixteen are not counted, nor is anybody who
+cannot sign in. Clients are not seats. The numbers above are the defaults in
+`DEFAULT_USERS`, `DEFAULT_STAFF` and `DEFAULT_HOUSEHOLDS`; a key may carry its
+own.
 
 **Money Exporter is not on sale yet.** Every buy button on the site goes to
 `beta.html`, which says beta testing is in progress, and the buttons read

@@ -387,7 +387,7 @@
             contacts Google.</td></tr>
 
                         <tr class="row-group"><th colspan="2" scope="colgroup">Optional AI, which nothing uses yet</th></tr>
-            <tr><th scope="row">Nothing is sent to a model</th><td><strong>No feature in WealthHorizon uses a language model, and none sends your data to one.</strong> What shipped is the plumbing and the controls: one adapter interface, a first adapter for <a href="https://ollama.com">Ollama</a>, the policy layer and the audit. It is off by default and there is nothing to turn on yet. The controls were built before the feature on purpose, so that when something does use a model the answer to &ldquo;where does my data go&rdquo; already exists.</td></tr>
+            <tr><th scope="row">Nothing is sent unless you switch it on</th><td><strong>AI is off until somebody turns it on, and no feature needs it.</strong> One feature uses a model once it is on: <em>Ask why</em>, which answers a question about a figure on screen. It sends that figure&rsquo;s own breakdown, and every amount in the reply is checked back against it. With AI off, or a reply whose numbers do not match, you are shown the breakdown instead. <em>How is this worked out?</em> shows that same breakdown and never uses a model. The plumbing is one adapter interface, a first adapter for <a href="https://ollama.com">Ollama</a>, the policy layer and the audit. The controls were built before the feature on purpose, so the answer to &ldquo;where does my data go&rdquo; existed first. AI assistance is part of Pro.</td></tr>
             <tr><th scope="row">Who may connect what</th><td>A system administrator sets a ceiling the rest cannot exceed. Within it an installation, a household or firm, and each person may hold their own connection, resolved in that order. Unattended work uses the household&rsquo;s, then the installation&rsquo;s, never a person&rsquo;s. There are caps on use.</td></tr>
             <tr><th scope="row">What may reach your own network</th><td>Only the installation&rsquo;s own connection may reach the machine it runs on, or the local network. A household&rsquo;s or a person&rsquo;s connection cannot. That is what makes a model running on your own hardware a different thing from a model somebody added on a laptop.</td></tr>
             <tr><th scope="row">Keys and records</th><td>A connection&rsquo;s key is sealed under <code>WH_CREDENTIAL_KEY</code> and never returned by the API, the same as the brokerage credentials. <em>Test connection</em> sends a fixed sentence with no personal data in it. Use is audited by the <strong>SHA-256 of the messages, never the text</strong>, so there is a record that something was asked without a copy of what was asked.</td></tr>
@@ -642,6 +642,23 @@
             <li>An origin sign-off on every commit, certifying provenance and the right to submit under the stated terms.</li>
             <li>Intellectual property assignment terms binding every authorised contributor, so that ownership does not fragment.</li>
           </ul>
+
+          <h4 style="margin-top:2rem">What a key does, and what it does not</h4>
+          <div class="table-scroll">
+          <table>
+            <caption>How a licence behaves.</caption>
+            <thead>
+              <tr><th scope="col">Rule</th><th scope="col">What happens</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">One key, one installation</th><td>An installation sends a random id with its daily check, and nothing else about itself. If the licence server sees the key on a second installation, the Licence card says so. <strong>Nothing stops.</strong> <em>Move this licence</em> releases the one you have left behind.</td></tr>
+              <tr><th scope="row">A subscription buys updates</th><td>The end date on a licence is the end of its <strong>updates</strong>, not of the software. A version released before that date keeps working afterwards, for good, and the Licence card says updates have ended. A version released after it is read-only until the licence is renewed, and says so. Each build carries the day it was released.</td></tr>
+              <tr><th scope="row">Licensed to</th><td>Where the licence names its owner, &ldquo;Licensed to &hellip;&rdquo; appears under the logo and at the foot of the plan report. It is the name from the purchase, never an email address.</td></tr>
+              <tr><th scope="row">Signed images</th><td>The public images carry signed build provenance beside them, as the internal ones do, so a rebuilt or tampered copy can be told from ours. A test keeps source maps out of both.</td></tr>
+              <tr><th scope="row">Counted, and refused with a reason</th><td>A household licence covers its people; the Advisory and Firm editions count named staff seats and client households. The step that would need one you have not got is refused and told why. Nobody already in is locked out, and restoring a backup is never limited.</td></tr>
+            </tbody>
+          </table>
+          </div>
         </div>
       </div>
     </div>
