@@ -206,18 +206,21 @@ async function browserChecks(base) {
   console.log('\nTabs, and the page without scripting');
   // In tablist order. The home page shows four editions, so the booleans below
   // are read as Money Exporter, Standard, Pro, Advisory.
-  const PANELS = ['exporter', 'standard', 'pro', 'advisory'];
+  const PANELS = ['exporter', 'standard', 'pro', 'advisory', 'firm'];
   {
     // The editions tabset claims no regions, so a locale must not move it.
     const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 }, locale: 'en-US' });
     const page = await ctx.newPage();
     const visible = () => Promise.all(PANELS.map((id) => page.locator('#' + id).isVisible()));
+    // What "only this panel" looks like, worked out from PANELS rather than
+    // typed out, so adding an edition does not need five expectations editing.
+    const only = (id) => String(PANELS.map((p) => p === id));
 
     await page.goto(base + '/index.html', { waitUntil: 'networkidle' });
     let v = await visible();
-    if (String(v) !== 'true,false,false,false') fail(`tabs on load: expected only Money Exporter, got ${v}`); else pass('tabs: one panel on load');
+    if (String(v) !== only('exporter')) fail(`tabs on load: expected only Money Exporter, got ${v}`); else pass('tabs: one panel on load');
 
-    // Every tab in the list has a panel. The hero promises four editions and
+    // Every tab in the list has a panel. The hero promises the editions and
     // links here, so a tab missing from the list is a broken promise.
     const tabCount = await page.locator('.tablist [role="tab"]').count();
     if (tabCount !== PANELS.length) fail(`tabs: ${tabCount} tabs for ${PANELS.length} panels`); else pass(`tabs: ${tabCount} tabs, ${tabCount} panels`);
@@ -225,19 +228,19 @@ async function browserChecks(base) {
     await page.getByRole('tab', { name: 'Pro' }).click();
     await page.waitForTimeout(200);
     v = await visible();
-    if (String(v) !== 'false,false,true,false') fail(`tab click: got ${v}`); else pass('tabs: click');
+    if (String(v) !== only('pro')) fail(`tab click: got ${v}`); else pass('tabs: click');
 
     await page.keyboard.press('ArrowRight');
     await page.waitForTimeout(200);
     v = await visible();
-    if (String(v) !== 'false,false,false,true') fail(`arrow key: got ${v}`); else pass('tabs: arrow key');
+    if (String(v) !== only('advisory')) fail(`arrow key: got ${v}`); else pass('tabs: arrow key');
 
     // Two ways in, and they behave differently: arriving fresh runs the script,
     // while changing the fragment on a loaded page does not reload it.
     await page.goto(base + '/index.html#pro', { waitUntil: 'networkidle' });
     await page.waitForTimeout(200);
     v = await visible();
-    if (String(v) !== 'false,false,true,false') fail(`deep link #pro on the loaded page: got ${v}`); else pass('tabs: deep link, same document');
+    if (String(v) !== only('pro')) fail(`deep link #pro on the loaded page: got ${v}`); else pass('tabs: deep link, same document');
     await ctx.close();
 
     const fresh = await browser.newContext({ viewport: { width: 1400, height: 900 } });
@@ -245,7 +248,7 @@ async function browserChecks(base) {
     await freshPage.goto(base + '/index.html#advisory', { waitUntil: 'networkidle' });
     await freshPage.waitForTimeout(200);
     const fv = await Promise.all(PANELS.map((id) => freshPage.locator('#' + id).isVisible()));
-    if (String(fv) !== 'false,false,false,true') fail(`deep link #advisory on a cold load: got ${fv}`); else pass('tabs: deep link, cold load');
+    if (String(fv) !== only('advisory')) fail(`deep link #advisory on a cold load: got ${fv}`); else pass('tabs: deep link, cold load');
     await fresh.close();
   }
   // The planning page carries a second tabset, for the jurisdiction a household
